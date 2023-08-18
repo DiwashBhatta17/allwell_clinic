@@ -6,7 +6,7 @@ import FirstComponent from './FirstComponent';
 function SecontComponent() {
   return (
     <>
-    <FirstComponent/>
+    
     <div className="h-[10vh] mt-5 bg-white flex mx-[140px] items-center justify-between">
         <div className="flex gap-3">
             <div className="text-4xl mt-2 text-[#159EEC]"><i class="fa-solid fa-phone-volume"></i></div>
