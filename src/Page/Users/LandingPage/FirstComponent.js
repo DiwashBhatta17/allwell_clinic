@@ -1,6 +1,8 @@
 import React from "react";
 import UserNavbar from "./UserNavbar";
 import Firstimg1 from "../UserImages/landingpageimg1.png";
+import SecontComponent from "./SecontComponent";
+import UserFooter from "../UserFooter";
 
 function FirstComponent() {
   return (
@@ -30,6 +32,8 @@ function FirstComponent() {
           </div>
         </div>
       </div>
+      <SecontComponent/>
+      <UserFooter/>
       
     </>
   );
