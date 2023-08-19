@@ -2,6 +2,7 @@ import React from 'react';
 import img from '../UserImages/UserImg2.png';
 import img2 from '../UserImages/Why choose us_.png';
 import FirstComponent from './FirstComponent';
+import ThirdComp from './ThirdComp';
 
 function SecontComponent() {
   return (
@@ -34,6 +35,7 @@ function SecontComponent() {
     <div>
       <img src={img2} alt="" />
     </div>
+    <ThirdComp/>
     
 
     </>
