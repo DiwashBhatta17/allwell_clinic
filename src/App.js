@@ -1,9 +1,11 @@
 
 
 import './App.css';
+import DoctorDetailUser from './Page/Users/DoctorDetailUser';
 import FirstComponent from './Page/Users/LandingPage/FirstComponent';
 import SecontComponent from './Page/Users/LandingPage/SecontComponent';
 import ThirdComp from './Page/Users/LandingPage/ThirdComp';
+import ServiceCom1 from './Page/Users/ServicesPage/ServiceCom1';
 import UserFooter from './Page/Users/UserFooter';
 
 
@@ -24,8 +26,11 @@ import Rout from './pages/homework/datafetch/Rout';
 function App() {
   return (
     <>
+    {/* <ServiceCom1/> */}
+    {/* <Rout/> */}
+    <DoctorDetailUser/>
     
-    <FirstComponent/>
+    {/* <FirstComponent/> */}
     {/* <UseReducer/> */}
     {/* <UseReducebutton/> */}
     {/* <UserFooter/> */}

@@ -1,5 +1,6 @@
 import React from "react";
-import UserNavbar from "./UserNavbar";
+import UserNavbar from "../UserNavbar"
+
 import Firstimg1 from "../UserImages/landingpageimg1.png";
 import SecontComponent from "./SecontComponent";
 import UserFooter from "../UserFooter";
@@ -7,7 +8,8 @@ import UserFooter from "../UserFooter";
 function FirstComponent() {
   return (
     <>
-      <UserNavbar />
+    <UserNavbar/>
+    
       <div className="rounded-br-[300px]  bg-[#c0bdbd] bg-opacity-20">
         <div className="flex mx-[120px]">
           <div className="div1">
