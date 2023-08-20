@@ -43,7 +43,7 @@ function DoctorDetailUser() {
         </div>
       </div>
 
-      {/* component 2  */}
+     
 
       <div className="mt-[100px]">
         <div className="flex justify-around">
