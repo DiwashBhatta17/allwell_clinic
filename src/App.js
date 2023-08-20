@@ -1,6 +1,7 @@
 
 
 import './App.css';
+import FirstAppForm from './Page/Users/AppointmentForm/FirstAppForm';
 import DoctorDetailUser from './Page/Users/DoctorDetailUser';
 
 
@@ -13,7 +14,8 @@ function App() {
     <>
     {/* <ServiceCom1/> */}
     {/* <Rout/> */}
-    <DoctorDetailUser/>
+    {/* <DoctorDetailUser/> */}
+    <FirstAppForm/>
     
     {/* <FirstComponent/> */}
     {/* <UseReducer/> */}
