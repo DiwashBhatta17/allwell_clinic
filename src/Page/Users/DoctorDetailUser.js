@@ -42,8 +42,8 @@ function DoctorDetailUser() {
           </div>
         </div>
       </div>
-
-      {/* component 2  */}
+      {/* comma */}
+     
 
       <div className="mt-[100px]">
         <div className="flex justify-around">

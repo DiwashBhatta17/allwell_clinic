@@ -1,22 +1,8 @@
 
 
 import './App.css';
+import FirstAppForm from './Page/Users/AppointmentForm/FirstAppForm';
 import DoctorDetailUser from './Page/Users/DoctorDetailUser';
-import FirstComponent from './Page/Users/LandingPage/FirstComponent';
-import SecontComponent from './Page/Users/LandingPage/SecontComponent';
-import ThirdComp from './Page/Users/LandingPage/ThirdComp';
-import ServiceCom1 from './Page/Users/ServicesPage/ServiceCom1';
-import UserFooter from './Page/Users/UserFooter';
-
-
-import Axioes from './pages/homework/Axioes';
-import AxiosGet from './pages/homework/AxiosGet';
-
-import Class from './pages/homework/Class';
-import Formhand from './pages/homework/Formhand';
-import UseReducebutton from './pages/homework/UseReducebutton';
-import UseReducer from './pages/homework/UseReducer';
-import Rout from './pages/homework/datafetch/Rout';
 
 
 
@@ -28,7 +14,8 @@ function App() {
     <>
     {/* <ServiceCom1/> */}
     {/* <Rout/> */}
-    <DoctorDetailUser/>
+    {/* <DoctorDetailUser/> */}
+    <FirstAppForm/>
     
     {/* <FirstComponent/> */}
     {/* <UseReducer/> */}
