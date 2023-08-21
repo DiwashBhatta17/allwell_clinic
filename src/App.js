@@ -2,7 +2,11 @@
 
 import './App.css';
 import FirstAppForm from './Page/Users/AppointmentForm/FirstAppForm';
+import SecondAppointmentForm from './Page/Users/AppointmentForm/SecondAppointmentForm';
 import DoctorDetailUser from './Page/Users/DoctorDetailUser';
+import FirstComponent from './Page/Users/LandingPage/FirstComponent';
+import AppointmentFormControl from './components/ForUsers/AppointmentFormControl';
+import Rout from './pages/homework/datafetch/Rout';
 
 
 
@@ -12,10 +16,13 @@ import DoctorDetailUser from './Page/Users/DoctorDetailUser';
 function App() {
   return (
     <>
+    {/* <FirstComponent/> */}
     {/* <ServiceCom1/> */}
     {/* <Rout/> */}
     {/* <DoctorDetailUser/> */}
-    <FirstAppForm/>
+    {/* <FirstAppForm/> */}
+    <AppointmentFormControl/>
+    {/* <SecondAppointmentForm/> */}
     
     {/* <FirstComponent/> */}
     {/* <UseReducer/> */}

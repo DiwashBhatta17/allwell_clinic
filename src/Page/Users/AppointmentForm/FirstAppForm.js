@@ -1,23 +1,13 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import UserNavbar from '../UserNavbar';
+import UserFooter from "../UserFooter";
 
-function FirstAppForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    date: "",
-  });
-
-  function handelchange(event) {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  }
-  function handelsubmit(event) {
-    event.preventDefaut();
-    console.log(formData.name);
-  }
+function FirstAppForm({formData, handelchange}) {
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen text-center mb-5">
+    <>
+    <UserNavbar/>
+    <div className="flex flex-col justify-center items-center min-h-screen text-center my-5">
       <div className="mb-[30px]">
         <h1 className="text-3xl font-bold text-[#170F49]">Your Appointments</h1>
         <p>
@@ -26,7 +16,7 @@ function FirstAppForm() {
         </p>
       </div>
       {/* form */}
-      <div className="bg-[#FAF8F8] p-4">
+      <div className="bg-[#FAF8F8] p-4 px-5 rounded-[20px]">
         <div className="my-5">
           <h1 className="text-2xl font-bold text-[#170F49] mb-2">
             Contact Details
@@ -36,13 +26,15 @@ function FirstAppForm() {
           </p>
           <hr />
         </div>
-        <form className="text-left" onSubmit={handelsubmit} >
+
+        {/* form Start here */}
+        <div className="text-left" type="post">
           <div className="flex flex-col ">
             <label htmlFor="name" className="font-bold text-black">
               Name
             </label>
             <input
-              className="shadow rounded-xl mt-2 h-[45px] w-[300px]"
+              className=" shadow-sm rounded-xl mt-2 h-[45px] w-[300px]"
               type="text"
               name="name"
               placeholder="  Name"
@@ -56,7 +48,7 @@ function FirstAppForm() {
               Phone Number
             </label>
             <input
-              className="shadow rounded-xl mt-2 h-[45px] w-[300px]"
+              className="shadow-sm rounded-xl mt-2 h-[45px] w-[300px]"
               type="text"
               name="phone"
               placeholder="  +977 98123456789"
@@ -70,7 +62,7 @@ function FirstAppForm() {
               Email
             </label>
             <input
-              className="shadow rounded-xl mt-2 h-[45px] w-[300px]"
+              className="shadow-sm rounded-xl mt-2 h-[45px] w-[300px]"
               type="email"
               name="email"
               placeholder="  Your Mail Id"
@@ -84,7 +76,7 @@ function FirstAppForm() {
               Date Of Birth
             </label>
             <input
-              className="shadow rounded-xl mt-2 h-[45px] w-[300px]"
+              className="shadow-sm rounded-xl mt-2 h-[45px] w-[300px]"
               type="date"
               name="date"
               placeholder="  YYYY-MM-DD"
@@ -94,17 +86,14 @@ function FirstAppForm() {
           </div>
 
           <div className="mt-5">
-            <button
-              className="border px-5 py-2 rounded-full bg-[#497FAB] text-white"
-              type="submit"
-              
-            >
-              Next
-            </button>
+            <Link className="border px-5 py-2 bg-[#497FAB] text-xl text-white rounded-full font-bold" to="2">Next</Link>
           </div>
-        </form>
+        </div>
       </div>
+      
     </div>
+    <UserFooter/>
+    </>
   );
 }
 
