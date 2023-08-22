@@ -1,8 +1,27 @@
 import React from "react";
 import logo from "./img/AllWell Clinic.png";
 import login1 from "./img/LoginImg.png";
+import { useState } from "react";
+import AsaDoctor from "./AsaDoctor";
+import AsaPatient from "./AsaPatient";
 
 function Signup() {
+    const  [signupData, setSignupdata] = useState({
+        name: "",
+        username: "",
+        password:"",
+        email: "",
+        phone: "",
+        confirmPassword: "",
+        isDoctor: false,
+    })
+
+    const [status, setStatus]= useState(true);
+
+    function handelChange(event){
+        const {name, value} = event.target;
+        setSignupdata({...signupData, [name]: value});
+    }
   return (
     <div className="flex top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
       <div className=" bg-white w-fit flex p-5">
@@ -10,57 +29,115 @@ function Signup() {
           <div className="mb-4">
             <img className="" src={logo} alt="" />
           </div>
+          {status? <AsaDoctor setStatus={setStatus}/> : <AsaPatient setStatus={setStatus}/>}
 
-          <div className="bg-[#2182f157] flex justify-between px-4 py-1 rounded-lg">
-            <div className="flex gap-2 bg-white px-3 py-1 rounded-lg">
-            <i className="fa-solid mt-1 text-[rgb(33,78,241)] fa-user-doctor"></i>
-              <p>As a Doctor</p>
-            </div>
-            <div className="flex gap-2  px-2 py-1 rounded-lg">
-            <i className="fa-solid mt-1 text-[rgb(33,78,241)] fa-hospital-user"></i>
-              <p>As a patients</p>
-            </div>
-          </div>
+         {/* yo space */}
 
           <div>
-            <label className="text-black mb-3">Username</label>
-            <br />
-            <input
-              className="border-b-[1px] w-full  border-black"
-              type="text"
-              placeholder="Your Username"
-              name="username"
-            ></input>
-            <br></br>
-            <label className="mt-3 mb-3" htmlFor="">
-              Password
-            </label>
-            <br />
-            <input
-              className="border-b-[1px] w-full  border-black"
-              type="password"
-              name="password"
-              placeholder="*******************"
-            />{" "}
-            <br />
-            <br />
-            <div className="flex justify-between ">
-              <div className="flex gap-2">
-                <input type="checkbox" name="checkbox" id="checkbox" />
-                <p>Remember Me?</p>
+            <div className="flex mb-1">
+              <div className=""> 
+                
+                <label className="text-black mb-1 mt-2">Name</label>
+                <br />
+                <input
+                  className="border-[1px] w-[90%] rounded-lg  py-1 px-1  border-black"
+                  type="text"
+                  placeholder=" Your Name"
+                  name="name"
+                  value={signupData.name}
+                  onChange={handelChange}
+
+                  
+                ></input>
               </div>
-              <p className="text-[#2181F1]">
-                <a href="#">Forget Password?</a>
-              </p>
+              <div>
+                
+                <label className="text-black mb-1 mt-2">Username</label>
+                <br />
+                <input
+                  className="border-[1px] w-[90%] py-1 px-1 rounded-lg border-black"
+                  type="text"
+                  placeholder=" Your Username"
+                  name="username"
+                  value={signupData.username}
+                  onChange={handelChange}
+                ></input>
+              </div>
             </div>
-            <div className="mt-3 text-center w-full ">
+
+            <div className="flex mb-1">
+              <div className=""> 
+                
+                <label className="text-black mb-1 mt-2">Email</label>
+                <br />
+                <input
+                  className="border-[1px] w-[90%] rounded-lg px-1 py-1  border-black"
+                  type="email"
+                  placeholder=" domain@gmail.com"
+                  name="email"
+                  value={signupData.email}
+                  onChange={handelChange}
+                ></input>
+              </div>
+              <div>
+                
+                <label className="text-black mb-1 mt-2">Phone Number</label>
+                <br />
+                <input
+                  className="border-[1px] w-[90%] px-1 py-1 rounded-lg border-black"
+                  type="text"
+                  placeholder=" (977)-9812346789"
+                  name="phone"
+                  value={signupData.phone}
+                  onChange={handelChange}
+                ></input>
+              </div>
+            </div>
+
+            <div className="flex mb-1">
+              <div className=""> 
+                
+                <label className="text-black mb-1 mt-2">Password</label>
+                <br />
+                <input
+                  className="border-[1px] w-[90%] rounded-lg  py-1 px-1 border-black"
+                  type="password"
+                  placeholder=" ********"
+                  name="password"
+                  value={signupData.password}
+                  onChange={handelChange}
+                ></input>
+              </div>
+              <div>
+                
+                <label className="text-black mb-1 mt-2">Confirm Password</label>
+                <br />
+                <input
+                  className="border-[1px] w-[90%] py-1 px-1 rounded-lg border-black"
+                  type="password"
+                  placeholder=" ********"
+                  name="confirmPassword"
+                  value={signupData.confirmPassword}
+                  onChange={handelChange}
+                ></input>
+              </div>
+            </div>
+
+            
+
+
+
+
+           
+           
+            <div className="mt-5 text-center w-full ">
               <button className=" bg-[#2182f1c4] w-full py-2 rounded-lg text-white ">
-                Login
+                Register
               </button>
             </div>
             <div className="flex mt-4 justify-between w-[9">
-              <p>Don't have an account?</p>
-              <p className="text-[#2181F1]">Register?</p>
+              <p>Already have an account?</p>
+              <p className="text-[#2181F1]">Login?</p>
             </div>
           </div>
         </div>
