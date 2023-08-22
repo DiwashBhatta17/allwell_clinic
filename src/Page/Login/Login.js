@@ -20,12 +20,12 @@ function Login() {
             <label className="text-black mb-3">Username</label>
             <br />
             <input
-              className="border-b-[1px] w-full  border-black"
+              className="border-b-[1px] w-full outline-none border-black"
               type="text"
               placeholder="Your Username"
               name="username"
               value={loginData.name}
-              onChange={(e) => e.target.value}
+              onChange={(e) => setLoginData(e.target.value)}
             ></input>
             <br></br>
             <label className="mt-3 mb-3" htmlFor="">
@@ -33,12 +33,12 @@ function Login() {
             </label>
             <br />
             <input
-              className="border-b-[1px] w-full  border-black"
+              className="border-b-[1px] w-full border-t-0  border-black outline-none"
               type="password"
               name="password"
-              placeholder="*******************"
+              placeholder=" ******************"
               value={loginData.password}
-              onChange={(e) => e.target.value}
+              onChange={(e) => setLoginData(e.target.value)}
             />{" "}
             <br />
             <br />

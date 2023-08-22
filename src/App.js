@@ -18,13 +18,13 @@ import Rout from './pages/homework/datafetch/Rout';
 function App() {
   return (
     <>
-    <Signup/>
+    {/* <Signup/> */}
     {/* <FirstComponent/> */}
     {/* <ServiceCom1/> */}
     {/* <Rout/> */}
     {/* <DoctorDetailUser/> */}
     {/* <FirstAppForm/> */}
-    {/* <Login/> */}
+    <Login/>
     {/* <AppointmentFormControl/> */}
     {/* <SecondAppointmentForm/> */}
     
