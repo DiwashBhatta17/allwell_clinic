@@ -4,11 +4,13 @@ import UserNavbar from "../UserNavbar"
 import Firstimg1 from "../UserImages/landingpageimg1.png";
 import SecontComponent from "./SecontComponent";
 import UserFooter from "../UserFooter";
+import Login from "../../Login/Login";
 
 function FirstComponent() {
   return (
     <>
     <UserNavbar/>
+    <Login/>
     
       <div className="rounded-br-[300px]  bg-[#c0bdbd] bg-opacity-20">
         <div className="flex mx-[120px]">

@@ -1,6 +1,8 @@
 
 
 import './App.css';
+import Login from './Page/Login/Login';
+import Signup from './Page/Login/Signup';
 import FirstAppForm from './Page/Users/AppointmentForm/FirstAppForm';
 import SecondAppointmentForm from './Page/Users/AppointmentForm/SecondAppointmentForm';
 import DoctorDetailUser from './Page/Users/DoctorDetailUser';
@@ -16,12 +18,14 @@ import Rout from './pages/homework/datafetch/Rout';
 function App() {
   return (
     <>
+    <Signup/>
     {/* <FirstComponent/> */}
     {/* <ServiceCom1/> */}
     {/* <Rout/> */}
     {/* <DoctorDetailUser/> */}
     {/* <FirstAppForm/> */}
-    <AppointmentFormControl/>
+    {/* <Login/> */}
+    {/* <AppointmentFormControl/> */}
     {/* <SecondAppointmentForm/> */}
     
     {/* <FirstComponent/> */}
