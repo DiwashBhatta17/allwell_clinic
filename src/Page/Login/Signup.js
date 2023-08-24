@@ -4,39 +4,132 @@ import login1 from "./img/LoginImg.png";
 import { useState } from "react";
 import AsaDoctor from "./AsaDoctor";
 import AsaPatient from "./AsaPatient";
+import RegisterService from "../../Services/LoginService/registerService";
+import asAdoctorService from "../../Services/LoginService/asAdoctorService";
 
-function Signup() {
-    const  [signupData, setSignupdata] = useState({
-        name: "",
-        username: "",
-        password:"",
-        email: "",
-        phone: "",
-        confirmPassword: "",
-        isDoctor: false,
-    })
 
-    const [status, setStatus]= useState(true);
 
-    function handelChange(event){
-        const {name, value} = event.target;
-        setSignupdata({...signupData, [name]: value});
+// patientName
+// doctorName
+
+function Signup(props) {
+  const [signupData, setSignupdata] = useState({
+    name: "",
+    username: "",
+    password: "",
+    email: "",
+    phone: "",
+    confirmPassword: "",
+    
+  });
+  const [isDoctor, setisDoctor] = useState(false);
+
+  const [patientdatatosend, setDatatosend] = useState({
+    patientName: "",
+    username: "",
+    password: "",
+    email: "",
+    phone: "",
+  });
+
+  const [doctordatatosend, setdoctorDatatosend] = useState({
+    doctorName: "",
+    username: "",
+    password: "",
+    email: "",
+    phone: "",
+  });
+
+  const [status, setStatus] = useState(true);
+  const [errorMessage, setErrormessage] = useState("");
+
+  function handelClick() {
+    if (signupData.name == "") {
+      setErrormessage("Name Field can't be Empty !!");
+    } else if (signupData.username == "") {
+      setErrormessage("Name Field can't be Empty !!");
+    } else if (signupData.password == "") {
+      setErrormessage("Name Field can't be Empty !!");
+    } else if (signupData.email == "") {
+      setErrormessage("Name Field can't be Empty !!");
+    } else if (signupData.phone == "") {
+      setErrormessage("Name Field can't be Empty !!");
+    } else if (signupData.confirmPassword == "") {
+      setErrormessage("Name Field can't be Empty !!");
+    } else if (signupData.password != signupData.confirmPassword) {
+      setErrormessage("Confirm Password does not match with the new password");
+    } else {
+      console.log(isDoctor);
+      if(isDoctor){
+        setdoctorDatatosend({
+            ...doctordatatosend,
+            doctorName: signupData.name,
+            username: signupData.username,
+            password: signupData.password,
+            email: signupData.email,
+            phone: signupData.phone,
+          })
+          console.log("doc")
+          
+          asAdoctorService(doctordatatosend);
+         
+        } else{
+          setDatatosend({
+          ...patientdatatosend,
+          patientName: signupData.name,
+          username: signupData.username,
+          password: signupData.password,
+          email: signupData.email,
+          phone: signupData.phone,
+        })
+        console.log('patient');
+        RegisterService(patientdatatosend);
+       
+      }
+
+      setErrormessage("");
+      // data fetching work here
+      // console.log(signupData);
+      // setSignupdata({
+      //   ...signupData,
+      //   name: "",
+      //   username: "",
+      //   password: "",
+      //   email: "",
+      //   phone: "",
+      //   confirmPassword: "",
+      // });
     }
-  return (
+  }
+
+  function handelChange(event) {
+    const { name, value } = event.target;
+    setSignupdata({ ...signupData, [name]: value });
+  }
+  return props.signup ? (
     <div className="flex top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
       <div className=" bg-white w-fit flex p-5">
         <div className="justify-center flex-col w-[45%] flex">
           <div className="mb-4">
             <img className="" src={logo} alt="" />
           </div>
-          {status? <AsaDoctor setStatus={setStatus}/> : <AsaPatient setStatus={setStatus}/>}
+          <div
+            className=" text-center  rounded-lg alert-danger mb-2"
+            role="alert"
+          >
+            {errorMessage}
+          </div>
+          {status ? (
+            <AsaDoctor setStatus={setStatus} setisDoctor={setisDoctor} />
+          ) : (
+            <AsaPatient setStatus={setStatus} setisDoctor={setisDoctor} />
+          )}
 
-         {/* yo space */}
+          {/* yo space */}
 
           <div>
             <div className="flex mb-1">
-              <div className=""> 
-                
+              <div className="">
                 <label className="text-black mb-1 mt-2">Name</label>
                 <br />
                 <input
@@ -46,12 +139,9 @@ function Signup() {
                   name="name"
                   value={signupData.name}
                   onChange={handelChange}
-
-                  
                 ></input>
               </div>
               <div>
-                
                 <label className="text-black mb-1 mt-2">Username</label>
                 <br />
                 <input
@@ -66,8 +156,7 @@ function Signup() {
             </div>
 
             <div className="flex mb-1">
-              <div className=""> 
-                
+              <div className="">
                 <label className="text-black mb-1 mt-2">Email</label>
                 <br />
                 <input
@@ -80,7 +169,6 @@ function Signup() {
                 ></input>
               </div>
               <div>
-                
                 <label className="text-black mb-1 mt-2">Phone Number</label>
                 <br />
                 <input
@@ -95,8 +183,7 @@ function Signup() {
             </div>
 
             <div className="flex mb-1">
-              <div className=""> 
-                
+              <div className="">
                 <label className="text-black mb-1 mt-2">Password</label>
                 <br />
                 <input
@@ -109,7 +196,6 @@ function Signup() {
                 ></input>
               </div>
               <div>
-                
                 <label className="text-black mb-1 mt-2">Confirm Password</label>
                 <br />
                 <input
@@ -123,15 +209,11 @@ function Signup() {
               </div>
             </div>
 
-            
-
-
-
-
-           
-           
             <div className="mt-5 text-center w-full ">
-              <button className=" bg-[#2182f1c4] w-full py-2 rounded-lg text-white ">
+              <button
+                onClick={handelClick}
+                className=" hover:bg-[#5672d7] bg-[#2182f1c4] active:bg-[#88b7ed] w-full py-2 rounded-lg text-white "
+              >
                 Register
               </button>
             </div>
@@ -142,10 +224,15 @@ function Signup() {
           </div>
         </div>
         <div className="flex  pl-6">
+          <button onClick={() => props.setSignup(false)}>
+            <i className="absolute top-[120px] text-2xl focus:text-yellow-50 text-black  left-[76%] fa-solid fa-xmark"></i>
+          </button>
           <img className="w-[450px]" src={login1} alt="" />
         </div>
       </div>
     </div>
+  ) : (
+    ""
   );
 }
 

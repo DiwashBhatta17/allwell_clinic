@@ -5,13 +5,12 @@ import Firstimg1 from "../UserImages/landingpageimg1.png";
 import SecontComponent from "./SecontComponent";
 import UserFooter from "../UserFooter";
 import Login from "../../Login/Login";
+import { Link } from "react-router-dom";
 
 function FirstComponent() {
   return (
     <>
-    <UserNavbar/>
-    <Login/>
-    
+    <UserNavbar/>   
       <div className="rounded-br-[300px]  bg-[#c0bdbd] bg-opacity-20">
         <div className="flex mx-[120px]">
           <div className="div1">
@@ -28,11 +27,11 @@ function FirstComponent() {
               </p>
             </div>
             <div className="mt-4 ">
-              <button className="border-2 bg-[#497FAB] px-4 py-1 text-white rounded-full">About Us</button>
+              <button  className="border-2 bg-[#497FAB] px-4 py-1 text-white rounded-full">Book an Appointment</button>
             </div>
           </div>
           <div className="div2  rounded-br-[20px]">
-            <img className="rounded-br-[120px] rounded-tr-none relative" src={Firstimg1} alt="" />
+            <img className="rounded-br-[120px] rounded-tr-none " src={Firstimg1} alt="" />
           </div>
         </div>
       </div>
