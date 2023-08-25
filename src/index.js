@@ -3,11 +3,52 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Homepage from './pages/React_Router/Homepage';
+import Abouttus from './pages/React_Router/Abouttus';
+import FirstComponent from './Page/Users/LandingPage/FirstComponent';
+import ServiceCom1 from './Page/Users/ServicesPage/ServiceCom1';
+import AppointmentFormControl from './components/ForUsers/AppointmentFormControl';
+import Login from './Page/Login/Login';
+import Signup from './Page/Login/Signup';
+import Otp from './Page/Login/Otp';
+
+
+// const routerConfig = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <FirstComponent/>
+//   },
+//   {
+//     path: 'otp',
+//     element: <Otp/>
+//   },
+//   {
+//     path: 'service',
+//     element: <ServiceCom1/>
+//   },
+//   {
+//     path: 'appointment',
+//     element: <AppointmentFormControl/>
+//   },
+//   {
+//     path: 'login',
+//     element: <Login/>
+//   },
+//   {
+//     path: 'signup',
+//     element: <Signup/>
+//   },
+ 
+  
+
+// ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <RouterProvider router={routerConfig}/> */}
+    <App/>
   </React.StrictMode>
 );
 
