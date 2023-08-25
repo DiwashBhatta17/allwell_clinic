@@ -1,7 +1,8 @@
 import React from "react";
 import logo from "./img/AllWell Clinic.png";
 import login1 from "./img/LoginImg.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import AsaDoctor from "./AsaDoctor";
 import AsaPatient from "./AsaPatient";
 import RegisterService from "../../Services/LoginService/registerService";
@@ -9,10 +10,12 @@ import asAdoctorService from "../../Services/LoginService/asAdoctorService";
 
 
 
+
 // patientName
 // doctorName
 
 function Signup(props) {
+  const navigate = useNavigate();
   const [signupData, setSignupdata] = useState({
     name: "",
     username: "",
@@ -24,26 +27,11 @@ function Signup(props) {
   });
   const [isDoctor, setisDoctor] = useState(false);
 
-  const [patientdatatosend, setDatatosend] = useState({
-    patientName: "",
-    username: "",
-    password: "",
-    email: "",
-    phone: "",
-  });
-
-  const [doctordatatosend, setdoctorDatatosend] = useState({
-    doctorName: "",
-    username: "",
-    password: "",
-    email: "",
-    phone: "",
-  });
-
   const [status, setStatus] = useState(true);
   const [errorMessage, setErrormessage] = useState("");
+  const [redirectToOTP, setRedirectToOTP] = useState(false);
 
-  function handelClick() {
+  async function handelClick() {
     if (signupData.name == "") {
       setErrormessage("Name Field can't be Empty !!");
     } else if (signupData.username == "") {
@@ -60,47 +48,80 @@ function Signup(props) {
       setErrormessage("Confirm Password does not match with the new password");
     } else {
       console.log(isDoctor);
-      if(isDoctor){
-        setdoctorDatatosend({
-            ...doctordatatosend,
-            doctorName: signupData.name,
-            username: signupData.username,
-            password: signupData.password,
-            email: signupData.email,
-            phone: signupData.phone,
-          })
-          console.log("doc")
-          
-          asAdoctorService(doctordatatosend);
-         
-        } else{
-          setDatatosend({
-          ...patientdatatosend,
+      if (isDoctor) {
+        const doctorDataToSend = {
+          doctorName: signupData.name,
+          username: signupData.username,
+          password: signupData.password,
+          email: signupData.email,
+          phone: signupData.phone,
+        };
+      
+        console.log("doc");
+
+        try {
+          await asAdoctorService(doctorDataToSend);
+          setRedirectToOTP(true);
+          setErrormessage("");
+           // Assuming the API response has a message field
+        } catch (error) {
+          const errorMessage = error;
+          setErrormessage(errorMessage);
+          console.log(errorMessage);
+
+        }
+
+        
+      } else {
+        const patientDataToSend = {
           patientName: signupData.name,
           username: signupData.username,
           password: signupData.password,
           email: signupData.email,
           phone: signupData.phone,
-        })
+        };
+      
         console.log('patient');
-        RegisterService(patientdatatosend);
-       
-      }
+        try {
 
-      setErrormessage("");
+          await RegisterService(patientDataToSend);
+          setRedirectToOTP(true);
+          setErrormessage("");
+           // Assuming the API response has a message field
+        } catch (error) {
+          const errorMessage = error;
+          setErrormessage(error);
+          console.log(errorMessage);
+        }
+
+        
+      }
+      
+
+     
       // data fetching work here
       // console.log(signupData);
-      // setSignupdata({
-      //   ...signupData,
-      //   name: "",
-      //   username: "",
-      //   password: "",
-      //   email: "",
-      //   phone: "",
-      //   confirmPassword: "",
-      // });
+      setSignupdata({
+        ...signupData,
+        name: "",
+        username: "",
+        password: "",
+        email: "",
+        phone: "",
+        confirmPassword: "",
+      });
     }
   }
+  useEffect(() => {
+    if (redirectToOTP) {
+      const timeout = setTimeout(() => {
+        setRedirectToOTP(false); // Reset the flag
+        navigate('/otp')
+      }, 3000); // 3000 milliseconds = 3 seconds
+
+      return () => clearTimeout(timeout); // Clear the timeout if the component unmounts
+    }
+  }, [redirectToOTP]);
 
   function handelChange(event) {
     const { name, value } = event.target;
@@ -230,7 +251,9 @@ function Signup(props) {
           <img className="w-[450px]" src={login1} alt="" />
         </div>
       </div>
+      
     </div>
+    
   ) : (
     ""
   );

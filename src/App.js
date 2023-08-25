@@ -15,6 +15,7 @@ import UserRoutes from './components/ForUsers/UserRoutes';
 import Todo from './pages/homework/TODOLIST/Todo';
 import TodoList from './pages/homework/TODOLIST/TodoList';
 import Rout from './pages/homework/datafetch/Rout';
+import UserLoginNavbar from './Page/Users/UserLoginNavbar';
 
 
 
@@ -24,7 +25,8 @@ import Rout from './pages/homework/datafetch/Rout';
 function App() {
   return (
     <>
-    <Signup/>
+    <UserLoginNavbar/>
+    {/* <Signup/> */}
     {/* <UserRoutes/> */}
     {/* <Otp/> */}
     {/* <FirstComponent/> */}
@@ -32,10 +34,11 @@ function App() {
     {/* <Rout/> */}
     {/* <DoctorDetailUser/> */}
     {/* <FirstAppForm/> */}
-    {/* <Login/> */}
+    
     {/* <AppointmentFormControl/> */}
     {/* <SecondAppointmentForm/> */}
     {/* <AppointmentList/> */}
+    
     
     {/* <FirstComponent/> */}
     {/* <UseReducer/> */}
