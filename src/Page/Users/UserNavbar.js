@@ -42,8 +42,8 @@ function UserNavbar() {
           </div>
         </div>
       </div>
-      <Login login={login} setLogin={setLogin} />
-      <Signup signup={signup} setSignup={setSignup}/>
+      <Login login={login} setSignup={setSignup} setLogin={setLogin} />
+      <Signup signup={signup} setLogin={setLogin} setSignup={setSignup}/>
     </>
   );
 }

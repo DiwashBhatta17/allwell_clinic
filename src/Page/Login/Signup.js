@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./img/AllWell Clinic.png";
 import login1 from "./img/LoginImg.png";
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AsaDoctor from "./AsaDoctor";
 import AsaPatient from "./AsaPatient";
 import RegisterService from "../../Services/LoginService/registerService";
@@ -127,6 +127,11 @@ function Signup(props) {
     const { name, value } = event.target;
     setSignupdata({ ...signupData, [name]: value });
   }
+
+  function handelRedirect(){
+    props.setLogin(true);
+    props.setSignup(false);
+  }
   return props.signup ? (
     <div className="flex top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
       <div className=" bg-white w-fit flex p-5">
@@ -240,13 +245,13 @@ function Signup(props) {
             </div>
             <div className="flex mt-4 justify-between w-[9">
               <p>Already have an account?</p>
-              <p className="text-[#2181F1]">Login?</p>
+              <Link to='/' ><button onClick={handelRedirect} className="text-[#2181F1] hover:text-[#4c7bb9]">Login?</button></Link> 
             </div>
           </div>
         </div>
-        <div className="flex  pl-6">
+        <div className=" text-right  pl-6">
           <button onClick={() => props.setSignup(false)}>
-            <i className="absolute top-[120px] text-2xl focus:text-yellow-50 text-black  left-[76%] fa-solid fa-xmark"></i>
+            <i className="absolute top-[100px] text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
           </button>
           <img className="w-[450px]" src={login1} alt="" />
         </div>

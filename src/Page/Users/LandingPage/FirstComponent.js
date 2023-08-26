@@ -14,7 +14,7 @@ function FirstComponent() {
       <div className="rounded-br-[300px]  bg-[#c0bdbd] bg-opacity-20">
         <div className="flex mx-[120px]">
           <div className="div1">
-            <div className="text-2xl opacity-80 text-[#497FAB] font-bold mt-4">Stay Healthy,</div>
+            <div className="text-2xl opacit text-[#497FAB] font-bold mt-4">Stay Healthy,</div>
             <div className="text-3xl mt-2 opacity-[100] text-[#497FAB]">
               Lets build wellness rather than treat disease."
             </div>
@@ -27,7 +27,7 @@ function FirstComponent() {
               </p>
             </div>
             <div className="mt-4 ">
-              <button  className="border-2 bg-[#497FAB] px-4 py-1 text-white rounded-full">Book an Appointment</button>
+              <Link to='/doctorlist' className="border-2 bg-[#497FAB] px-4 py-1 text-white rounded-full">Book an Appointment</Link>
             </div>
           </div>
           <div className="div2  rounded-br-[20px]">

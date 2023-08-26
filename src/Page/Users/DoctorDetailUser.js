@@ -5,6 +5,7 @@ import icon2 from "./UserImages/service-2-icon.png";
 import icon3 from "./UserImages/service-3-icon.png";
 import UserFooter from "./UserFooter";
 import UserNavbar from "./UserNavbar";
+import { Link } from "react-router-dom";
 
 function DoctorDetailUser() {
   let doctorDetails = {
@@ -35,10 +36,10 @@ function DoctorDetailUser() {
           {/* About us part Div */}
           <div className="w-[40%] mt-2">
             <h1 className="text-2xl font-bold">About {doctorDetails.name}</h1>
-            <p className="my-2">{doctorDetails.about}</p>
-            <button className="mt-5 border px-5 py-2 rounded-full bg-[#497FAB] text-white">
+            <p className="my-2 mb-5">{doctorDetails.about}</p>
+            <Link to='/appointment' className="mt-5 border px-5 py-2 rounded-full bg-[#497FAB] text-white">
               Book Appointments
-            </button>
+            </Link>
           </div>
         </div>
       </div>
