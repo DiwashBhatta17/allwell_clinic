@@ -14,41 +14,41 @@ import Signup from './Page/Login/Signup';
 import Otp from './Page/Login/Otp';
 
 
-// const routerConfig = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <FirstComponent/>
-//   },
-//   {
-//     path: 'otp',
-//     element: <Otp/>
-//   },
-//   {
-//     path: 'service',
-//     element: <ServiceCom1/>
-//   },
-//   {
-//     path: 'appointment',
-//     element: <AppointmentFormControl/>
-//   },
-//   {
-//     path: 'login',
-//     element: <Login/>
-//   },
-//   {
-//     path: 'signup',
-//     element: <Signup/>
-//   },
+const routerConfig = createBrowserRouter([
+  {
+    path: '/',
+    element: <FirstComponent/>
+  },
+  {
+    path: 'otp',
+    element: <Otp/>
+  },
+  {
+    path: 'service',
+    element: <ServiceCom1/>
+  },
+  {
+    path: 'appointment',
+    element: <AppointmentFormControl/>
+  },
+  {
+    path: 'login',
+    element: <Login/>
+  },
+  {
+    path: 'signup',
+    element: <Signup/>
+  },
  
   
 
-// ])
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <RouterProvider router={routerConfig}/> */}
-    <App/>
+    <RouterProvider router={routerConfig}/>
+    {/* <App/> */}
   </React.StrictMode>
 );
 
