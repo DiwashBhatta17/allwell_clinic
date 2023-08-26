@@ -13,6 +13,7 @@ import Signup from './Page/Login/Signup';
 import Otp from './Page/Login/Otp';
 import DoctorLists from './Page/Users/DoctorLists';
 import DoctorDetailUser from './Page/Users/DoctorDetailUser';
+import News from './components/forAll/News';
 
 
 const routerConfig = createBrowserRouter([
@@ -48,6 +49,10 @@ const routerConfig = createBrowserRouter([
     path: 'doctordetailuser',
     element: <DoctorDetailUser/>
   },
+  {
+    path: 'userNews',
+    element: <News/>
+  }
   
 
  

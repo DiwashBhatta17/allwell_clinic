@@ -7,6 +7,7 @@ import ThirdComp from './Page/Users/LandingPage/ThirdComp';
 
 import UserLoginNavbar from './Page/Users/UserLoginNavbar';
 import AppointmentFormControl from './components/ForUsers/AppointmentFormControl';
+import News from './components/forAll/News';
 
 
 
@@ -17,8 +18,9 @@ function App() {
   return (
     <>
     {/* <UserLoginNavbar/> */}
-    <ThirdComp/>
+    {/* <ThirdComp/> */}
     {/* <AppointmentFormControl/> */}
+    <News/>
    
     </>
   
