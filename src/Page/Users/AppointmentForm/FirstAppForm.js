@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import UserNavbar from '../UserNavbar';
 import UserFooter from "../UserFooter";
 
-function FirstAppForm({formData, handelchange}) {
-  return (
+function FirstAppForm(promps) {
+  const {formData, handelchange, form1visible, setForm1visible, setForm2visible} = promps;
+
+  function handelNext(){
+    setForm1visible(false);
+    setForm2visible(true);
+  }
+  return (form1visible)?
     <>
     <UserNavbar/>
     <div className="flex flex-col justify-center items-center min-h-screen text-center my-5">
@@ -86,15 +91,15 @@ function FirstAppForm({formData, handelchange}) {
           </div>
 
           <div className="mt-5">
-            <Link className="border px-5 py-2 bg-[#497FAB] text-xl text-white rounded-full font-bold" to="2">Next</Link>
+            <button onClick={handelNext} className="border px-5 py-2 bg-[#497FAB] text-xl text-white rounded-full font-bold" to="2">Next</button>
           </div>
         </div>
       </div>
       
     </div>
-    <UserFooter/>
+    {/* <UserFooter/> */}
     </>
-  );
+  : "";
 }
 
 export default FirstAppForm;
