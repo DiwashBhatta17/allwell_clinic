@@ -4,8 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Homepage from './pages/React_Router/Homepage';
-import Abouttus from './pages/React_Router/Abouttus';
+
 import FirstComponent from './Page/Users/LandingPage/FirstComponent';
 import ServiceCom1 from './Page/Users/ServicesPage/ServiceCom1';
 import AppointmentFormControl from './components/ForUsers/AppointmentFormControl';
