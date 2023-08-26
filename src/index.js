@@ -4,14 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Homepage from './pages/React_Router/Homepage';
-import Abouttus from './pages/React_Router/Abouttus';
+
 import FirstComponent from './Page/Users/LandingPage/FirstComponent';
 import ServiceCom1 from './Page/Users/ServicesPage/ServiceCom1';
 import AppointmentFormControl from './components/ForUsers/AppointmentFormControl';
 import Login from './Page/Login/Login';
 import Signup from './Page/Login/Signup';
 import Otp from './Page/Login/Otp';
+import DoctorLists from './Page/Users/DoctorLists';
+import DoctorDetailUser from './Page/Users/DoctorDetailUser';
+import News from './components/forAll/News';
 
 
 const routerConfig = createBrowserRouter([
@@ -39,6 +41,21 @@ const routerConfig = createBrowserRouter([
     path: 'signup',
     element: <Signup/>
   },
+  {
+    path: 'doctorlist',
+    element: <DoctorLists/>
+  },
+  {
+    path: 'doctordetailuser',
+    element: <DoctorDetailUser/>
+  },
+  {
+    path: 'userNews',
+    element: <News/>
+  }
+  
+
+
  
   
 

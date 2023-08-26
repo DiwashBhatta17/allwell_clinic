@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { BrowserRouter, Routes,Route, Link } from "react-router-dom";
+
 import FirstAppForm from "../../Page/Users/AppointmentForm/FirstAppForm";
 import SecondAppointmentForm from "../../Page/Users/AppointmentForm/SecondAppointmentForm";
 
@@ -17,6 +17,9 @@ function AppointmentFormControl() {
     appointmentDate: "",
   });
 
+  const [form1visible, setForm1visible] = useState(true);
+  const [form2visible, setForm2visible] = useState(false)
+
   function handelchange(event) {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -28,14 +31,9 @@ function AppointmentFormControl() {
   
   return (
    <>
-    <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<FirstAppForm formData={formData} handelchange={handelchange}/>} />
-          <Route path="2" element={<SecondAppointmentForm formData={formData} handelchange={handelchange} handelsubmit={handelsubmit}/>} />
-          {/* Other routes */}
-        </Routes>
-      </BrowserRouter>
-   
+    <FirstAppForm formData={formData} handelchange={handelchange} form1visible={form1visible} setForm1visible={setForm1visible} setForm2visible={setForm2visible}/>
+    <SecondAppointmentForm formData={formData} handelchange={handelchange} form2visible={form2visible} setForm2visible={setForm2visible} setForm1visible={setForm1visible} handelsubmit={handelsubmit}/>
+         
    
    </>
   )

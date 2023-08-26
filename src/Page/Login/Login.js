@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import logo from "./img/AllWell Clinic.png";
 import login1 from "./img/LoginImg.png";
 import loginService from "../../Services/LoginService/loginService";
+import { Link } from "react-router-dom";
 
 function Login(props) {
   const [loginData, setLoginData] = useState({
@@ -35,6 +36,10 @@ function Login(props) {
         setLoginData({ ...loginData, username: "", password: "" });
       }
     }
+  }
+  function handelRedirect(){
+    props.setLogin(false);
+    props.setSignup(true);
   }
 
   return props.login ? (
@@ -107,13 +112,13 @@ function Login(props) {
             </div>
             <div className="flex mt-4 justify-between w-[9">
               <p>Don't have an account?</p>
-              <p className="text-[#2181F1]">Register?</p>
+            <Link to='/' ><button onClick={handelRedirect} className="text-[#2181F1]">Register?</button></Link> 
             </div>
           </div>
         </div>
-        <div className="  pl-6">
+        <div className="text-right pl-6">
           <button onClick={() => props.setLogin(false)}>
-            <i className="absolute top-[120px] text-2xl focus:text-yellow-50 text-black  left-[76%] fa-solid fa-xmark"></i>
+            <i className="absolute text-right top-[120px]  text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
           </button>
           <img className="w-[450px]" src={login1} alt="" />
         </div>
