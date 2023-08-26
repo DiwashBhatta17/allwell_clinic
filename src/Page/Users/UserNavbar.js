@@ -24,7 +24,7 @@ function UserNavbar() {
                 <Link to="/service">Services</Link>
               </li>
               <li>
-                <a href="/home">News and Events</a>
+                <Link to="/userNews">News and Events</Link>
               </li>
 
               <li className=" text-[#0360D9]">
