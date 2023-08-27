@@ -20,11 +20,11 @@ export default function DocDetails() {
       </div>
       <div className="upperbody h-[310px] flex">
         <img
-          src="/Images/Doc.png"
+          src="/Images/Doctor.png"
           alt="Doctors"
           className="docpic h-[200px] mt-[40px]"
         />
-        <div className="docname h-[30px] w-[150px] bg-[#497FAB] mt-[250px] ml-[-180px]"></div>
+        <div className="docname h-[30px] w-[250px] bg-[#497FAB] mt-[250px] ml-[-180px]"></div>
 
         <div className="docdept h-[200px] w-[320px] bg-[#fffffffe] ml-[180px] mt-[40px] rounded-[40px] shadow-md shadow-blue-500">
           <h1 className="dd text-center text-[white] mt-[20px] font-semibold w-[320px] h-[40px] bg-[#497FAB]">
@@ -78,7 +78,7 @@ export default function DocDetails() {
           />
           <div className="abnum h-[30px] w-[110px] bg-[#497FAB] ml-[297px] mt-[10px]"></div>
           <img
-            src="/Images/Treated.png"
+            src="/Images/treated.png"
             alt="Treated"
             className="treat h-[110px] mt-[-4px] ml-[160px]"
           />
@@ -87,17 +87,17 @@ export default function DocDetails() {
         <div className="Tschedule bg-[#ffffff] h-[320px] w-[350px] ml-[800px] mt-[-300px] rounded-[10px] shadow-md shadow-blue-500 flex">
           <img
             src="/Images/schedule.png"
-            alt=""
-            className="im h-[80px] mt-[80px] ml-[140px] "
+            alt="schedule"
+            className="im h-[20px] mt-[80px] ml-[90px] "
           />
-          <div className="time1 h-[30px] w-[100px] bg-[#ffffff] mt-[200px] shadow-md shadow-blue-500 ">
+          <div className="time1 h-[30px] w-[100px] bg-[#ffffff] mt-[200px] shadow-md shadow-blue-500 ml-[20px] ">
             <p className="hrs text-[#497FAB] text-center">11:00 Am</p>
           </div>
-          <div className="time2 h-[30px] w-[100px] ml-[-290px] bg-[#ffffff] mt-[200px] shadow-md shadow-blue-500 ">
-            <p className="hrs text-[#497FAB] text-center">11:00 Am</p>
+          <div className="time2 h-[30px] w-[100px] ml-[-220px] bg-[#ffffff] mt-[200px] shadow-md shadow-blue-500 ">
+            <p className="hrs text-[#497FAB] text-center">9:00 Am</p>
           </div>
           <div className="times h-[30px] w-[100px] bg-[#ffffff] mt-[260px] shadow-md shadow-blue-500 ">
-            <p className="hrs text-[#497FAB] text-center">11:00 Am</p>
+            <p className="hrs text-[#497FAB] text-center">12:00 Am</p>
           </div>
         </div>
         <div className="sched bg-[#497FAB] h-[40px] w-[350px] ml-[800px] mt-[-310px]">

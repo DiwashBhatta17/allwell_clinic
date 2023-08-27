@@ -1,9 +1,10 @@
 import React from "react";
+import Navbar from "./Navbar";
 
 export default function Patient() {
   return (
     <>
-      <div className="header bg-[#52363617] mt=[-40px] text-[#497FAB] flex items-center h-[80px]">
+      {/* <div className="header bg-[#52363617] mt=[-40px] text-[#497FAB] flex items-center h-[80px]">
         <div className="mr-20">Allwell Clinic</div>
         <a href="">Home</a>
         <a id="patient" href="">
@@ -15,14 +16,15 @@ export default function Patient() {
         <a id="news" href="">
           News
         </a>
-      </div>
-      <div className="Manage h-[60px] w-[800px] bg-[whiite] shadow-md shadow-blue-500 ml-[220px] mt-[40px]">
-        <p className="mp text-center text-[#497FAB] font-semibold text-2xl">
+      </div> */}
+      <Navbar />
+      <div className="Manage h-[60px] w-full md:w-[800px] bg-white shadow-md shadow-blue-500 mx-4 md:ml-[220px] mt-[40px]">
+        <p className="mp text-center text-[#497FAB] font-semibold text-xl md:text-2xl">
           Manage and Get Upates about your Patients.
         </p>
       </div>
-      <div className="body border-2 border-black h-[800px] mt-[60px] flex">
-        <div className="logpatient h-[300px] w-[350px] bg-[white] shadow-md shadow-blue-500 ml-[840px]">
+      <div className="body shadow-md shadow-blue-500 md:h-[800px] mt-8 md:mt-[60px] flex flex-col md:flex-row">
+        <div className="logpatient h-[300px] w-full md:w-[350px] bg-white shadow-md shadow-blue-500 md:ml-[840px] mb-4 md:mb-0">
           <div className="ldp h-[60px] w-[350px] mt-[170px] bg-[#497FAB]">
             <p className="lip text-[white] text-center font-semibold ">
               Logged in patients
@@ -61,7 +63,7 @@ export default function Patient() {
               />
               <input
                 type="text"
-                className="ip bg-[#fffffff1] mt-[19px] ml-[0px] h-[20px] w-[190px]"
+                className="ip bg-[#fffffff1] mt-[19px] ml-[0px] h-[20px] w-[190px] text-[#497FAB]"
               />
             </div>
             <div className="plist bg-[white] shadow-md shadow-blue-500 w-[340px] h-[80px] mt-[25px]">

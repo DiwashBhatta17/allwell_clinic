@@ -1,10 +1,11 @@
 import React from "react";
 import "./AdminDoc.css";
+import Navbar from "./Navbar";
 
 export default function AdminDoc() {
   return (
     <>
-      <div className="header bg-[#52363617] mt=[-40px] text-[#497FAB] flex items-center h-[80px]">
+      {/* <div className="header bg-[#52363617] mt=[-40px] text-[#497FAB] flex items-center h-[80px]">
         <div className="mr-20">Allwell Clinic</div>
         <a href="">Home</a>
         <a id="patient" href="">
@@ -16,7 +17,9 @@ export default function AdminDoc() {
         <a id="news" href="">
           News
         </a>
-      </div>
+      </div> */}
+
+      <Navbar />
 
       <div className="middlecontainer h-[200px] flex">
         <div className="check flex ml-[50px] mt-[50px] h-[140px] w-[500px] justify-center bg-[#497FAB] text-white text-center align-middle shadow-md shadow-gray-700">
@@ -27,7 +30,7 @@ export default function AdminDoc() {
         </div>
         <div className="image">
           <img
-            src="/Images/Doc.png"
+            src="/Images/Doctor.png"
             alt="Doctors"
             className="_doc h-[140px] ml-[390px]"
           />
@@ -38,20 +41,20 @@ export default function AdminDoc() {
       </div>
       <div className="lowermarg border-1 border-[#497FAB] mt-[50px] h-[340px] flex rounded-t-[100px] rounded-b-[100px] shadow-md shadow-gray-900">
         <div className="collage border-2 border-blue-400 h-[200px] w-[200px] ml-[70px] mt-[20px]">
-          <img src="dsd" alt="Doctor1" />
+          <img src="/Images/Doctor.png" alt="Doctor1" />
         </div>
         <div className="Vm w-[160px] h-[30px] bg-[#497FAB] ml-[-180px] mt-[290px] text-white text-center">
           {" "}
           view more
         </div>
         <div className="collage border-2 border-blue-400 h-[200px] w-[200px] ml-[250px] mt-[20px]">
-          <img src="df" alt="Doctor2" />
+          <img src="/Images/Doctor.png" alt="Doctor2" />
         </div>
         <div className="Vm w-[160px] h-[30px] bg-[#497FAB] ml-[-180px] mt-[290px]  text-white text-center">
           view more
         </div>
         <div className="collage border-2 border-blue-400 h-[200px] w-[200px] ml-[210px] mt-[20px]">
-          <img src="ef" alt="Doctor3" />
+          <img src="/Images/Doctor.png" alt="Doctor3" />
         </div>
         <div className="Vm w-[160px] h-[30px] bg-[#497FAB] ml-[-180px] mt-[290px]  text-white text-center">
           view more
