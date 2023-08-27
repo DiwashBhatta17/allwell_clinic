@@ -63,6 +63,10 @@ const routerConfig = createBrowserRouter([
   
 
 
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> c633307b79e8789647f09448f9efc8ae56cdb86e
   
 
 ])

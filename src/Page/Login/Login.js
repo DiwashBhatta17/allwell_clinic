@@ -5,12 +5,14 @@ import login1 from "./img/LoginImg.png";
 import loginService from "../../Services/LoginService/loginService";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setSignup, setlogin, loginsuccess } from "../../components/State/slice/counterSlice";
-
-
+import {
+  setSignup,
+  setlogin,
+  loginsuccess,
+} from "../../components/State/slice/counterSlice";
 
 function Login(props) {
-  const loginStatus = useSelector((state)=> state.counter.loginvalue);
+  const loginStatus = useSelector((state) => state.counter.loginvalue);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -34,8 +36,6 @@ function Login(props) {
         password: loginData.password,
       };
 
-
-
       try {
         setErrormessage("");
         const response = await loginService(loginDataApi);
@@ -43,26 +43,16 @@ function Login(props) {
 
         // Store token in SessionStorage or HTTP-only cookie
         localStorage.setItem("jwtToken", accessToken);
-        
-       
 
         // Redirect based on user's role
         if (user.role === "ROLE_PATIENT") {
-            navigate("/");
-            dispatch(setlogin(false));
-            dispatch(loginsuccess());
-            sessionStorage.setItem("userId", user.patientId);
-            
-             
+          navigate("/");
+          dispatch(setlogin(false));
+          dispatch(loginsuccess());
+          sessionStorage.setItem("userId", user.patientId);
         } else if (user.role === "ROLE_DOCTOR") {
-            // history.push("/doctor-interface"); // Replace with your doctor route
+          // history.push("/doctor-interface"); // Replace with your doctor route
         }
-
-
-
-
-
-
       } catch (error) {
         setErrormessage("Invalid Username");
       }
@@ -72,7 +62,7 @@ function Login(props) {
       }
     }
   }
-  function handelRedirect(){
+  function handelRedirect() {
     dispatch(setlogin(false));
     dispatch(setSignup(true));
   }
@@ -147,7 +137,11 @@ function Login(props) {
             </div>
             <div className="flex mt-4 justify-between w-[9">
               <p>Don't have an account?</p>
-            <Link to='/' ><button onClick={handelRedirect} className="text-[#2181F1]">Register?</button></Link> 
+              <Link to="/">
+                <button onClick={handelRedirect} className="text-[#2181F1]">
+                  Register?
+                </button>
+              </Link>
             </div>
           </div>
         </div>
