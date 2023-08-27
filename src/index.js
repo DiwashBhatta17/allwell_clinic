@@ -4,14 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Homepage from './pages/React_Router/Homepage';
-import Abouttus from './pages/React_Router/Abouttus';
+
 import FirstComponent from './Page/Users/LandingPage/FirstComponent';
 import ServiceCom1 from './Page/Users/ServicesPage/ServiceCom1';
 import AppointmentFormControl from './components/ForUsers/AppointmentFormControl';
 import Login from './Page/Login/Login';
 import Signup from './Page/Login/Signup';
 import Otp from './Page/Login/Otp';
+import DoctorLists from './Page/Users/DoctorLists';
+import DoctorDetailUser from './Page/Users/DoctorDetailUser';
+import News from './components/forAll/News';
+import { Provider } from 'react-redux';
+import store from './components/State/store';
+import UserProfilePage from './Page/Users/UserProfile/UserProfilePage';
 
 
 const routerConfig = createBrowserRouter([
@@ -39,17 +44,35 @@ const routerConfig = createBrowserRouter([
     path: 'signup',
     element: <Signup/>
   },
- 
+  {
+    path: 'doctorlist',
+    element: <DoctorLists/>
+  },
+  {
+    path: 'doctordetailuser',
+    element: <DoctorDetailUser/>
+  },
+  {
+    path: 'userNews',
+    element: <News/>
+  },
+  {
+    path: 'userProfile',
+    element: <UserProfilePage/>
+  },
+  
+
+
   
 
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <RouterProvider router={routerConfig}/>
     {/* <App/> */}
-  </React.StrictMode>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

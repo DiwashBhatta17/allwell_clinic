@@ -2,11 +2,13 @@ import React from "react";
 import logo from "./img/AllWell Clinic.png";
 import login1 from "./img/LoginImg.png";
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AsaDoctor from "./AsaDoctor";
 import AsaPatient from "./AsaPatient";
 import RegisterService from "../../Services/LoginService/registerService";
 import asAdoctorService from "../../Services/LoginService/asAdoctorService";
+import { useDispatch, useSelector } from "react-redux";
+import { setSignup, setlogin } from "../../components/State/slice/counterSlice";
 
 
 
@@ -15,6 +17,9 @@ import asAdoctorService from "../../Services/LoginService/asAdoctorService";
 // doctorName
 
 function Signup(props) {
+  const signupStatus = useSelector((state)=> state.counter.signupvalue);
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const [signupData, setSignupdata] = useState({
     name: "",
@@ -25,7 +30,7 @@ function Signup(props) {
     confirmPassword: "",
     
   });
-  const [isDoctor, setisDoctor] = useState(false);
+  const [isDoctor, setisDoctor] = useState(true);
 
   const [status, setStatus] = useState(true);
   const [errorMessage, setErrormessage] = useState("");
@@ -61,7 +66,6 @@ function Signup(props) {
 
         try {
           await asAdoctorService(doctorDataToSend);
-          setRedirectToOTP(true);
           setErrormessage("");
            // Assuming the API response has a message field
         } catch (error) {
@@ -127,7 +131,12 @@ function Signup(props) {
     const { name, value } = event.target;
     setSignupdata({ ...signupData, [name]: value });
   }
-  return props.signup ? (
+
+  function handelRedirect(){
+    dispatch(setlogin(true));
+    dispatch(setSignup(false));
+  }
+  return signupStatus ? (
     <div className="flex top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
       <div className=" bg-white w-fit flex p-5">
         <div className="justify-center flex-col w-[45%] flex">
@@ -240,13 +249,13 @@ function Signup(props) {
             </div>
             <div className="flex mt-4 justify-between w-[9">
               <p>Already have an account?</p>
-              <p className="text-[#2181F1]">Login?</p>
+              <Link to='/' ><button onClick={handelRedirect} className="text-[#2181F1] hover:text-[#4c7bb9]">Login?</button></Link> 
             </div>
           </div>
         </div>
-        <div className="flex  pl-6">
-          <button onClick={() => props.setSignup(false)}>
-            <i className="absolute top-[120px] text-2xl focus:text-yellow-50 text-black  left-[76%] fa-solid fa-xmark"></i>
+        <div className=" text-right  pl-6">
+          <button onClick={() => dispatch(setSignup(false))}>
+            <i className="absolute top-[100px] text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
           </button>
           <img className="w-[450px]" src={login1} alt="" />
         </div>

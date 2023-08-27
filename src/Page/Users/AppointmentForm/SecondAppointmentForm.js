@@ -1,10 +1,13 @@
 import React from "react";
-import FirstAppForm from "./FirstAppForm";
+
 import UserNavbar from "../UserNavbar";
 import UserFooter from "../UserFooter";
-import { Link } from "react-router-dom";
 
-function SecondAppointmentForm({ formData, handelchange ,handelsubmit }) {
+
+function SecondAppointmentForm(promps) {
+  const {formData, handelchange, handelsubmit, setForm1visible, setForm2visible} = promps;
+
+
   const serviceCategories = [
     "Select Service Category",
     "Whole Body Checkup",
@@ -20,9 +23,14 @@ function SecondAppointmentForm({ formData, handelchange ,handelsubmit }) {
     "13:00-15:00",
     "15:00-17:00",
   ];
-  return (
+
+  function handleBack(){
+    setForm1visible(true);
+    setForm2visible(false);
+  }
+  return (promps.form2visible)?
     <div>
-      <UserNavbar />
+      {/* <UserNavbar /> */}
       <div className="flex flex-col justify-center items-center min-h-screen text-center my-5">
       <div className="mb-[30px]">
         <h1 className="text-3xl font-bold text-[#170F49]">Your Appointments</h1>
@@ -112,12 +120,12 @@ function SecondAppointmentForm({ formData, handelchange ,handelsubmit }) {
             </div>
 
             <div className="mt-5 flex justify-between">
-              <Link to="/"
+              <button onClick={handleBack} to="/"
                 className="border px-5 py-2 rounded-full bg-[#497FAB] text-white"
                 type="submit"
               >
                 Back
-              </Link>
+              </button>
               <button onClick={handelsubmit}
                 className="border px-5 py-2 rounded-full bg-[#497FAB] text-white"
                 type="submit"
@@ -130,7 +138,7 @@ function SecondAppointmentForm({ formData, handelchange ,handelsubmit }) {
       </div>
       <UserFooter />
     </div>
-  );
+  : "";
 }
 
 export default SecondAppointmentForm;

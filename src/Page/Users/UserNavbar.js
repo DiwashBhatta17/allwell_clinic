@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "../Login/Login";
 import Signup from "../Login/Signup";
+import { setSignup , setlogin } from "../../components/State/slice/counterSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function UserNavbar() {
-  const [login, setLogin] = useState(false);
-  const [signup, setSignup] = useState(false);
+  const dispatch = useDispatch();
+  const isloggedin = useSelector((state) => state.counter.isAuthenticated);
+
+
+  
 
   return (
     <>
@@ -24,26 +29,37 @@ function UserNavbar() {
                 <Link to="/service">Services</Link>
               </li>
               <li>
-                <a href="/home">News and Events</a>
+                <Link to="/userNews">News and Events</Link>
               </li>
 
-              <li className=" text-[#0360D9]">
+              {
+                isloggedin? <>
+                <li className=" text-[#0360D9] text-2xl">
+             <Link to='/userProfile'> <i className="fa-solid fa-user-large"></i></Link>
+              </li>
+                </>:
+                <>
+                 <li className=" text-[#0360D9]">
                 <button
-                  onClick={() => setLogin(true)}
+                  onClick={() => dispatch(setlogin(true))}
                   className="px-3 py-1 border-2 border-[#0360D9]  bg-white rounded-full font-bold"
                 >
                   Login
                 </button>
               </li>
               <li className="border-2 border-transparent bg-[#0360D9] text-white font-bold rounded-full">
-                <button  onClick={() => setSignup(true)} className="px-2 py-1">Sign Up</button>
+                <button  onClick={() => dispatch(setSignup(true))} className="px-2 py-1">Sign Up</button>
               </li>
+                </>
+              }
+
+             
             </ul>
           </div>
         </div>
       </div>
-      <Login login={login} setLogin={setLogin} />
-      <Signup signup={signup} setSignup={setSignup}/>
+      <Login  />
+      <Signup />
     </>
   );
 }

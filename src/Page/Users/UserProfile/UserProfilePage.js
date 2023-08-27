@@ -28,6 +28,7 @@ function UserProfilePage() {
             </div>
         </div>
     </div>
+    
 
     </>
   )

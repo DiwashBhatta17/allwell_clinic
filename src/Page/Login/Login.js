@@ -3,8 +3,17 @@ import React, { useState } from "react";
 import logo from "./img/AllWell Clinic.png";
 import login1 from "./img/LoginImg.png";
 import loginService from "../../Services/LoginService/loginService";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setSignup, setlogin, loginsuccess } from "../../components/State/slice/counterSlice";
+
+
 
 function Login(props) {
+  const loginStatus = useSelector((state)=> state.counter.loginvalue);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -24,9 +33,36 @@ function Login(props) {
         username: loginData.username,
         password: loginData.password,
       };
+
+
+
       try {
         setErrormessage("");
-        await loginService(loginDataApi);
+        const response = await loginService(loginDataApi);
+        const { accessToken, user } = response;
+
+        // Store token in SessionStorage or HTTP-only cookie
+        localStorage.setItem("jwtToken", accessToken);
+        
+       
+
+        // Redirect based on user's role
+        if (user.role === "ROLE_PATIENT") {
+            navigate("/");
+            dispatch(setlogin(false));
+            dispatch(loginsuccess());
+            sessionStorage.setItem("userId", user.patientId);
+            
+             
+        } else if (user.role === "ROLE_DOCTOR") {
+            // history.push("/doctor-interface"); // Replace with your doctor route
+        }
+
+
+
+
+
+
       } catch (error) {
         setErrormessage("Invalid Username");
       }
@@ -36,8 +72,12 @@ function Login(props) {
       }
     }
   }
+  function handelRedirect(){
+    dispatch(setlogin(false));
+    dispatch(setSignup(true));
+  }
 
-  return props.login ? (
+  return loginStatus ? (
     <div className="flex top-0 left-0 w-full justify-center fixed items-center h-screen dhamilo">
       <div className=" bg-white w-fit flex p-5">
         <div className="justify-center flex-col w-[45%] flex">
@@ -107,13 +147,13 @@ function Login(props) {
             </div>
             <div className="flex mt-4 justify-between w-[9">
               <p>Don't have an account?</p>
-              <p className="text-[#2181F1]">Register?</p>
+            <Link to='/' ><button onClick={handelRedirect} className="text-[#2181F1]">Register?</button></Link> 
             </div>
           </div>
         </div>
-        <div className="  pl-6">
-          <button onClick={() => props.setLogin(false)}>
-            <i className="absolute top-[120px] text-2xl focus:text-yellow-50 text-black  left-[76%] fa-solid fa-xmark"></i>
+        <div className="text-right pl-6">
+          <button onClick={() => dispatch(setlogin(false))}>
+            <i className="absolute text-right top-[120px]  text-2xl focus:text-yellow-50 text-black   fa-solid fa-xmark"></i>
           </button>
           <img className="w-[450px]" src={login1} alt="" />
         </div>
