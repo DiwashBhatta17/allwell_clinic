@@ -23,7 +23,7 @@ export default function Patient() {
           Manage and Get Upates about your Patients.
         </p>
       </div>
-      <div className="body shadow-md shadow-blue-500 md:h-[800px] mt-8 md:mt-[60px] flex flex-col md:flex-row">
+      <div className="body md:h-[800px] mt-8 md:mt-[60px] flex flex-col md:flex-row">
         <div className="logpatient h-[300px] w-full md:w-[350px] bg-white shadow-md shadow-blue-500 md:ml-[840px] mb-4 md:mb-0">
           <div className="ldp h-[60px] w-[350px] mt-[170px] bg-[#497FAB]">
             <p className="lip text-[white] text-center font-semibold ">
@@ -37,7 +37,7 @@ export default function Patient() {
             className="log h-[120px] ml-[120px] mt-[-240px]"
           />
         </div>
-        <div className="patientdet h-[420px] w-[400px] bg-white shadow-md shadow-blue-500 mt-[380px] ml-[-370px] rounded-[20px]">
+        <div className="patientdet h-[480px] w-[400px] bg-white shadow-md shadow-blue-500 mt-[380px] ml-[-370px] rounded-[20px]">
           <div className="pdetails h-[60px] w-[400px] bg-[#497FAB]  ml=[370px] rounded-t-[10px] flex">
             <p className="pd text-white text-center font-semibold mt-[10px] ml-[140px]">
               Patient Details

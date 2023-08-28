@@ -7,7 +7,7 @@ import Patient from "./Page/Admin/Patient";
 import News from "./Page/Admin/News";
 import { ReactDOM } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import FirstComponent from "./Page/Users/LandingPage/FirstComponent";
+import FirstComponent from "./Page/Users/LandingPage/FirstComponent";
 // import SecontComponent from "./Page/Users/LandingPage/SecontComponent";
 // import ThirdComp from "./Page/Users/LandingPage/ThirdComp";
 // import UserFooter from "./Page/Users/UserFooter";
@@ -24,30 +24,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
-      {/* const routerConfig = createBrowserRouter([
-      {
-        // path :"/Patient",
-        // Component:<Patient/>
-      } */}
-      {/* ]) */}
-      {/* <React.StrictMode>
-        <RouterProvider router={router} />
-      </React.StrictMode> */}
-      {/* <FirstComponent /> */}
-      {/* <Navbar />
-       */}
-      {/* <Landingpage /> */}
-      {/* <AdminDoc /> */}
-      {/* <DocDetails /> */}
-      {/* <Patient /> */}
-      {/* <News /> */}
-      {/* <UseReducer/> */}
-      {/* <UseReducebutton/> */}
-      {/* <UserFooter/> */}
-      {/* <SecontComponent/> */}
-      {/* <ThirdComp/> */}
-      {/* <AxiosGet/> */}
-      {/* <Formhand/> */}
+      <FirstComponent />
+      {/* <Navbar /> */}
+
+      {/* <Landingpage />
+      <AdminDoc />
+      <DocDetails />
+      <Patient />
+      <News /> */}
     </>
   );
 }
