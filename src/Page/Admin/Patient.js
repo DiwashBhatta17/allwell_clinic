@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
+import Popup from "./Components/Popup";
 
 export default function Patient() {
+  const [ispopup, setIspopup] = useState(false);
+  function uploadReport() {
+    setIspopup(true);
+    // <Popup />;
+  }
+  const closePopup = () => {
+    setIspopup(false);
+  };
+  <Popup handlePopup={closePopup} />;
   return (
     <>
-      {/* <div className="header bg-[#52363617] mt=[-40px] text-[#497FAB] flex items-center h-[80px]">
+      {/* <div className="header bg-[#52] mt=[-40px] text-[#497FAB] flex items-center h-[80px]">
         <div className="mr-20">Allwell Clinic</div>
         <a href="">Home</a>
         <a id="patient" href="">
           Patient
         </a>
-        <a id="doc" href="">
+        <a id="doc" href=""> 
           Doctors
         </a>
         <a id="news" href="">
@@ -50,10 +60,18 @@ export default function Patient() {
             <div className="bio h-[160px] w-[230px] bg-[white] shadow-md shadow-blue-500 mt-[100px] ml-[40px] text-[#497FAB] font-semibold text-center">
               patient bio details
             </div>
-            <div className="bio h-[130px] w-[400px] bg-[white] shadow-md shadow-blue-500 mt-[280px] ml-[-360px] text-[#497FAB] font-semibold text-center">
+            <div className="bio h-[130px] w-[400px] bg-[white] shadow-md shadow-blue-500 mt-[280px] ml-[-370px] text-[#497FAB] font-semibold text-center">
               patient Site details
             </div>
+            <button
+              className="bg-[#497FAB] w-[150px] h-[40px] ml-[-260px] mt-[430px] text-[white] hover:bg-[#497fabbb]"
+              onClick={uploadReport}
+            >
+              Upload report
+            </button>
+            {ispopup && <Popup handlePopup={closePopup} />}
           </div>
+
           <div className="userlist h-[550px] w-[340px]  bg-[#ffffff] ml-[-800px] mt-[-300px] rounded-[30px] shadow-md shadow-blue-500">
             <div className="input bg-[#497FAB] w-[340px] h-[60px] rounded-t-[10px] flex ">
               <img
@@ -72,9 +90,9 @@ export default function Patient() {
                 alt="user1"
                 className="pt1 h-[60px]"
               />
-              <div className="ptdt bg-[#497FAB] h-[60px] w-[220px] ml-[80px] mt-[-60px]">
+              <div className="ptdt bg-[#497FAB] h-[60px] w-[220px] ml-[80px] mt-[-60px] hover:bg-[#497fabd2]">
                 <p className="tx text-[white] text-center font-medium">
-                  Patient name , details
+                  view patient details
                 </p>
               </div>
             </div>
@@ -86,7 +104,7 @@ export default function Patient() {
               />
               <div className="ptdt bg-[#497FAB] h-[60px] w-[220px] ml-[80px] mt-[-60px]">
                 <p className="tx text-[white] text-center font-medium">
-                  Patient name , details
+                  View patient details
                 </p>
               </div>
             </div>
@@ -98,7 +116,7 @@ export default function Patient() {
               />
               <div className="ptdt bg-[#497FAB] h-[60px] w-[220px] ml-[80px] mt-[-60px]">
                 <p className="tx text-[white] text-center font-medium">
-                  Patient name , details
+                  View patient details
                 </p>
               </div>
             </div>
@@ -110,7 +128,7 @@ export default function Patient() {
               />
               <div className="ptdt bg-[#497FAB] h-[60px] w-[220px] ml-[80px] mt-[-60px]">
                 <p className="tx text-[white] text-center font-medium">
-                  Patient name , details
+                  View patient details
                 </p>
               </div>
             </div>

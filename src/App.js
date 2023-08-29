@@ -1,13 +1,15 @@
 import "./App.css";
-import Navbar from "./Page/Admin/Navbar";
-import AdminDoc from "./Page/Admin/AdminDoc";
-import Landingpage from "./Page/Admin/Landingpage";
-import DocDetails from "./Page/Admin/DocDetails";
-import Patient from "./Page/Admin/Patient";
-import News from "./Page/Admin/News";
-import { ReactDOM } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import Navbar from "./Page/Admin/Navbar";
+// import AdminDoc from "./Page/Admin/AdminDoc";
+// import Landingpage from "./Page/Admin/Landingpage";
+// import DocDetails from "./Page/Admin/DocDetails";
+// import Patient from "./Page/Admin/Patient";
+// import News from "./Page/Admin/News";
+// import { ReactDOM } from "react";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FirstComponent from "./Page/Users/LandingPage/FirstComponent";
+// import "./Page/Admin/Components/Popup";
+// import Popup from "./Page/Admin/Components/Popup";
 // import SecontComponent from "./Page/Users/LandingPage/SecontComponent";
 // import ThirdComp from "./Page/Users/LandingPage/ThirdComp";
 // import UserFooter from "./Page/Users/UserFooter";
@@ -24,6 +26,7 @@ import FirstComponent from "./Page/Users/LandingPage/FirstComponent";
 function App() {
   return (
     <>
+      {/* <Popup /> */}
       <FirstComponent />
       {/* <Navbar /> */}
 

@@ -43,21 +43,21 @@ export default function AdminDoc() {
         <div className="collage border-2 border-blue-400 h-[200px] w-[200px] ml-[70px] mt-[20px]">
           <img src="/Images/Doctor.png" alt="Doctor1" />
         </div>
-        <div className="Vm w-[160px] h-[30px] bg-[#497FAB] ml-[-180px] mt-[290px] text-white text-center">
+        <div className="Vm w-[160px] h-[30px] bg-[#497FAB] ml-[-180px] mt-[290px] text-white text-center hover:bg-[#497faba7] cursor-pointer">
           {" "}
-          view more
+          Verify
         </div>
         <div className="collage border-2 border-blue-400 h-[200px] w-[200px] ml-[250px] mt-[20px]">
           <img src="/Images/Doctor.png" alt="Doctor2" />
         </div>
-        <div className="Vm w-[160px] h-[30px] bg-[#497FAB] ml-[-180px] mt-[290px]  text-white text-center">
-          view more
+        <div className="Vm w-[160px] h-[30px] bg-[#497FAB] ml-[-180px] mt-[290px]  text-white text-center  hover:bg-[#497faba7] cursor-pointer">
+          Verify
         </div>
         <div className="collage border-2 border-blue-400 h-[200px] w-[200px] ml-[210px] mt-[20px]">
           <img src="/Images/Doctor.png" alt="Doctor3" />
         </div>
-        <div className="Vm w-[160px] h-[30px] bg-[#497FAB] ml-[-180px] mt-[290px]  text-white text-center">
-          view more
+        <div className="Vm w-[160px] h-[30px] bg-[#497FAB] ml-[-180px] mt-[290px]  text-white text-center  hover:bg-[#497faba7] cursor-pointer">
+          Verify
         </div>
       </div>
     </>
