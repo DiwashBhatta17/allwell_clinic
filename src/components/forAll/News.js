@@ -3,13 +3,13 @@ import UserFooter from "../../Page/Users/UserFooter";
 import UserNavbar from "../../Page/Users/UserNavbar";
 
 function News() {
-    const [newsList, setNewsList] = useState(["","",""])
+    const [newsList, setNewsList] = useState(["","","","","",""])
   return (
     <>
-    <UserNavbar/>
-      <div className="mx-[180px] mt-5 mb-5 ">
+    
+      <div className="mx-[120px] mt-5 mb-5 ">
         <h1 className="text-2xl font-bold">Latest News</h1>
-        <div className="mt-4 flex flex-wrap justify-left gap-[50px]">
+        <div className="mt-4 flex flex-wrap justify-center gap-[40px]">
 
             {
                 newsList.map((value, index)=>(
@@ -38,7 +38,7 @@ function News() {
 
         </div>
       </div>
-      <UserFooter/>
+      
     </>
   );
 }

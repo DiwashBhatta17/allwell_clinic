@@ -1,15 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import UserLoginNavbar from '../UserLoginNavbar'
 import img from '../UserImages/Bitmap.png';
+import patientprofileservice from '../../../Services/User/patientprofileservice';
+import { logoutsuccess } from '../../../components/State/slice/counterSlice';
+import { useDispatch } from 'react-redux';
+import UserNavbar from '../UserNavbar';
+import { useNavigate } from 'react-router-dom';
 
 function UserProfilePage() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [profileData, setProfileData] = useState({});
+
+    useEffect(() => {
+        // Call the service function when the component mounts
+        async function fetchData() {
+          try {
+            const data = await patientprofileservice();
+            setProfileData(data);
+          } catch (error) {
+            // Handle error
+          }
+        }
+    
+        fetchData();
+      }, []);
+
+      function handelLogout(){
+        localStorage.removeItem('jwtToken');
+        dispatch(logoutsuccess);
+        navigate('/');
+
+      }
+
+
     const userProfileData ={
-        username: "___bhatta",
-        name: "Diwash Bhatta",
+        username: profileData.username,
+        name: profileData.patientName,
     }
   return (
     <>
-    <UserLoginNavbar/>
+    <UserNavbar/>
     <div className='flex justify-around'>
         <div className='flex flex-col text-center my-5 gap-4'>
             <h3 className='text-xl font-bold'>{userProfileData.username}</h3>
@@ -24,10 +55,11 @@ function UserProfilePage() {
             </div>
             <div className='flex gap-4'>
                 <button className='bg-[#497FAB] text-white px-4 py-2 rounded-[100px]'>Save Change</button>
-                <button className='border-3 px-4 rounded-[100px] border-[#e51616bd]'>Logout</button>
+                <button onClick={handelLogout} className='border-3 px-4 rounded-[100px] active:bg-[#bd5f5f29] hover:border-[#984545] border-[#e51616bd]'>Logout</button>
             </div>
         </div>
     </div>
+    
 
     </>
   )

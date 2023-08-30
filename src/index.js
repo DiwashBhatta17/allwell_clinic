@@ -14,6 +14,16 @@ import Otp from './Page/Login/Otp';
 import DoctorLists from './Page/Users/DoctorLists';
 import DoctorDetailUser from './Page/Users/DoctorDetailUser';
 import News from './components/forAll/News';
+import { Provider } from 'react-redux';
+import store from './components/State/store';
+import UserProfilePage from './Page/Users/UserProfile/UserProfilePage';
+import Doctordashboard from './Page/Doctor/doctorDashboard';
+import AppoinmentsList from './Page/Doctor/AppoinmentsList';
+import DoctorProfile from './Page/Doctor/doctorProfile';
+import DoctorWaitingPage from './Page/Doctor/DoctorWaitingPage';
+import UserNews from './Page/Users/UserNews';
+import DoctorNews from './Page/Doctor/DoctorNews';
+import DoctorHistory from './Page/Doctor/doctorHistory';
 
 
 const routerConfig = createBrowserRouter([
@@ -30,7 +40,7 @@ const routerConfig = createBrowserRouter([
     element: <ServiceCom1/>
   },
   {
-    path: 'appointment',
+    path: 'appointment/:id',
     element: <AppointmentFormControl/>
   },
   {
@@ -46,27 +56,65 @@ const routerConfig = createBrowserRouter([
     element: <DoctorLists/>
   },
   {
-    path: 'doctordetailuser',
+    path: 'doctordetailuser/:id',
     element: <DoctorDetailUser/>
   },
   {
     path: 'userNews',
-    element: <News/>
-  }
+    element: <UserNews/>
+  },
+  {
+    path: 'userProfile',
+    element: <UserProfilePage/>
+  },
+
+  // Doctor setup
+  {
+    path: 'doctordashboard',
+    element: <Doctordashboard/>
+  },
+  {
+    path: 'userProfile',
+    element: <UserProfilePage/>
+  },
+  // {
+  //   path: 'doctorAppointmentlist/:appId',
+  //   element: <AppoinmentsList/>
+  // },
+  {
+    path: 'doctorAppointmentlist',
+    element: <AppoinmentsList/>
+  },
+  {
+    path: 'doctorProfile',
+    element: <DoctorProfile/>
+  },
+  {
+    path: 'doctorwaiting',
+    element: <DoctorWaitingPage/>
+  },
+  {
+    path: 'doctorNews',
+    element: <DoctorNews/>
+  },
+  {
+    path: 'doctorhistory',
+    element: <DoctorHistory/>
+  },
+
   
 
 
- 
   
 
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <RouterProvider router={routerConfig}/>
     {/* <App/> */}
-  </React.StrictMode>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

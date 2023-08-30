@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import img from './img/Group 37391.png';
 import otpService from '../../Services/LoginService/otpService';
 import { useNavigate } from 'react-router-dom';
+import { setlogin, setSignup } from '../../components/State/slice/counterSlice';
+import { useDispatch } from 'react-redux';
 
 function Otp() {
 
@@ -14,6 +16,7 @@ function Otp() {
 
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -56,8 +59,10 @@ function Otp() {
   useEffect(() => {
     if (redirectTologin) {
       const timeout = setTimeout(() => {
+        navigate('/');
+        dispatch(setlogin(true));
         setRedirectTologin(false); // Reset the flag
-        navigate('/login')
+        
       }, 3000); // 3000 milliseconds = 3 seconds
 
       return () => clearTimeout(timeout); // Clear the timeout if the component unmounts

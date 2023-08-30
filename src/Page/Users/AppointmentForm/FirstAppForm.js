@@ -45,6 +45,7 @@ function FirstAppForm(promps) {
               placeholder="  Name"
               value={formData.name}
               onChange={handelchange}
+              required
             />
           </div>
 

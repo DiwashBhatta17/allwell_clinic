@@ -5,7 +5,7 @@ import UserFooter from "../UserFooter";
 
 
 function SecondAppointmentForm(promps) {
-  const {formData, handelchange, handelsubmit, setForm1visible, setForm2visible} = promps;
+  const {formData, handelchange, handelsubmit, setForm1visible, setForm2visible, formError} = promps;
 
 
   const serviceCategories = [
@@ -18,10 +18,15 @@ function SecondAppointmentForm(promps) {
   ];
 
   const timeslots = [
-    "09:00-11:00",
-    "11:00-13:00",
-    "13:00-15:00",
-    "15:00-17:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "14:00",
+    "16:00",
+    "17:00",
   ];
 
   function handleBack(){
@@ -38,6 +43,9 @@ function SecondAppointmentForm(promps) {
           Please fill the form below to book an appointment. <br />
           Please add all the details required.
         </p>
+        <div className=" text-center  rounded-lg alert-danger" role="alert">
+            {formError}
+          </div>
       </div>
         <div className="bg-[#FAF8F8] p-4 px-5 rounded-[20px]">
           <div className="my-5">
