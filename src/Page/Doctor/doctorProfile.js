@@ -1,22 +1,80 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import img from "../Users/UserImages/Bitmap.png";
 import DoctorNavbar from "./doctorNavbar";
+import doctorprofileservice from "../../Services/DoctorService/doctorprofileservice";
+import doctorupdateform from "../../Services/DoctorService/doctorupdateform";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logoutsuccess } from "../../components/State/slice/counterSlice";
 
 function DoctorProfile() {
+  const [doctorData, setDoctordata] = useState({});
+  const doctorId = sessionStorage.getItem("userId");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+
+  const [formData, setFormData] = useState({
+    doctorName: doctorData.doctorName,
+    username:doctorData.username,
+    phone: doctorData.phone,
+    specialization :doctorData.specialization,
+    doctorBio: doctorData.bio,
+  });
+
+  console.log(doctorData.doctorName)
+
+  console.log(formData);
+
+  async function fetchData() {
+    try {
+      const response = await doctorprofileservice(doctorId);
+      setDoctordata(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  function handleChange(event){
+    const {name , value} = event.target;
+    setFormData({...formData,[name]:value});
+
+  }
+  async function handleSubmit(){
+    console.log('form data', formData );
+    await doctorupdateform(doctorId, formData);
+    fetchData();
+
+  }
+
+  function handelLogout(){
+    localStorage.removeItem('jwtToken');
+    dispatch(logoutsuccess);
+    navigate('/');
+
+  }
+  
+
   const doctorDetails = {
-    name: "Diwash Bhatta",
-    about:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium porro laudantium ipsum, perferendis at amet corrupti, tempore culpa modi obcaecati, nesciunt aliquam qui fugiat sunt aut. Suscipit quos natus itaque?",
+    username: doctorData.username,
+    specialization: doctorData.specialization,
+    name: doctorData.doctorName,
+    about: doctorData.doctorBio,
     experience: "10+",
-    phone: "9779812345678",
-    email: "bhattass@gmail.com",
-    whatsapp: "98123456789",
+    phone: doctorData.phone,
+    email: doctorData.email,
+    whatsapp: doctorData.phone,
   };
   return (
     <>
       {/* component 1  */}
       <div>
-        <DoctorNavbar/>
+        <DoctorNavbar />
         <div className="flex mt-5  justify-around ">
           {/* image part div */}
           <div>
@@ -28,7 +86,7 @@ function DoctorProfile() {
 
           {/* About us part Div */}
           <div className="w-[40%] mt-2">
-            <h1 className="text-2xl font-bold">About {doctorDetails.name}</h1>
+            <h1 className="text-2xl font-bold">{doctorDetails.username} ({doctorData.specialization})</h1>
             <p className="my-2 ">{doctorDetails.about}</p>
           </div>
         </div>
@@ -57,35 +115,50 @@ function DoctorProfile() {
           <div className="flex flex-col gap-4 w-[100%] justify-center my-5">
             <input
               placeholder=" Change Name"
+              name="doctorName"
+              value={formData.doctorName}
+              className=" h-[40px] rounded-lg bg-[#f3efef]"
+              onChange={handleChange}
+              type="text"
+            />
+            <input
+              placeholder=" Change Email Address" 
+              value={formData.username}
+              name="username"
+              onChange={handleChange}
+              className=" h-[40px] rounded-lg bg-[#f3efef]"
+              type="email"
+            />
+            <input
+              placeholder=" Update Bio"
+              name="doctorBio"
+              value={formData.doctorBio}
+              onChange={handleChange}
               className=" h-[40px] rounded-lg bg-[#f3efef]"
               type="text"
             />
             <input
-              placeholder=" Change Email Address"
+              placeholder=" Add Specialization"
+              name="specialization"
+              value={formData.specialization}
+              onChange={handleChange}
               className=" h-[40px] rounded-lg bg-[#f3efef]"
               type="text"
             />
             <input
-              placeholder=" Change Username"
-              className=" h-[40px] rounded-lg bg-[#f3efef]"
-              type="text"
-            />
-             <input
-              placeholder=" Change Username"
-              className=" h-[40px] rounded-lg bg-[#f3efef]"
-              type="text"
-            />
-             <input
-              placeholder=" Change Username"
+              placeholder=" Change Phone Number"
+              onChange={handleChange}
+              name="phone"
+              value={formData.phone}
               className=" h-[40px] rounded-lg bg-[#f3efef]"
               type="text"
             />
           </div>
           <div className="flex gap-4">
-            <button className="bg-[#497FAB] text-white px-4 py-2 rounded-[100px]">
+            <button onClick={handleSubmit} className="bg-[#497FAB] text-white px-4 py-2 rounded-[100px]">
               Save Change
             </button>
-            <button className="border-3 px-4 rounded-[100px] active:bg-[#bd5f5f29] hover:border-[#984545] border-[#e51616bd]">
+            <button onClick={handelLogout} className="border-3 px-4 rounded-[100px] active:bg-[#bd5f5f29] hover:border-[#984545] border-[#e51616bd]">
               Logout
             </button>
           </div>
