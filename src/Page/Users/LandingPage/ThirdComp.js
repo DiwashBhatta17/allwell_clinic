@@ -23,7 +23,7 @@ function ThirdComp() {
             key={index}
             className="border shadow-xl w-[360px] my-5 text-center"
           >
-            <Link to="/doctordetailuser">
+            <Link to={`/doctordetailuser/${value.doctorId}`}>
               {" "}
               <img className="w-full h-[260px]" src={img} alt="img" />
               <div>

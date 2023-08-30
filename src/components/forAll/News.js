@@ -6,7 +6,7 @@ function News() {
     const [newsList, setNewsList] = useState(["","","","","",""])
   return (
     <>
-    <UserNavbar/>
+    
       <div className="mx-[120px] mt-5 mb-5 ">
         <h1 className="text-2xl font-bold">Latest News</h1>
         <div className="mt-4 flex flex-wrap justify-center gap-[40px]">
@@ -38,7 +38,7 @@ function News() {
 
         </div>
       </div>
-      <UserFooter/>
+      
     </>
   );
 }

@@ -12,6 +12,8 @@ import {
 } from "../../components/State/slice/counterSlice";
 
 function Login(props) {
+  const {redirect} = props;
+
   const loginStatus = useSelector((state) => state.counter.loginvalue);
   const dispatch = useDispatch();
 
@@ -43,15 +45,25 @@ function Login(props) {
 
         // Store token in SessionStorage or HTTP-only cookie
         localStorage.setItem("jwtToken", accessToken);
+        
 
         // Redirect based on user's role
         if (user.role === "ROLE_PATIENT") {
-          navigate("/");
+          if(redirect != null){
+            navigate(redirect);
+          }
+          else{
+            navigate("/");
+
+          }
+          
           dispatch(setlogin(false));
           dispatch(loginsuccess());
           sessionStorage.setItem("userId", user.patientId);
         } else if (user.role === "ROLE_DOCTOR") {
-          // history.push("/doctor-interface"); // Replace with your doctor route
+          navigate("/doctordashboard");
+          sessionStorage.setItem("userId", user.doctorId);
+          
         }
       } catch (error) {
         setErrormessage("Invalid Username");

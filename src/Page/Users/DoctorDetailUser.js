@@ -1,27 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import doctorimg from "./UserImages/Bitmap.png";
 import icon1 from "./UserImages/service-1-icon.png";
 import icon2 from "./UserImages/service-2-icon.png";
 import icon3 from "./UserImages/service-3-icon.png";
 import UserFooter from "./UserFooter";
 import UserNavbar from "./UserNavbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import patientRedirectService from "../../Services/User/patientRedirectService";
+import { useDispatch, useSelector } from "react-redux";
+import { setlogin } from "../../components/State/slice/counterSlice";
+import Login from "../Login/Login";
 
 function DoctorDetailUser() {
+  const value = useSelector((state)=>state.counter.isAuthenticated);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { id } = useParams();
+  const [detail, setDetail] = useState({});
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await patientRedirectService(id);
+        setDetail(data);
+      } catch (error) {
+        throw error;
+      }
+    }
+    fetchData();
+  }, []);
+
+  function handleClick(){
+    if(value){
+      navigate(`/appointment/${id}`);    
+    }else{
+      dispatch(setlogin(true));
+
+    }
+  }
+
   let doctorDetails = {
-    name: "Dr. Sameer Thapa",
+    name: detail.doctorName,
     about:
       "Doctor  is a top specialist at London Bridge Hospital at London. He has achieved several awards and recognition for is contribution and service in his own field. He is available for private consultation. ",
     experience: "10 +",
-    phone: "(977) 98123456789",
-    email: "samirthapa@allwillclinic.hp.np",
-    whatsapp: "98123456789",
+    phone: detail.phone,
+    email: detail.email,
+    whatsapp: detail.phone,
     image: doctorimg,
     patientno: "1000 +",
   };
   return (
     <>
-    <UserNavbar/>
+      <UserNavbar />
+      <Login redirect={`/appointment/${id}`}/>
       {/* component 1  */}
       <div>
         <div className="flex mt-5  justify-around ">
@@ -37,14 +70,16 @@ function DoctorDetailUser() {
           <div className="w-[40%] mt-2">
             <h1 className="text-2xl font-bold">About {doctorDetails.name}</h1>
             <p className="my-2 mb-5">{doctorDetails.about}</p>
-            <Link to='/appointment' className="mt-5 border px-5 py-2 rounded-full bg-[#497FAB] text-white">
+            <button
+              onClick={handleClick}
+              className="mt-5 border px-5 py-2 rounded-full bg-[#497FAB] text-white"
+            >
               Book Appointments
-            </Link>
+            </button>
           </div>
         </div>
       </div>
       {/* comma */}
-     
 
       <div className="mt-[100px]">
         <div className="flex justify-around">
@@ -82,7 +117,7 @@ function DoctorDetailUser() {
           <p>{doctorDetails.phone}</p>
         </div>
         <div className="flex text-3xl mb-3 gap-4">
-          <i className="text-[#497FAB] mt-2 fa-solid fa-envelope"></i> 
+          <i className="text-[#497FAB] mt-2 fa-solid fa-envelope"></i>
           <p>{doctorDetails.email}</p>
         </div>
         <div className="flex text-3xl  mb-3 gap-4">
@@ -90,7 +125,7 @@ function DoctorDetailUser() {
           <p>{doctorDetails.whatsapp}</p>
         </div>
       </div>
-      <UserFooter/>
+      <UserFooter />
     </>
   );
 }

@@ -6,7 +6,7 @@ import axios from "axios";
 
 async function asAdoctorService(data) {
   try {
-    const response = await axios.post(baseURL + "/api/registers", data);
+    const response = await axios.post(baseURL + "/api/doctor-register", data);
     console.log(data);
     console.log(response);
     // history.push('/otp'); // Redirect after successful response
