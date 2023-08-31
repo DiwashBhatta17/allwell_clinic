@@ -1,4 +1,5 @@
 import "./App.css";
+import Patientdetails from "./Page/Admin/Components/Patientdetails";
 // import Navbar from "./Page/Admin/Navbar";
 // import AdminDoc from "./Page/Admin/AdminDoc";
 // import Landingpage from "./Page/Admin/Landingpage";
@@ -27,9 +28,9 @@ function App() {
   return (
     <>
       {/* <Popup /> */}
-      <FirstComponent />
+      {/* <FirstComponent /> */}
       {/* <Navbar /> */}
-
+      {/* <Patientdetails /> */}
       {/* <Landingpage />
       <AdminDoc />
       <DocDetails />

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Popup from "./Components/Popup";
+import axios from "axios";
 
 export default function Patient() {
   const [ispopup, setIspopup] = useState(false);
@@ -12,6 +13,16 @@ export default function Patient() {
     setIspopup(false);
   };
   <Popup handlePopup={closePopup} />;
+
+  const [search, setSearch] = useState("");
+
+  axios.get("http://localhost:8081/patient/get-all-patient").then((resp) => {
+    console.log("the response is:", resp);
+  });
+  // axios.get("https://jsonplaceholder.typicode.com/users").then((resp) => {
+  //   console.log("The response is:", resp);
+  // });
+
   return (
     <>
       {/* <div className="header bg-[#52] mt=[-40px] text-[#497FAB] flex items-center h-[80px]">
@@ -75,9 +86,9 @@ export default function Patient() {
           <div className="userlist h-[550px] w-[340px]  bg-[#ffffff] ml-[-800px] mt-[-300px] rounded-[30px] shadow-md shadow-blue-500">
             <div className="input bg-[#497FAB] w-[340px] h-[60px] rounded-t-[10px] flex ">
               <img
-                src="/Images/search.jpeg"
+                src="/Images/search.png"
                 alt="search"
-                className="sear h-[20px] ml-[36px] mt-[20px]"
+                className="sear h-[20px] ml-[62px] mt-[20px]"
               />
               <input
                 type="text"
