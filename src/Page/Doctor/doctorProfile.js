@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import img from "../Users/UserImages/Bitmap.png";
 import DoctorNavbar from "./doctorNavbar";
 import doctorprofileservice from "../../Services/DoctorService/doctorprofileservice";
@@ -6,6 +6,7 @@ import doctorupdateform from "../../Services/DoctorService/doctorupdateform";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutsuccess } from "../../components/State/slice/counterSlice";
+import doctorImgUpdateService, {doctorImgGetService} from "../../Services/DoctorService/doctorImgUpdateService";
 
 function DoctorProfile() {
   const [doctorData, setDoctordata] = useState({});
@@ -13,6 +14,11 @@ function DoctorProfile() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imgURL, setImgURL] = useState('');
+  const inputRef = useRef(null);
   
 
   const [formData, setFormData] = useState({
@@ -23,9 +29,6 @@ function DoctorProfile() {
     doctorBio: doctorData.bio,
   });
 
-  console.log(doctorData.doctorName)
-
-  console.log(formData);
 
   async function fetchData() {
     try {
@@ -35,6 +38,52 @@ function DoctorProfile() {
       console.log(error);
     }
   }
+
+  // Image get upload part start
+  async function handleUpload() {
+    if (selectedImage) {
+      console.log("seectImage" ,selectedImage);
+      try {
+        const formData = new FormData();
+        formData.append('image', selectedImage);
+        const response = await doctorImgUpdateService( formData);
+        console.log("res", response);
+      } catch (error) {
+        console.error("Error uploadin img", error);
+      }
+    } else {
+      console.log("No image selected");
+    }
+  }
+
+  useEffect(() => {
+    async function getProfileImg() {
+      try {
+        const userId = sessionStorage.getItem("userId");
+        const response = await doctorImgGetService(userId);
+        const imgUrl = URL.createObjectURL(response); // Assuming response.data is the image blob
+        setImgURL(imgUrl);
+        console.log("response is", imgUrl);
+      } catch (error) {
+        console.error("Error fetching profile image", error);
+      }
+    }
+    getProfileImg();
+    // Clean up the URL when the component unmounts
+    return () => {
+      if (imgURL) {
+        URL.revokeObjectURL(imgURL);
+      }
+    };
+  }, [imgURL]); 
+  // handle upload part
+  useEffect(() => {
+    handleUpload();
+  }, [selectedImage]);
+
+
+  // End image upload get part
+
 
   useEffect(() => {
     fetchData();
@@ -58,6 +107,9 @@ function DoctorProfile() {
     navigate('/');
 
   }
+  const handleFileSelect = (event) => {
+    setSelectedImage(event.target.files[0]);
+  };
   
 
   const doctorDetails = {
@@ -78,7 +130,26 @@ function DoctorProfile() {
         <div className="flex mt-5  justify-around ">
           {/* image part div */}
           <div>
-            <img className="rounded-full" src={img} alt="" />
+          <label>
+              <img
+                className="w-[250px] rounded-full cursor-pointer"
+                src={imgURL}
+                alt="img"
+              />
+              <input
+                type="file"
+                accept="image/*"
+                ref={inputRef}
+                style={{ display: "none" }}
+                onChange={handleFileSelect}
+              />
+              <button
+                className="absolute w-[250px] h-[250px] top-0 left-0 opacity-0 cursor-pointer"
+                onClick={() => inputRef.current.click()}
+              >
+                {/* This is an invisible button that covers the image */}
+              </button>
+            </label>
             <h1 className="justify-center flex mt-3 text-2xl font-bold">
               {doctorDetails.name}
             </h1>
