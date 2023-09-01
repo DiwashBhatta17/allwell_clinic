@@ -50,6 +50,7 @@ function AppoinmentsList() {
           <tbody>
             {
               appoinments.map((value, index)=>(
+                
                 <tr key={index}>
                
                         <th scope="row">{value.appointmentId}</th>

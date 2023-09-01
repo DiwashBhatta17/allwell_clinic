@@ -102,7 +102,7 @@ function SecondAppointmentForm(promps) {
                 className="shadow-sm rounded-xl mt-2 h-[45px] w-[300px]"
                 type="text"
                 name="timeslot"
-                value={formData.email}
+                value={formData.timeslot}
                 onChange={handelchange}
               >
                  {timeslots.map((category, index) => (

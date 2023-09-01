@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import patientProfileupdate from "../../../Services/User/patientProfileupdate";
 import profileImgUpdateService from "../../../Services/User/profileImgUpdateService";
 import { profileImgGetService } from "../../../Services/User/profileImgUpdateService";
+import UserMedicalHistory from "./UserMedicalHistory";
 
 function UserProfilePage() {
   const dispatch = useDispatch();
@@ -128,11 +129,11 @@ function UserProfilePage() {
           <h3 className="text-xl font-bold">{userProfileData.username}</h3>
           <div className="">
             <label>
-              <img
+             <button className="" onClick={() => inputRef.current.click()}> <img
                 className="w-[250px] rounded-full cursor-pointer"
                 src={imgURL}
                 alt="img"
-              />
+              /></button>
               <input
                 type="file"
                 accept="image/*"
@@ -140,12 +141,7 @@ function UserProfilePage() {
                 style={{ display: "none" }}
                 onChange={handleFileSelect}
               />
-              <button
-                className="absolute w-[250px] h-[250px] top-0 left-0 opacity-0 cursor-pointer"
-                onClick={() => inputRef.current.click()}
-              >
-                {/* This is an invisible button that covers the image */}
-              </button>
+             
             </label>
           </div>
           <h1 className="text-3xl font-sans font-bold">
@@ -195,6 +191,7 @@ function UserProfilePage() {
           </div>
         </div>
       </div>
+      <UserMedicalHistory/>
     </>
   );
 }

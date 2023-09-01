@@ -10,6 +10,7 @@ import patientRedirectService from "../../Services/User/patientRedirectService";
 import { useDispatch, useSelector } from "react-redux";
 import { setlogin } from "../../components/State/slice/counterSlice";
 import Login from "../Login/Login";
+import { doctorImgGetService} from '../../Services/DoctorService/doctorImgUpdateService';
 
 function DoctorDetailUser() {
   const value = useSelector((state)=>state.counter.isAuthenticated);
@@ -18,12 +19,14 @@ function DoctorDetailUser() {
 
   const { id } = useParams();
   const [detail, setDetail] = useState({});
+  const [imgURL, setImgURL] = useState('');
 
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await patientRedirectService(id);
         setDetail(data);
+        console.log(data);
       } catch (error) {
         throw error;
       }
@@ -40,16 +43,36 @@ function DoctorDetailUser() {
     }
   }
 
+  useEffect(() => {
+    async function getProfileImg() {
+      try {
+        const userId = sessionStorage.getItem("userId");
+        const response = await doctorImgGetService(userId);
+        const imgUrl = URL.createObjectURL(response); // Assuming response.data is the image blob
+        setImgURL(imgUrl);
+        console.log("response is", imgUrl);
+      } catch (error) {
+        console.error("Error fetching profile image", error);
+      }
+    }
+    getProfileImg();
+    // Clean up the URL when the component unmounts
+    return () => {
+      if (imgURL) {
+        URL.revokeObjectURL(imgURL);
+      }
+    };
+  }, []); 
+
   let doctorDetails = {
     name: detail.doctorName,
-    about:
-      "Doctor  is a top specialist at London Bridge Hospital at London. He has achieved several awards and recognition for is contribution and service in his own field. He is available for private consultation. ",
-    experience: "10 +",
+    about: detail.doctorBio,
+    experience: "1 +",
     phone: detail.phone,
     email: detail.email,
     whatsapp: detail.phone,
     image: doctorimg,
-    patientno: "1000 +",
+    patientno: "100 +",
   };
   return (
     <>
@@ -60,7 +83,7 @@ function DoctorDetailUser() {
         <div className="flex mt-5  justify-around ">
           {/* image part div */}
           <div>
-            <img className="rounded-full" src={doctorDetails.image} alt="" />
+            <img className="rounded-full" src={imgURL} alt="" />
             <h1 className="justify-center flex mt-3 text-2xl font-bold">
               {doctorDetails.name}
             </h1>

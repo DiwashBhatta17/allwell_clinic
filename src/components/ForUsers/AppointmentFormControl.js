@@ -45,10 +45,13 @@ const isFormValid = () => {
 
   for (const field of requiredFields) {
     if (formData[field].trim() === "") {
+      console.log("is not valid")
       setFormError("All fields are required");
       return false;
     }
-    
+    else{
+      return true;
+    }
   }
 }
 
@@ -58,21 +61,28 @@ const isFormValid = () => {
   }
   async function handelsubmit() {
     const data = {
-      appointmentDate: formData.date,
+      name: formData.name,
+      email: formData.email,
+      phoneNumber: formData.phone,
+      dateOfBirth: formData.date,
+      appointmentDate: formData.appointmentDate,
       appointmentTime: formData.timeslot,
       appointmentDescription: formData.symptoms,
-      appointmentStatus: formData.serviceCategory,
-      followUpDateAndTime: "2024-01-07",
+      category: formData.serviceCategory,
+
+      
     };
-    console.log(formData);
+    console.log(data);
 
     if (isFormValid()) {
       try {
         const response = await appointmentService(data, userId, id);
-        console.log(response);
+        console.log("response",response);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
+    } else{
+      console.log("Form not valid")
     }
 
    
