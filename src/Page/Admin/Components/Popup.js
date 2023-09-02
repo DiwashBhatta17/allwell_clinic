@@ -1,24 +1,36 @@
 import React, { useState } from "react";
 import axios from "axios";
+import uploadAfile from "../../../Services/Admin/uploadAfile";
 
 export default function Popup(props) {
-  const { handlePopup } = props;
-  const [image, setImage] = useState("");
+  const { handlePopup, id } = props;
+  const [images, setImage] = useState(null);
 
   function handleImage(e) {
     console.log(e.target.files);
     setImage(e.target.files[0]);
   }
+  console.log("idd",id);
 
-  function handleAPI() {
-    const formData = new FormData();
-    formData.append("report", image);
+  async function handleUpload() {
+    if (images) {
+      console.log("seectImage" ,images);
+      try {
+        const formData = new FormData();
+        formData.append('image', images);
+       
 
-    // Replace "url" with the actual API endpoint
-    axios.post("", formData).then((response) => {
-      console.log(response);
-    });
+        const response = await uploadAfile(id.reportId, formData);
+        console.log("res", response);
+      } catch (error) {
+        console.error("Error uploadin img", error);
+      }
+    } else {
+      console.log("No image selected");
+    }
   }
+
+  
 
   return (
     <div className="popupbg bg-[#497fabbb] h-[350px] w-[350px] ml-[-460px] mt-[-450px] rounded-[50px] border-1 border-black">
@@ -40,13 +52,13 @@ export default function Popup(props) {
         className="cfile ml-[50px] mt-[20px]"
         onChange={handleImage}
       />
-      <p
+      <button
         className="bg-[white] text-center font-semibold ml-[110px] w-[120px] mt-[60px] rounded-[30px] hover:bg-[#ffffff6c] cursor-pointer"
-        onClick={handleAPI}
+        onClick={handleUpload}
       >
-        {" "}
-        Upload file{" "}
-      </p>
+        
+        Upload file
+      </button>
     </div>
   );
 }
