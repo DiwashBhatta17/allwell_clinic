@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import FirstAppForm from "../../Page/Users/AppointmentForm/FirstAppForm";
 import SecondAppointmentForm from "../../Page/Users/AppointmentForm/SecondAppointmentForm";
 import appointmentService from "../../Services/User/appointmentService";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import PopupNotification from "../forAll/PopupNotification";
 
 function AppointmentFormControl() {
   const userId = sessionStorage.getItem("userId");
   // const { doctorId } = useParams();
   const {id} = useParams();
+  const [notificationVisible, setNotificationVisible] = useState(false);
+  const navigate = useNavigate();
   
   
 
@@ -22,6 +25,17 @@ function AppointmentFormControl() {
     timeslot: "",
     appointmentDate: "",
   });
+
+  useEffect(() => {
+    if (notificationVisible) {
+      const timer = setTimeout(() => {
+        setNotificationVisible(false);
+      }, 3000); // 3 seconds
+
+      // Clean up the timer when the component unmounts or notification is hidden
+      return () => clearTimeout(timer);
+    }
+  }, [notificationVisible]);
 
   const [form1visible, setForm1visible] = useState(true);
   const [form2visible, setForm2visible] = useState(false);
@@ -45,10 +59,13 @@ const isFormValid = () => {
 
   for (const field of requiredFields) {
     if (formData[field].trim() === "") {
+      console.log("is not valid")
       setFormError("All fields are required");
       return false;
     }
-    
+    else{
+      return true;
+    }
   }
 }
 
@@ -58,21 +75,30 @@ const isFormValid = () => {
   }
   async function handelsubmit() {
     const data = {
-      appointmentDate: formData.date,
+      name: formData.name,
+      email: formData.email,
+      phoneNumber: formData.phone,
+      dateOfBirth: formData.date,
+      appointmentDate: formData.appointmentDate,
       appointmentTime: formData.timeslot,
       appointmentDescription: formData.symptoms,
-      appointmentStatus: formData.serviceCategory,
-      followUpDateAndTime: "2024-01-07",
+      category: formData.serviceCategory,
+
+      
     };
-    console.log(formData);
+    console.log(data);
 
     if (isFormValid()) {
       try {
         const response = await appointmentService(data, userId, id);
-        console.log(response);
+        console.log("response",response);
+        setNotificationVisible(true);
+        navigate('/userProfile');
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
+    } else{
+      console.log("Form not valid")
     }
 
    
@@ -80,6 +106,8 @@ const isFormValid = () => {
 
   return (
     <>
+    {notificationVisible && <PopupNotification message="Appointment book a successfully !"/>}
+    
       <FirstAppForm
         formError = {formError}
         formData={formData}
@@ -88,6 +116,7 @@ const isFormValid = () => {
         setForm1visible={setForm1visible}
         setForm2visible={setForm2visible}
       />
+      
       <SecondAppointmentForm
        formError = {formError}
         formData={formData}
@@ -97,6 +126,7 @@ const isFormValid = () => {
         setForm1visible={setForm1visible}
         handelsubmit={handelsubmit}
       />
+      
     </>
   );
 }

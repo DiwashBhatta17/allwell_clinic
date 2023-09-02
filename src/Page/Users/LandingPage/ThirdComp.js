@@ -2,15 +2,39 @@ import React, { useEffect, useState } from "react";
 import img from "../UserImages/Bitmap.png";
 import { Link } from "react-router-dom";
 import { getDoctorlist } from "../../../Services/User/doctorlist";
+import { doctorImgGetService } from "../../../Services/DoctorService/doctorImgUpdateService";
 
 function ThirdComp() {
   const [doctorList, setDoctorList] = useState([]);
 
+  async function fetchImage() {
+    try {
+      const response = await getDoctorlist();
+      if (response) {
+        for (let i = 0; i < response.length; i++) {
+          let imageUrl = await getProfileImg(response[i]?.doctorId);
+          response[i]["imgUrl"] = imageUrl;
+        }
+        setDoctorList(response);
+      }
+    } catch (error) {
+      console.error("Cannot get the News", error);
+    }
+  }
+
   useEffect(() => {
-    getDoctorlist().then((doctors) => {
-      setDoctorList(doctors);
-    });
+    fetchImage()
   }, []);
+  console.log("doctor list", doctorList[0]);
+
+  async function getProfileImg(userId) {
+    try {
+      const response = await doctorImgGetService(userId);
+      return URL.createObjectURL(response); // Assuming response.data is the image blob
+    } catch (error) {
+      console.error("Error fetching profile image", error);
+    }
+  }
 
   return (
     <>
@@ -25,7 +49,7 @@ function ThirdComp() {
           >
             <Link to={`/doctordetailuser/${value.doctorId}`}>
               {" "}
-              <img className="w-full h-[260px]" src={img} alt="img" />
+              <img className="w-full h-[260px]" src={value.imgUrl} alt="img" />
               <div>
                 <h1 className="mt-2">{value.doctorName}</h1>
                 <h1 className="text-xl mt-1 ">Sr. Doctor</h1>
