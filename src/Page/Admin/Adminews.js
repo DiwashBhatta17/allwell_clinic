@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "./Adminnavbar";
 import { useState } from "react";
 
 export default function News() {
@@ -45,22 +45,23 @@ export default function News() {
           <div className="want bg-[#497FAB] w-[100%] rounded-t-[10px] h-[60px] text-[white] text-center font-semibold">
             Want to Update anything?
           </div>
-          <img
+          {/* <img
             src="/Images/link.png"
             alt="link"
             className="al h-[40px] ml-[40px] mt-[10px]"
+          /> */}
+          <input
+            type="text"
+            className="addlink w-[90%] h-[40px] ml-[20px] mt-[20px] shadow-md shadow-blue-500 text-[#497FAB] text-center "
           />
-          <div className="addlink w-[90%] h-[40px] ml-[20px] mt-[20px] shadow-md shadow-blue-500 text-[#497FAB] text-center ">
-            Addlink
-          </div>
+          <p className="ml-[120px] mt-[10px]">Add title of your news</p>
           <img
             src="/Images/add.png"
             alt="addphoto"
-            className="ap h-[140px] ml-[220px] "
+            className="ap h-[140px] ml-[220px] hover:cursor-pointer"
           />
-          <div className="link w-[90%] h-[40px] ml-[30px] mt-[20px] shadow-md shadow-blue-500 text-[#497FAB] text-center ">
-            Add Details
-          </div>
+          <input className="link w-[90%] h-[40px] ml-[30px] mt-[20px] shadow-md shadow-blue-500 text-[#497FAB] text-center" />
+          <p className="ml-[150px] mt-[10px]">Add Details</p>
         </div>
         <button className="pd bg-[#497FAB] h-[30px] w-[120px] ml-[140px] mt-[20px] text-[white] text-center font-semibold">
           UPDATE

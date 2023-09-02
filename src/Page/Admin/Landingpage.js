@@ -1,7 +1,7 @@
 import React from "react";
 import "./AdminLanding.css";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "./Adminnavbar";
 export default function Landingpage() {
   return (
     <>

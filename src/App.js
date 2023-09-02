@@ -9,6 +9,7 @@ import Patientdetails from "./Page/Admin/Components/Patientdetails";
 // import { ReactDOM } from "react";
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FirstComponent from "./Page/Users/LandingPage/FirstComponent";
+import Popup from "./Page/Admin/Components/Popup";
 // import "./Page/Admin/Components/Popup";
 // import Popup from "./Page/Admin/Components/Popup";
 // import SecontComponent from "./Page/Users/LandingPage/SecontComponent";
@@ -27,7 +28,7 @@ import FirstComponent from "./Page/Users/LandingPage/FirstComponent";
 function App() {
   return (
     <>
-      {/* <Popup /> */}
+      <Popup />
       {/* <FirstComponent /> */}
       {/* <Navbar /> */}
       {/* <Patientdetails /> */}

@@ -1,16 +1,3 @@
-// import React from "react";
-// import ReactDOM from "react-dom/client";
-// import "./index.css";
-// import App from "./App";
-// import reportWebVitals from "./reportWebVitals";
-
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
-
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -25,21 +12,21 @@ import {
 import Landingpage from "./Page/Admin/Landingpage";
 import AdminDoc from "./Page/Admin/AdminDoc";
 import DocDetails from "./Page/Admin/DocDetails";
-import Patient from "./Page/Admin/Patient";
-import News from "./Page/Admin/News";
+import Adminpatient from "./Page/Admin/Adminpatient";
+import Adminews from "./Page/Admin/Adminews";
 
 const routerConfig = createBrowserRouter([
   {
-    path: "/",
+    path: "/Admindashboard",
     element: <Landingpage />,
   },
   {
-    path: "/patient", // Added a leading slash here
-    element: <Patient />,
+    path: "/patient",
+    element: <Adminpatient />,
   },
   {
-    path: "/news",
-    element: <News />,
+    path: "/Adminnews",
+    element: <Adminews />,
   },
   {
     path: "/doctordetails",

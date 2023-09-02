@@ -8,14 +8,14 @@ export default function Navbar() {
       {" "}
       <div className="header bg-[#52363617] mt=[-40px] text-[#497FAB] flex items-center h-[80px] w-[100%]">
         <div className="mr-20">Allwell Clinic</div>
-        <Link to="/">Home</Link>
+        <Link to="/Admindashboard">home</Link>
         <Link id="patient" to="/patient">
           Patient
         </Link>
         <Link id="doc" to="/admindoc">
           Doctors
         </Link>
-        <Link id="news" to="/news">
+        <Link id="news" to="/Adminnews">
           News
         </Link>
       </div>

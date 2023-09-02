@@ -1,23 +1,27 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 export default function Popup(props) {
   const { handlePopup } = props;
-  const fileInputRef = useRef(null);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [image, setImage] = useState("");
 
-  const handleImageClick = () => {
-    fileInputRef.current.click();
-  };
+  function handleImage(e) {
+    console.log(e.target.files);
+    setImage(e.target.files[0]);
+  }
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFile(file);
-    }
-  };
+  function handleAPI() {
+    const formData = new FormData();
+    formData.append("report", image);
+
+    // Replace "url" with the actual API endpoint
+    axios.post("", formData).then((response) => {
+      console.log(response);
+    });
+  }
 
   return (
-    <div className="popupbg bg-[#497fabbb] h-[350px] w-[350px] ml-[-690px] mt-[50px] rounded-[50px] border-1 border-black">
+    <div className="popupbg bg-[#497fabbb] h-[350px] w-[350px] ml-[-460px] mt-[-450px] rounded-[50px] border-1 border-black">
       <div className="top">
         <button
           className="x ml-[300px] mt-[20px] bg-[white] w-[25px] rounded-[190px] hover:bg-[#ffffff85]"
@@ -30,33 +34,18 @@ export default function Popup(props) {
         {" "}
         Upload the report for this patient.
         <hr />
-      </p>
-      <div className="file-preview">
-        {selectedFile && (
-          <img
-            src={URL.createObjectURL(selectedFile)}
-            alt="selected file preview"
-            className="h-[100px] ml-[120px] mt-[30px]"
-          />
-        )}
-      </div>
-      {!selectedFile && (
-        <img
-          src="/Images/upload.png"
-          alt="upload"
-          className="h-[100px] ml-[120px] mt-[30px] cursor-pointer"
-          onClick={handleImageClick}
-        />
-      )}
+      </p>{" "}
       <input
         type="file"
-        ref={fileInputRef}
-        style={{ display: "none" }}
-        onChange={handleFileChange}
+        className="cfile ml-[50px] mt-[20px]"
+        onChange={handleImage}
       />
-      <p className="bg-[white] text-center font-semibold ml-[110px] w-[120px] mt-[20px] rounded-[30px] hover:bg-[#ffffff6c] cursor-pointer">
+      <p
+        className="bg-[white] text-center font-semibold ml-[110px] w-[120px] mt-[60px] rounded-[30px] hover:bg-[#ffffff6c] cursor-pointer"
+        onClick={handleAPI}
+      >
         {" "}
-        Upload{" "}
+        Upload file{" "}
       </p>
     </div>
   );
