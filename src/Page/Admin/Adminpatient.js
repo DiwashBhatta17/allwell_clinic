@@ -2,17 +2,43 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./Adminnavbar";
 import Popup from "./Components/Popup";
 import axios from "axios";
+import getAppointmentlistfromPatientId from "../../Services/Admin/getAppointmentlistfromPatientId";
+import { createReport } from "../../Services/Admin/uploadAfile";
 
 export default function Patient() {
   const [ispopup, setIspopup] = useState(false);
-  const [selectedPatient, setSelectedPatient] = useState(null); // State to store the selected patient
-
+  // State to store the selected patient
   const [selectedPatientId, setSelectedPatientId] = useState(null); // State to hold selected patient's ID
   const [report, setReport] = useState(""); // State to hold the report details
+  const [appointmentlise, setAppointment] = useState([]);
+  const [reportId, setReportId] = useState(null);
+
+
+
+  const [searchuser, setSearchuser] = useState("");
+  const [patients, setPatients] = useState([]);
+
+  const [patientdata, setpatientData] = useState([]); //in details part of the page
+  const [fetchData, setFetchData] = useState(false);
 
   const handlePatientClickID = (patientId) => {
     setSelectedPatientId(patientId); // Set the selected patient's ID
   };
+
+  async function createAReport(appId){
+    try {
+      const response = await createReport(appId);
+      console.log("response",response);
+      setReportId(response)
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
+
+  
+
 
   const handleuploadReport = () => {
     // Check if a patient is selected
@@ -34,32 +60,31 @@ export default function Patient() {
     }
   };
 
-  function uploadReport() {
+  // get Appointment list from patient
+  async function getAppointmentList(patientId) {
+    try {
+      const response = await getAppointmentlistfromPatientId(patientId);
+      console.log("Success", response);
+      setAppointment(response);
+    } catch (error) {
+      console.error("Error", error);
+    }
+  }
+
+  function uploadReport(appid) {
     setIspopup(true);
+    createAReport(appid);
   }
 
   const closePopup = () => {
     setIspopup(false);
   };
 
-  const [searchuser, setSearchuser] = useState("");
-  const [patients, setPatients] = useState([]);
-
-  const [patientdata, setpatientData] = useState([]); //in details part of the page
-  const [fetchData, setFetchData] = useState(false);
-
-  function datafetch() {
-    axios.get("http://localhost:8081/patient/get-all-patient").then((resp) => {
-      setpatientData(resp.data);
-    });
-  }
-
-  function createReport() {
-    axios.post("http://localhost:8081/reports/create-report/"); //when upload is clicked post.
-  }
+  
 
   function handlePatientClick(patient) {
-    setSelectedPatient(patient); // Set the selected patient when clicked
+    getAppointmentList(patient.patientId);
+    setpatientData([patient]); // Set the selected patient when clicked
     console.log("patient selected");
   }
 
@@ -117,31 +142,35 @@ export default function Patient() {
                 <p>Select a user to see details.</p>
               )} */}
             </p>
-            <img
-              src="/Images/logged.png"
-              alt="logged"
-              className="log h-[80px] mt-[80px] ml-[-120px]"
-            />
           </div>
           {/* <div className="bio h-[160px] w-[230px] bg-[white] shadow-md shadow-blue-500 mt-[20px] ml-[130px] text-[#497FAB] font-semibold text-center"></div> */}
-          <div className="bio h-[130px] w-[400px] bg-[white] shadow-md shadow-blue-500 mt-[60px] ml-[0px] text-[#497FAB] font-semibold text-center">
-            {selectedPatient ? (
-              <div>
-                <p>Name: {selectedPatient.patientName}</p>
-                <p>ID: {selectedPatient.patientId}</p>
-                <p>Age: {selectedPatient.age}</p>
-              </div>
-            ) : (
-              <p>Select a patient to see details.</p>
-            )}
+          <div className=" h-[130px]  bg-[white] shadow-md shadow-blue-50  ml-[0px] text-[#497FAB] font-semibold text-center">
+            <table className="table-primary table table-striped w-[398px]">
+              <thead>
+                <tr>
+                  
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {appointmentlise &&
+                  appointmentlise.map((value, index) => (
+                    <tr key={index}>
+                      
+                      <td>{value.name}</td>
+                      <td>{value.email}</td>
+                      <td>
+                        <button onClick={()=>uploadReport(value.appointmentId)} className="bg-[#1b9ce7] text-white px-1 py-1 rounded-lg">Upload</button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
           </div>
-          <button
-            className="bg-[#497FAB] w-[150px] h-[40px] ml-[120px] mt-[10px] text-[white] hover:bg-[#497fabbb]"
-            onClick={uploadReport}
-          >
-            Upload report
-          </button>
-          {ispopup && <Popup handlePopup={closePopup} />}
+          
+          {ispopup && <Popup id={reportId} handlePopup={closePopup} />}
         </div>
         <div className="userlist h-[550px] w-[340px]  bg-[#ffffff] ml-[-1200px] mt-[00px] rounded-[30px] shadow-md shadow-blue-500">
           {" "}
@@ -185,10 +214,8 @@ export default function Patient() {
                     >
                       {fetchData && (
                         <ul>
-                          {patientdata.map((patient) => (
-                            <li key={patient.patientId}>
-                              {patient.patientName}
-                            </li>
+                          {appointmentlise.map((patient) => (
+                            <li key={patient.patientId}>{}</li>
                             // Replace "patient.name" with the appropriate property from your patient object
                           ))}
                         </ul>

@@ -45,6 +45,7 @@ function Login(props) {
 
         // Store token in SessionStorage or HTTP-only cookie
         localStorage.setItem("jwtToken", accessToken);
+        console.log(response);
         
 
         // Redirect based on user's role
@@ -65,7 +66,13 @@ function Login(props) {
           sessionStorage.setItem("userId", user.doctorId);
           
         }
-      } catch (error) {
+        else if (user.role === "ROLE_ADMIN") {
+          navigate("Admindashboard");
+          sessionStorage.setItem("userId", user.adminId);
+      } 
+        
+      }
+       catch (error) {
         setErrormessage("Invalid Username");
       }
 
