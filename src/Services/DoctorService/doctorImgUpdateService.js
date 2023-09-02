@@ -1,5 +1,7 @@
 import axios from "axios";
 import baseURL from "../../components/api";
+import axiosInstance from "../Inteceptor/requestInteceptor";
+
 
 
 
@@ -7,7 +9,7 @@ import baseURL from "../../components/api";
 async function doctorImgUpdateService(fileData) {
     try {
         const userId = sessionStorage.getItem("userId");
-        const response = await axios.post(baseURL+"/doctor/upload-doctor-profile-pic/"+userId, fileData)
+        const response = await axiosInstance.post(baseURL+"/doctor/upload-doctor-profile-pic/"+userId, fileData)
         return response
         
     } catch (error) {

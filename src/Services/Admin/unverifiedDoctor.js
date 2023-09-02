@@ -1,6 +1,9 @@
 import { useState } from "react";
 import baseURL from "../../components/api";
 import axios from "axios";
+import axiosInstance from "../Inteceptor/requestInteceptor";
+
+
 
 async function unverifiedDoctor() {
     try {
@@ -16,7 +19,7 @@ async function unverifiedDoctor() {
 
 export async function verifyDoctor(doctorId){
     try {
-        const response = await axios.post(baseURL+"/api/doctor-verify/"+doctorId);
+        const response = await axiosInstance.post(baseURL+"/api/doctor-verify/"+doctorId);
         return response;
 
         

@@ -13,6 +13,7 @@ import axios from 'axios';
         throw error;     
     }
 
+
 }
 export default patientinfoservice;
 
