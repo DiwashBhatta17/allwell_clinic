@@ -36,6 +36,7 @@ export default function Landingpage(props) {
       </div> */}
 
       <Navbar />
+
       <div className="yd h-[400px] w-[300px] bg-[white] shadow-md shadow-blue-500 mt-[28px] ml-[10px] rounded-[20px]">
         <div>
           <h1 className="bg-[#497FAB] h-[50px] text-center font-semibold text-[white]">
@@ -102,12 +103,8 @@ export default function Landingpage(props) {
         {" "}
         <div className="today text-[#008080] text-[30px] ml-[80px] mt-[-200px]">
           Today's Appointment
+
         </div>
-        <img
-          src="/Images/today.png"
-          alt="today"
-          className="h-[200px] ml-[90px]"
-        />
       </div>
     </>
   );

@@ -2,35 +2,42 @@ import React from "react";
 import "./AdminDoc.css";
 import Adminnavbar from "./Adminnavbar";
 import axios from "axios";
-import { useState, useEffect, useNavigate } from "react";
-import DoctorLists from "../Users/DoctorLists";
-import { Link } from "react-router-dom";
-import DocDetails from "./DocDetails";
+
+import { useState, useEffect } from "react";
+import unverifiedDoctor, { verifyDoctor } from "../../Services/Admin/unverifiedDoctor";
+
+
+
 export default function AdminDoc() {
-  const [doctorlist, setDoctorlist] = useState([]);
+  const [isVerified, setIsVerified] = useState(false);
+  const [list, setList] = useState(["", "", ""]);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8081/doctor/list-all-doctor")
-      .then((response) => {
-        // Set the list of doctors in the state variable
-        setDoctorlist(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching doctor data:", error);
-      });
-  }, []);
 
-  function handleVerifyDoctor(doctorId) {
-    axios
-      .post(`http://localhost:8081/verify-doctor/${doctorId}`)
-      .then((response) => {
-        console.log(`Doctor ${doctorId} verified successfully.`);
-      })
-      .catch((error) => {
-        console.error(`Error verifying doctor ${doctorId}:`, error);
-      });
+  
+  async function fetchData(){
+    try {
+      const response = await unverifiedDoctor();
+      setList(response)
+      
+    } catch (error) {
+      
+    }
   }
+  useEffect(()=> {
+    fetchData();
+  }, []);
+  async function doctorVerify(doctorId){
+    try {
+      const response = await verifyDoctor(doctorId);
+      console.log("Response", response)
+      
+    } catch (error) {
+      console.error("Cause an error", error);
+      
+    }
+  }
+
+
   return (
     <>
       <Adminnavbar />
@@ -53,50 +60,22 @@ export default function AdminDoc() {
           </div>
         </div>
       </div>
-      <div className="lowermarg border-1 border-[#497FAB] mt-[50px] h-[340px] flex rounded-t-[100px] rounded-b-[100px] shadow-md shadow-gray-900">
-        {/* <div className="collage border-2 border-blue-400 h-[200px] w-[200px] ml-[70px] mt-[20px]">
-          <img src="/Images/Doctor.png" alt="Doctor1" />
-          <div className="dn bg-[white] shadow-md shadow-blue-900 text-center font-black mt-2">
-            doctor name
+      <div className="border-1 border-[#497FAB] mt-[50px] h-[380px] flex rounded-t-[100px] rounded-b-[100px] shadow-md shadow-gray-900 items-center justify-center">
+        {/* thhis is a doctor div   */}
+
+        {list.map((value, index) => (
+          <div key={index}>
+            <div className=" border-2 border-blue-400 h-[250px] w-[200px] ml-[70px] text-center">
+              <img src="/Images/Doctor.png" alt="Doctor1" />
+              <div className="dn bg-[white] shadow-md shadow-blue-900 text-center font-black mt-2">
+                {value.username}
+              </div>
+              <button onClick={()=>doctorVerify(value.doctorId)} className="bg-[#4783a8] text-white px-5 py-2 rounded-3xl mt-4">Verify</button>
+            </div>
+          
           </div>
-        </div>
-        <div className="collage border-2 border-blue-400 h-[200px] w-[200px] ml-[250px] mt-[20px]">
-          <img src="/Images/Doctor.png" alt="Doctor2" />
-          <div className="dn bg-[white] shadow-md shadow-blue-900 text-center font-black mt-2">
-            doctor name
-          </div>
-        </div>
-        <div className="collage border-2 border-blue-400 h-[200px] w-[200px] ml-[210px] mt-[20px]">
-          <img src="/Images/Doctor.png" alt="Doctor3" />
-          <div className="dn bg-[white] shadow-md shadow-blue-900 text-center font-black mt-2">
-            doctor name
-          </div>
-        </div> */}
-        <div className="flex">
-          <ul className="flex">
-            {doctorlist.map((doctor) => (
-              <li
-                key={doctor.id}
-                className="bg-[#ffffff] ml-[120px] text-[#000000] mt-[200px] h-[70px] text-center text-[20px] w-[290px]  shadow-md shadow-blue-500 mb-[10px]"
-              >
-                <Link to="/doctordetails">
-                  <img
-                    src="/Images/Doctor.png"
-                    alt="Docpic"
-                    className="h-[120px] ml-[80px] mt-[-180px] hover:cursor-pointer"
-                  />
-                </Link>
-                <p className="mt-[30px] ml-[10px]">{doctor.doctorName}</p>
-                <button
-                  className="bg-[#497FAB] w-[100px] h-[30px] text-white mt-[30px]"
-                  onClick={() => handleVerifyDoctor(doctor.id)}
-                >
-                  Verify
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        ))}
+
       </div>
     </>
   );

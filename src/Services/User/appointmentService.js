@@ -1,10 +1,11 @@
 import axios from "axios";
 import baseURL from "../../components/api";
+import axiosInstance from "../Inteceptor/requestInteceptor";
 
 
 async function appointmentService(data, patientid, doctorid) {
     try {
-        const response = await axios.post(baseURL+"/appointment/patient/"+patientid+"/doctor/"+ doctorid, data);
+        const response = await axiosInstance.post(baseURL+"/appointment/patient/"+patientid+"/doctor/"+ doctorid, data);
         return response.data;
         
     } catch (error) {
