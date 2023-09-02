@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./Adminnavbar";
 import Popup from "./Components/Popup";
 import axios from "axios";
+import Landingpage from "./Landingpage";
 
 export default function Patient() {
   const [ispopup, setIspopup] = useState(false);
@@ -15,16 +16,14 @@ export default function Patient() {
   };
 
   const handleuploadReport = () => {
-    // Check if a patient is selected
     if (selectedPatientId) {
-      // Make a POST request to the Spring Boot endpoint with selectedPatientId in the URL
       axios
         .post(
           `http://localhost:8081/reports/create-report/${selectedPatientId}`
         )
         .then((response) => {
           // Handle the response (report details) here
-          setReport(response.data); // Assuming the response contains report details
+          setReport(response.data);
         })
         .catch((error) => {
           console.error("Error creating report:", error);
@@ -44,6 +43,8 @@ export default function Patient() {
 
   const [searchuser, setSearchuser] = useState("");
   const [patients, setPatients] = useState([]);
+
+  const patientsLength = patients.length;
 
   const [patientdata, setpatientData] = useState([]); //in details part of the page
   const [fetchData, setFetchData] = useState(false);
@@ -73,7 +74,7 @@ export default function Patient() {
       .catch((error) => {
         console.error("Error fetching patient data:", error);
       });
-  }, []); // Runs only once on component mount
+  }, []);
 
   return (
     <>

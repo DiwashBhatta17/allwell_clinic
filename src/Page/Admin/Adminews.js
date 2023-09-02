@@ -1,6 +1,8 @@
 import React from "react";
 import Navbar from "./Adminnavbar";
 import { useState } from "react";
+import Imagepop from "./Components/Imagepop";
+import axios from "axios";
 
 export default function News() {
   const [pageinfo, setPageinfo] = useState({
@@ -8,22 +10,25 @@ export default function News() {
     location: "",
     email: "",
   });
+
+  function createNews() {
+    axios.post("http://localhost:8081/news/create-news");
+  }
+
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const openImagePopup = () => {
+    setIsImagePopupOpen(true);
+  };
+
+  const closeImagePopup = () => {
+    setIsImagePopupOpen(false);
+  };
+
   return (
     <>
-      {/* <div className="header bg-[#52363617] mt=[-40px] text-[#497FAB] flex items-center h-[80px]">
-        <div className="mr-20">Allwell Clinic</div>
-        <a href="">Home</a>
-        <a id="patient" href="">
-          Patient
-        </a>
-        <a id="doc" href="">
-          Doctors
-        </a>
-        <a id="news" href="">
-          News
-        </a>
-      </div> */}
-
       <Navbar />
       <div className="Allwellclinic h-[420] w-[100%] bg-[white] shadow-md shadow-blue-500 ml-[0px] mt-[30px]">
         <h1 className="text-[#497FAB] text-center text-[4vw]">
@@ -31,9 +36,6 @@ export default function News() {
         </h1>
       </div>
       <div className="Manage h-[290px] w-[100%] bg-[white] shadow-md shadow-blue-500 ml-[px] mt-[40px]">
-        {/* <p className="mp text-center text-[#497FAB] font-semibold text-2xl">
-          Manage and Get Upates about your Patients.
-        </p> */}
         <img
           src="/Images/clinic.jpeg"
           alt="clinic"
@@ -45,28 +47,29 @@ export default function News() {
           <div className="want bg-[#497FAB] w-[100%] rounded-t-[10px] h-[60px] text-[white] text-center font-semibold">
             Want to Update anything?
           </div>
-          {/* <img
-            src="/Images/link.png"
-            alt="link"
-            className="al h-[40px] ml-[40px] mt-[10px]"
-          /> */}
           <input
             type="text"
             className="addlink w-[90%] h-[40px] ml-[20px] mt-[20px] shadow-md shadow-blue-500 text-[#497FAB] text-center "
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
           />
           <p className="ml-[120px] mt-[10px]">Add title of your news</p>
-          <img
-            src="/Images/add.png"
-            alt="addphoto"
-            className="ap h-[140px] ml-[220px] hover:cursor-pointer"
+          <textarea
+            className="link w-[90%] h-[130px] ml-[30px] mt-[20px] shadow-md shadow-blue-500 text-[#497FAB] text-center"
+            value={body}
+            onChange={(event) => setBody(event.target.value)}
           />
-          <input className="link w-[90%] h-[40px] ml-[30px] mt-[20px] shadow-md shadow-blue-500 text-[#497FAB] text-center" />
           <p className="ml-[150px] mt-[10px]">Add Details</p>
         </div>
-        <button className="pd bg-[#497FAB] h-[30px] w-[120px] ml-[140px] mt-[20px] text-[white] text-center font-semibold">
-          UPDATE
+        <button
+          className="pd bg-[#497FAB] h-[30px] w-[120px] ml-[140px] mt-[20px] text-[white] text-center font-semibold "
+          onClick={openImagePopup}
+        >
+          Next
         </button>
-        <div className="newsup h-[380px] w-[24%] shadow-md shadow-blue-500 ml-[880px] mt-[-450px] rounded-t-[20px]">
+        {isImagePopupOpen && <Imagepop handlePopup={closeImagePopup} />}
+
+        <div className="newsup h-[380px] w-[24%] shadow-md shadow-blue-500 ml-[880px] mt-[-450px] rounded-t-[20px] relative">
           <div className="nu bg-[#497FAB] h-[60px] w-[100%] ml-[0px] mt-[20px] text-[white] text-center font-semibold rounded-[10px]">
             <p>Update Page Info</p>
             <img

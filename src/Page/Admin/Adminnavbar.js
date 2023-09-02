@@ -7,8 +7,11 @@ export default function Navbar() {
     <>
       {" "}
       <div className="header bg-[#52363617] mt=[-40px] text-[#497FAB] flex items-center h-[80px] w-[100%]">
-        <div className="mr-20">Allwell Clinic</div>
-        <Link to="/Admindashboard">home</Link>
+        <Link to="/Admindashboard" className="ml-[0px]">
+          Allwell Clinic
+        </Link>
+
+        <Link to="/Admindashboard">Home</Link>
         <Link id="patient" to="/patient">
           Patient
         </Link>
