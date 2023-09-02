@@ -14,7 +14,7 @@ function UserNavbar() {
 
   return (
     <>
-      <div className="bg-[#c0bdbd] bg-opacity-20">
+      <div className="bg-[#c0bdbd] bg-opacity-20 ">
         <div className="mx-[120px] py-4 items-center justify-between flex ">
           <Link to="/">
             

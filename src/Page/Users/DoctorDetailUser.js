@@ -46,8 +46,8 @@ function DoctorDetailUser() {
   useEffect(() => {
     async function getProfileImg() {
       try {
-        const userId = sessionStorage.getItem("userId");
-        const response = await doctorImgGetService(userId);
+        
+        const response = await doctorImgGetService(id);
         const imgUrl = URL.createObjectURL(response); // Assuming response.data is the image blob
         setImgURL(imgUrl);
         console.log("response is", imgUrl);
