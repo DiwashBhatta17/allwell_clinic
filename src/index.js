@@ -1,120 +1,107 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import FirstComponent from './Page/Users/LandingPage/FirstComponent';
-import ServiceCom1 from './Page/Users/ServicesPage/ServiceCom1';
-import AppointmentFormControl from './components/ForUsers/AppointmentFormControl';
-import Login from './Page/Login/Login';
-import Signup from './Page/Login/Signup';
-import Otp from './Page/Login/Otp';
-import DoctorLists from './Page/Users/DoctorLists';
-import DoctorDetailUser from './Page/Users/DoctorDetailUser';
-import News from './components/forAll/News';
-import { Provider } from 'react-redux';
-import store from './components/State/store';
-import UserProfilePage from './Page/Users/UserProfile/UserProfilePage';
-import Doctordashboard from './Page/Doctor/doctorDashboard';
-import AppoinmentsList from './Page/Doctor/AppoinmentsList';
-import DoctorProfile from './Page/Doctor/doctorProfile';
-import DoctorWaitingPage from './Page/Doctor/DoctorWaitingPage';
-import UserNews from './Page/Users/UserNews';
-import DoctorNews from './Page/Doctor/DoctorNews';
-import DoctorHistory from './Page/Doctor/doctorHistory';
-
+import FirstComponent from "./Page/Users/LandingPage/FirstComponent";
+import ServiceCom1 from "./Page/Users/ServicesPage/ServiceCom1";
+import AppointmentFormControl from "./components/ForUsers/AppointmentFormControl";
+import Login from "./Page/Login/Login";
+import Signup from "./Page/Login/Signup";
+import Otp from "./Page/Login/Otp";
+import DoctorLists from "./Page/Users/DoctorLists";
+import DoctorDetailUser from "./Page/Users/DoctorDetailUser";
+import { Provider } from "react-redux";
+import store from "./components/State/store";
+import UserProfilePage from "./Page/Users/UserProfile/UserProfilePage";
+import Doctordashboard from "./Page/Doctor/doctorDashboard";
+import AppoinmentsList from "./Page/Doctor/AppoinmentsList";
+import DoctorProfile from "./Page/Doctor/doctorProfile";
+import DoctorWaitingPage from "./Page/Doctor/DoctorWaitingPage";
+import UserNews from "./Page/Users/UserNews";
+import DoctorNews from "./Page/Doctor/DoctorNews";
+import DoctorHistory from "./Page/Doctor/doctorHistory";
 
 const routerConfig = createBrowserRouter([
   {
-    path: '/',
-    element: <FirstComponent/>
+    path: "/",
+    element: <FirstComponent />,
   },
   {
-    path: 'otp',
-    element: <Otp/>
+    path: "otp",
+    element: <Otp />,
   },
   {
-    path: 'service',
-    element: <ServiceCom1/>
+    path: "service",
+    element: <ServiceCom1 />,
   },
   {
-    path: 'appointment/:id',
-    element: <AppointmentFormControl/>
+    path: "appointment/:id",
+    element: <AppointmentFormControl />,
   },
   {
-    path: 'login',
-    element: <Login/>
+    path: "login",
+    element: <Login />,
   },
   {
-    path: 'signup',
-    element: <Signup/>
+    path: "signup",
+    element: <Signup />,
   },
   {
-    path: 'doctorlist',
-    element: <DoctorLists/>
+    path: "doctorlist",
+    element: <DoctorLists />,
   },
   {
-    path: 'doctordetailuser/:id',
-    element: <DoctorDetailUser/>
+    path: "doctordetailuser/:id",
+    element: <DoctorDetailUser />,
   },
   {
-    path: 'userNews',
-    element: <UserNews/>
+    path: "userNews",
+    element: <UserNews />,
   },
   {
-    path: 'userProfile',
-    element: <UserProfilePage/>
+    path: "userProfile",
+    element: <UserProfilePage />,
   },
 
   // Doctor setup
   {
-    path: 'doctordashboard',
-    element: <Doctordashboard/>
+    path: "doctordashboard",
+    element: <Doctordashboard />,
   },
   {
-    path: 'userProfile',
-    element: <UserProfilePage/>
-  },
-  // {
-  //   path: 'doctorAppointmentlist/:appId',
-  //   element: <AppoinmentsList/>
-  // },
-  {
-    path: 'doctorAppointmentlist',
-    element: <AppoinmentsList/>
-  },
-  {
-    path: 'doctorProfile',
-    element: <DoctorProfile/>
-  },
-  {
-    path: 'doctorwaiting',
-    element: <DoctorWaitingPage/>
-  },
-  {
-    path: 'doctorNews',
-    element: <DoctorNews/>
-  },
-  {
-    path: 'doctorhistory',
-    element: <DoctorHistory/>
+    path: "userProfile",
+    element: <UserProfilePage />,
   },
 
-  
+  {
+    path: "doctorAppointmentlist",
+    element: <AppoinmentsList />,
+  },
+  {
+    path: "doctorProfile",
+    element: <DoctorProfile />,
+  },
+  {
+    path: "doctorwaiting",
+    element: <DoctorWaitingPage />,
+  },
+  {
+    path: "doctorNews",
+    element: <DoctorNews />,
+  },
+  {
+    path: "doctorhistory",
+    element: <DoctorHistory />,
+  },
+]);
 
-
-  
-
-])
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <RouterProvider router={routerConfig}/>
-    {/* <App/> */}
-    </Provider>
+    <RouterProvider router={routerConfig} />
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
