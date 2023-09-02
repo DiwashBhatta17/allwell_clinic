@@ -100,6 +100,10 @@ const routerConfig = createBrowserRouter([
     path: "doctorhistory",
     element: <DoctorHistory />,
   },
+  {
+    path: "waiting",
+    element: <DoctorWaitingPage/>,
+  },
 
   //Admin page
 

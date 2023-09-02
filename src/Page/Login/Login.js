@@ -45,7 +45,7 @@ function Login(props) {
 
         // Store token in SessionStorage or HTTP-only cookie
         localStorage.setItem("jwtToken", accessToken);
-        console.log(response);
+        console.log(response.data);
         
 
         // Redirect based on user's role
@@ -62,18 +62,31 @@ function Login(props) {
           dispatch(loginsuccess());
           sessionStorage.setItem("userId", user.patientId);
         } else if (user.role === "ROLE_DOCTOR") {
-          navigate("/doctordashboard");
+          if(user.verified){
+            navigate("/doctordashboard");
+
+          }
+          
           sessionStorage.setItem("userId", user.doctorId);
           
         }
         else if (user.role === "ROLE_ADMIN") {
-          navigate("Admindashboard");
+          navigate("/Admindashboard");
           sessionStorage.setItem("userId", user.adminId);
       } 
         
       }
        catch (error) {
-        setErrormessage("Invalid Username");
+        console.log(error.response.data);
+        if(error.response.data.message==='NOT VERIFIED DOCTOR'){
+          navigate("/waiting");
+          console.log("working")
+
+        }else{
+           setErrormessage("Invalid Username");
+
+        }
+       
       }
 
       if (!loginData.checkbox) {
