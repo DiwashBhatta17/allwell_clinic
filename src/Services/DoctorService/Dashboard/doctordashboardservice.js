@@ -1,6 +1,6 @@
 import axios from 'axios'
 import baseURL from '../../../components/api';
-import axiosInstance from "/Users/diwonsigdel/Downloads/allwell_clinic/src/Services/Inteceptor/requestInteceptor";
+import axiosInstance from '../../Inteceptor/requestInteceptor';
 
 
 async function doctordashboardservice(id) {
