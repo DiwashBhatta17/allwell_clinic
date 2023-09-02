@@ -22,8 +22,8 @@ function UserProfilePage() {
   
 
   const [updateData, setUpdateData] = useState({
-    patientName: "",
-    email: "",
+    patientName: profileData.patientName,
+    email: profileData.email,
     phone: profileData.phone,
   });
 

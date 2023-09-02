@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import FirstAppForm from "../../Page/Users/AppointmentForm/FirstAppForm";
 import SecondAppointmentForm from "../../Page/Users/AppointmentForm/SecondAppointmentForm";
 import appointmentService from "../../Services/User/appointmentService";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import PopupNotification from "../forAll/PopupNotification";
 
 function AppointmentFormControl() {
   const userId = sessionStorage.getItem("userId");
   // const { doctorId } = useParams();
   const {id} = useParams();
+  const [notificationVisible, setNotificationVisible] = useState(false);
+  const navigate = useNavigate();
   
   
 
@@ -22,6 +25,17 @@ function AppointmentFormControl() {
     timeslot: "",
     appointmentDate: "",
   });
+
+  useEffect(() => {
+    if (notificationVisible) {
+      const timer = setTimeout(() => {
+        setNotificationVisible(false);
+      }, 3000); // 3 seconds
+
+      // Clean up the timer when the component unmounts or notification is hidden
+      return () => clearTimeout(timer);
+    }
+  }, [notificationVisible]);
 
   const [form1visible, setForm1visible] = useState(true);
   const [form2visible, setForm2visible] = useState(false);
@@ -78,6 +92,8 @@ const isFormValid = () => {
       try {
         const response = await appointmentService(data, userId, id);
         console.log("response",response);
+        setNotificationVisible(true);
+        navigate('/userProfile');
       } catch (error) {
         console.error(error);
       }
@@ -90,6 +106,8 @@ const isFormValid = () => {
 
   return (
     <>
+    {notificationVisible && <PopupNotification message="Appointment book a successfully !"/>}
+    
       <FirstAppForm
         formError = {formError}
         formData={formData}
@@ -98,6 +116,7 @@ const isFormValid = () => {
         setForm1visible={setForm1visible}
         setForm2visible={setForm2visible}
       />
+      
       <SecondAppointmentForm
        formError = {formError}
         formData={formData}
@@ -107,6 +126,7 @@ const isFormValid = () => {
         setForm1visible={setForm1visible}
         handelsubmit={handelsubmit}
       />
+      
     </>
   );
 }

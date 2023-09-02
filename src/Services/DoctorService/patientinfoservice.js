@@ -5,7 +5,7 @@ import axios from 'axios';
  async  function patientinfoservice(appointmentid) {
     try {
         const response = await axios.get(baseURL+"/appointment/get-appointment/"+appointmentid);
-        console.log(response);
+        
         return response.data;
 
         

@@ -14,14 +14,22 @@ function UserMedicalInfo(props) {
 
   async function getReport(){
     try {
-        const response = await getReportsService(5);
-        console.log(response);
+        const response = await getReportsService(aid);
+        console.log("success response",response);
+        
+          
         const imgSource = URL.createObjectURL(response);
-        console.log("Success", imgSource);
+        console.log("Success imagesource", imgSource);
         setReport(imgSource);
+        
+       
+          
+        
+        
         
     } catch (error) {
         console.error("Failed",error)
+        setReport(null);
         
     }
   }
@@ -46,6 +54,14 @@ function UserMedicalInfo(props) {
       };     
     }
   }, [aid]);
+
+  function handleDownload() {
+    // You can use the `download` attribute to specify the filename for the downloaded file.
+    const link = document.createElement("a");
+    link.href = reportss;
+    link.download = "report.pdf"; // You can change the filename as needed.
+    link.click();
+  }
 
   return props.statuse ? (
     <div className="flex w-full top-0 left-0 justify-center fixed items-center h-screen dhamilo">
@@ -102,15 +118,8 @@ function UserMedicalInfo(props) {
               <p>No visit date available</p>
             )}
           </div>
-          <div><button className="bg-[#2be8e1] rounded-full mt-2 text-white px-5 py-2">Get Reports</button></div>
-          {/* {reportss && (
-        <iframe
-          src={reportss}
-          title="Report"
-          width="100%"
-          height="500px" // Adjust the height as needed
-        />
-      )} */}
+          <div>{reportss? <button onClick={handleDownload} className="bg-[#2be8e1] rounded-full mt-2 text-white px-5 py-2">Get Reports</button> : ""}</div>
+         
           </div>
         </div>
       </div>

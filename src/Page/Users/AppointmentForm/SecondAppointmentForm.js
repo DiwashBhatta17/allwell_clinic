@@ -4,6 +4,7 @@ import UserNavbar from "../UserNavbar";
 import UserFooter from "../UserFooter";
 
 
+
 function SecondAppointmentForm(promps) {
   const {formData, handelchange, handelsubmit, setForm1visible, setForm2visible, formError} = promps;
 
@@ -35,7 +36,8 @@ function SecondAppointmentForm(promps) {
   }
   return (promps.form2visible)?
     <div>
-      {/* <UserNavbar /> */}
+      <UserNavbar />
+      
       <div className="flex flex-col justify-center items-center min-h-screen text-center my-5">
       <div className="mb-[30px]">
         <h1 className="text-3xl font-bold text-[#170F49]">Your Appointments</h1>
