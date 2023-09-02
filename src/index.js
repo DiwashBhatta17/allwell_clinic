@@ -1,4 +1,9 @@
 import React from "react";
+import Landingpage from "./Page/Admin/Landingpage";
+import AdminDoc from "./Page/Admin/AdminDoc";
+import DocDetails from "./Page/Admin/DocDetails";
+import Adminpatient from "./Page/Admin/Adminpatient";
+import Adminews from "./Page/Admin/Adminews";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
@@ -94,6 +99,29 @@ const routerConfig = createBrowserRouter([
   {
     path: "doctorhistory",
     element: <DoctorHistory />,
+  },
+
+  //Admin page
+
+  {
+    path: "/Admindashboard",
+    element: <Landingpage />,
+  },
+  {
+    path: "/patient",
+    element: <Adminpatient />,
+  },
+  {
+    path: "/Adminnews",
+    element: <Adminews />,
+  },
+  {
+    path: "/doctordetails",
+    element: <DocDetails />,
+  },
+  {
+    path: "/admindoc",
+    element: <AdminDoc />,
   },
 ]);
 
