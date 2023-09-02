@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import patientinfoservice from "../../Services/DoctorService/patientinfoservice";
 
-function PatientInfo(props) {
+function PatientInfoforHistory(props) {
   const [list, setList] = useState([]);
   const aid = props.appointmentId;
 
@@ -36,7 +36,7 @@ function PatientInfo(props) {
               {list.patient && (
                 <>
                   <h1 className="text-2xl font-bold text-[#497FAB]">
-                    {list.patient.patientName}
+                    {list.name}
                   </h1>
                   <p className="mt-2">{list.category}</p>
                 </>
@@ -85,4 +85,4 @@ function PatientInfo(props) {
 
 
 
-export default PatientInfo;
+export default PatientInfoforHistory;

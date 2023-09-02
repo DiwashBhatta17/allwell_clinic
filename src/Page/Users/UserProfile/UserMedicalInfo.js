@@ -1,10 +1,38 @@
 import React, { useEffect, useState } from "react";
 
-import patientinfoservice from "../../Services/DoctorService/patientinfoservice";
+import patientinfoservice from "../../../Services/DoctorService/patientinfoservice";
+import getReportsService from "../../../Services/forAll/getReportsService";
 
-function PatientInfo(props) {
+function UserMedicalInfo(props) {
+    
+
   const [list, setList] = useState([]);
+  const [reportss, setReport] = useState(null);
+
+
   const aid = props.appointmentId;
+
+  async function getReport(){
+    try {
+        const response = await getReportsService(aid);
+        console.log("success response",response);
+        
+          
+        const imgSource = URL.createObjectURL(response);
+        console.log("Success imagesource", imgSource);
+        setReport(imgSource);
+        
+       
+          
+        
+        
+        
+    } catch (error) {
+        console.error("Failed",error)
+        setReport(null);
+        
+    }
+  }
 
   async function fetchData() {
     try {
@@ -17,9 +45,23 @@ function PatientInfo(props) {
 
   useEffect(() => {
     if (aid !== null) {
-      fetchData();       
+      fetchData();
+      getReport();  
+      return () => {
+        if (reportss) {
+          URL.revokeObjectURL(reportss);
+        }
+      };     
     }
   }, [aid]);
+
+  function handleDownload() {
+    // You can use the `download` attribute to specify the filename for the downloaded file.
+    const link = document.createElement("a");
+    link.href = reportss;
+    link.download = "report.pdf"; // You can change the filename as needed.
+    link.click();
+  }
 
   return props.statuse ? (
     <div className="flex w-full top-0 left-0 justify-center fixed items-center h-screen dhamilo">
@@ -36,7 +78,7 @@ function PatientInfo(props) {
               {list.patient && (
                 <>
                   <h1 className="text-2xl font-bold text-[#497FAB]">
-                    {list.patient.patientName}
+                    {list.name}
                   </h1>
                   <p className="mt-2">{list.category}</p>
                 </>
@@ -66,6 +108,7 @@ function PatientInfo(props) {
               <p>No symptoms available</p>
             )}
           </div>
+          <div className="flex justify-between items-center">
           <div className="mt-4">
             <h1 className="font-bold">Visit Date</h1>
             {/* Conditionally render visit date */}
@@ -74,6 +117,9 @@ function PatientInfo(props) {
             ) : (
               <p>No visit date available</p>
             )}
+          </div>
+          <div>{reportss? <button onClick={handleDownload} className="bg-[#2be8e1] rounded-full mt-2 text-white px-5 py-2">Get Reports</button> : ""}</div>
+         
           </div>
         </div>
       </div>
@@ -85,4 +131,4 @@ function PatientInfo(props) {
 
 
 
-export default PatientInfo;
+export default UserMedicalInfo;
