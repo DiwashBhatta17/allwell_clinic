@@ -81,13 +81,11 @@ export default function Patient() {
   };
 
 
-  const [searchuser, setSearchuser] = useState("");
-  const [patients, setPatients] = useState([]);
+  
 
   const patientsLength = patients.length;
 
-  const [patientdata, setpatientData] = useState([]); //in details part of the page
-  const [fetchData, setFetchData] = useState(false);
+  
 
   function datafetch() {
     axios.get("http://localhost:8081/patient/get-all-patient").then((resp) => {
