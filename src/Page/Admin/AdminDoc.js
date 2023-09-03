@@ -56,7 +56,7 @@ export default function AdminDoc() {
             className="_doc h-[140px] ml-[390px]"
           />
           <div className="docnum h-[30px] w-[90px] bg-[#497FAB] ml-[420px] text-center text-[white] font-semibold">
-            {doctorlist.length}
+            {list.length}
           </div>
         </div>
       </div>
