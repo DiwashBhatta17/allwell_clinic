@@ -15,32 +15,25 @@ export default function Patient() {
   const [appointmentlise, setAppointment] = useState([]);
   const [reportId, setReportId] = useState(null);
 
+  // const [searchuser, setSearchuser] = useState("");
+  // const [patients, setPatients] = useState([]);
 
-
-  const [searchuser, setSearchuser] = useState("");
-  const [patients, setPatients] = useState([]);
-
-  const [patientdata, setpatientData] = useState([]); //in details part of the page
-  const [fetchData, setFetchData] = useState(false);
+  // const [patientdata, setpatientData] = useState([]); //in details part of the page
+  // const [fetchData, setFetchData] = useState(false);
 
   const handlePatientClickID = (patientId) => {
     setSelectedPatientId(patientId); // Set the selected patient's ID
   };
 
-  async function createAReport(appId){
+  async function createAReport(appId) {
     try {
       const response = await createReport(appId);
-      console.log("response",response);
-      setReportId(response)
-      
+      console.log("response", response);
+      setReportId(response);
     } catch (error) {
-      console.log(error)
-      
+      console.log(error);
     }
   }
-
-  
-
 
   const handleuploadReport = () => {
     if (selectedPatientId) {
@@ -81,9 +74,10 @@ export default function Patient() {
   };
 
 
-  
-
   const patientsLength = patients.length;
+  console.log("patient lengthis:", patientsLength);
+
+  <Landingpage patientsLength={patientsLength} />;
 
   
 
@@ -96,9 +90,6 @@ export default function Patient() {
   function createReport() {
     axios.post("http://localhost:8081/reports/create-report/"); //when upload is clicked post.
   }
-
-  
-
 
   function handlePatientClick(patient) {
     getAppointmentList(patient.patientId);
@@ -166,7 +157,6 @@ export default function Patient() {
             <table className="table-primary table table-striped w-[398px]">
               <thead>
                 <tr>
-                  
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
                   <th scope="col"></th>
@@ -176,18 +166,22 @@ export default function Patient() {
                 {appointmentlise &&
                   appointmentlise.map((value, index) => (
                     <tr key={index}>
-                      
                       <td>{value.name}</td>
                       <td>{value.email}</td>
                       <td>
-                        <button onClick={()=>uploadReport(value.appointmentId)} className="bg-[#1b9ce7] text-white px-1 py-1 rounded-lg">Upload</button>
+                        <button
+                          onClick={() => uploadReport(value.appointmentId)}
+                          className="bg-[#1b9ce7] text-white px-1 py-1 rounded-lg"
+                        >
+                          Upload
+                        </button>
                       </td>
                     </tr>
                   ))}
               </tbody>
             </table>
           </div>
-          
+
           {ispopup && <Popup id={reportId} handlePopup={closePopup} />}
         </div>
         <div className="userlist h-[550px] w-[340px]  bg-[#ffffff] ml-[-1200px] mt-[00px] rounded-[30px] shadow-md shadow-blue-500">

@@ -5,8 +5,19 @@ import { Link } from "react-router-dom";
 import Navbar from "./Adminnavbar";
 import axios from "axios";
 export default function Landingpage(props) {
+  const [patientno, setPatientno] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8081/patient/lget-all-patient")
+      .then((response) => {
+        setPatientno(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching doctor data:", error);
+      });
+  }, []);
+
   const [doctors, setDoctors] = useState([]);
-  const { patientsLength } = props;
   useEffect(() => {
     // Make an Axios GET request to fetch the list of doctors
     axios
@@ -17,6 +28,19 @@ export default function Landingpage(props) {
       })
       .catch((error) => {
         console.error("Error fetching doctor data:", error);
+      });
+  }, []);
+
+  const [appointmentno, setAppointmentno] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8081/appointment/today-count")
+      .then((resp) => {
+        setAppointmentno(resp.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data");
       });
   }, []);
   return (
@@ -72,8 +96,8 @@ export default function Landingpage(props) {
           alt="patient"
           className="h-[120px] ml-[20px] mt-[60px]"
         />
-        <div className="ptno bg-[#497FAB] h-[30px] w-[90px] ml-[38px]">
-          {patientsLength}
+        <div className="ptno bg-[#497FAB] h-[30px] w-[90px] ml-[38px] text-[white] text-center font-semibold">
+          {patientno.length}
         </div>
         <img
           src="/Images/Doctor.png"
@@ -99,11 +123,14 @@ export default function Landingpage(props) {
           203
         </div>
       </div>
-      <div className="ta h-[300px] w-[400px] bg-[white] shadow-md shadow-blue-500 mt-[-80px] ml-[720px]">
+      <div className="ta h-[330px] w-[400px] bg-[white] shadow-md shadow-blue-500 mt-[-80px] ml-[720px]">
         {" "}
         <div className="today text-[#008080] text-[30px] ml-[80px] mt-[-200px]">
           Today's Appointment
-
+          <img src="/Images/today.png" alt="tapp" className="h-[210px]" />
+        </div>
+        <div className="count bg-[#497FAB] w-[100px] h-[50px] ml-[140px] text-[white] text-center font-semibold">
+          {appointmentno.length}
         </div>
       </div>
     </>

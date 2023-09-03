@@ -17,12 +17,15 @@ export default function Navbar() {
   return (
     <>
       {" "}
-
       <div className=" bg-[#52363617] text-[#497FAB] flex items-center justify-around h-[10vh] ">
-        <div className="">Allwell Clinic</div>
+        <div className="">
+          <Link to="/Admindashboard">Allwell Clinic</Link>
+        </div>
         <div className="gap-5 flex">
-        <Link to="/Admindashboard">home</Link>
+          <Link to="/Admindashboard">Home</Link>
 
+
+         
         <Link id="patient" to="/patient">
           Patient
         </Link>
@@ -35,6 +38,7 @@ export default function Navbar() {
         <button onClick={handelLogout} className="border-3 px-4 rounded-[100px] active:bg-[#bd5f5f29] hover:border-[#984545] border-[#e51616bd]">
               Logout
             </button>
+
         </div>
       </div>
     </>
