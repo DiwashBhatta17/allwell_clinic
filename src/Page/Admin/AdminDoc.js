@@ -47,7 +47,11 @@ export default function AdminDoc() {
             alt="Doctors"
             className="_doc h-[140px] ml-[390px]"
           />
-          <div className="docnum h-[30px] w-[90px] bg-[#497FAB] ml-[420px] text-center text-[white] font-semibold"></div>
+
+          <div className="docnum h-[30px] w-[90px] bg-[#497FAB] ml-[420px] text-center text-[white] font-semibold">
+            {list.length}
+          </div>
+
         </div>
       </div>
       <div className="border-1 border-[#497FAB] mt-[50px] h-[380px] flex rounded-t-[100px] rounded-b-[100px] shadow-md shadow-gray-900 items-center justify-center">
