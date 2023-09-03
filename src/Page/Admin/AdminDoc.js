@@ -2,6 +2,7 @@ import React from "react";
 import "./AdminDoc.css";
 import Adminnavbar from "./Adminnavbar";
 import axios from "axios";
+
 import { useState, useEffect } from "react";
 import unverifiedDoctor, { verifyDoctor } from "../../Services/Admin/unverifiedDoctor";
 
@@ -36,6 +37,7 @@ export default function AdminDoc() {
     }
   }
 
+
   return (
     <>
       <Adminnavbar />
@@ -53,8 +55,8 @@ export default function AdminDoc() {
             alt="Doctors"
             className="_doc h-[140px] ml-[390px]"
           />
-          <div className="docnum h-[30px] w-[90px] bg-[#497FAB] ml-[420px]">
-            {/* {docnumber} */}
+          <div className="docnum h-[30px] w-[90px] bg-[#497FAB] ml-[420px] text-center text-[white] font-semibold">
+            {doctorlist.length}
           </div>
         </div>
       </div>
@@ -73,6 +75,7 @@ export default function AdminDoc() {
           
           </div>
         ))}
+
       </div>
     </>
   );
