@@ -173,7 +173,7 @@ function UserProfilePage() {
           <div className="flex flex-col gap-4 w-[100%] justify-center my-5">
             <input
               name="patientName"
-              placeholder=" Change Name"
+              placeholder="नाम परिवर्तन"
               value={updateData.patientName}
               onChange={handleChange}
               className=" h-[40px] rounded-lg bg-[#f3efef]"
@@ -181,7 +181,7 @@ function UserProfilePage() {
             />
             <input
               name="phone"
-              placeholder=" Change phone"
+              placeholder="फोननम्बर परिवर्तन "
               value={updateData.phone}
               onChange={handleChange}
               className=" h-[40px] rounded-lg bg-[#f3efef]"
@@ -189,7 +189,7 @@ function UserProfilePage() {
             />
             <input
               name="email"
-              placeholder=" Change email"
+              placeholder="इमेल परिवर्तन"
               value={updateData.email}
               onChange={handleChange}
               className=" h-[40px] rounded-lg bg-[#f3efef]"
@@ -201,7 +201,7 @@ function UserProfilePage() {
               onClick={updateInfo}
               className="bg-[#497FAB] text-white px-4 py-2 rounded-[100px]"
             >
-              Save Change
+              परिवर्तन गर्नुहोस्
             </button>
             <button
               onClick={handelLogout}

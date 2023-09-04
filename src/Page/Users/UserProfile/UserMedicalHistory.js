@@ -32,16 +32,16 @@ function UserMedicalHistory() {
 
     <div>
         <div className="mt-3 ml-[98px]">
-        <h1 className="text-3xl font-bold mb-2">Your Appoinments</h1>
+        <h1 className="text-3xl font-bold mb-2">उपचार विवरण</h1>
         <hr className="w-[91%] mb-3" />
 
         <table className="table table-striped table-hover w-[91%]">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Patient Name</th>
-              <th scope="col">Visit Date</th>
-              <th scope="col">Appointment</th>
+              <th scope="col">बिरामीको नाम</th>
+              <th scope="col">उपचार मिति</th>
+              <th scope="col">दर्ता</th>
             </tr>
           </thead>
           <tbody>
