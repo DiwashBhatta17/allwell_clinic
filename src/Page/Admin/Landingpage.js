@@ -8,7 +8,7 @@ export default function Landingpage(props) {
   const [patientno, setPatientno] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8081/patient/lget-all-patient")
+      .get("http://localhost:8081/patient/get-all-patient")
       .then((response) => {
         setPatientno(response.data);
       })

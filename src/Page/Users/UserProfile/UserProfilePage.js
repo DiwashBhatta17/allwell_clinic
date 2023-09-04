@@ -85,6 +85,27 @@ function UserProfilePage() {
       }
     };
   }, []); 
+  useEffect(() => {
+    async function getProfileImg() {
+      try {
+        const response = await profileImgGetService();
+        const imgUrl = URL.createObjectURL(response); // Assuming response.data is the image blob
+        setImgURL(imgUrl);
+        console.log("response is", imgUrl);
+      } catch (error) {
+        console.error("Error fetching profile image", error);
+      }
+    }
+
+    getProfileImg();
+
+    // Clean up the URL when the component unmounts
+    return () => {
+      if (imgURL) {
+        URL.revokeObjectURL(imgURL);
+      }
+    };
+  }, [imgURL]); 
   // handle upload part
 
   useEffect(() => {
