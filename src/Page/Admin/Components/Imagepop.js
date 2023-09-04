@@ -4,27 +4,26 @@ import React, { useState } from "react";
 export default function Imagepop(props) {
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const { handlePopup } = props;
+  const { handlePopup, ids } = props;
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setSelectedImage(imageUrl);
-    }
+
+    setSelectedImage(file);
   };
 
-  function uploadNews(newsId, updatedNewsData) {
-    axios
-      .post(`http://localhost:8081/news/update-news/${newsId}`, updatedNewsData)
-      .then((response) => {
-        // Handle the response if needed
-        console.log("News updated:", response.data);
-      })
-      .catch((error) => {
-        // Handle any errors that occurred during the request
-        console.error("Error updating news:", error);
-      });
+  async function uploadNews() {
+    try {
+      const formData = new FormData();
+      formData.append("image", selectedImage);
+      const response = await axios.post(
+        "http://localhost:8081/news/upload-news-image/" + ids,
+        formData
+      );
+      console.log("News updated:", response);
+    } catch (error) {
+      console.error("Error occurs", error);
+    }
   }
 
   return (
@@ -54,7 +53,10 @@ export default function Imagepop(props) {
           />
         )}
       </div>
-      <button className="uI bg-[#497FAB] w-fit text-[white] text-center rounded-[10px] ml-[120px] mt-[6px] hover:bg-[#497fab6b]">
+      <button
+        onClick={uploadNews}
+        className="uI bg-[#497FAB] w-fit text-[white] text-center rounded-[10px] ml-[120px] mt-[6px] hover:bg-[#497fab6b]"
+      >
         Upload News
       </button>
     </div>

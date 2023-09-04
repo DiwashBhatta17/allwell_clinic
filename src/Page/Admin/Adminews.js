@@ -11,12 +11,25 @@ export default function News() {
     email: "",
   });
 
-  function createNews() {
-    axios.post("http://localhost:8081/news/create-news");
-  }
+  const [ids, setId] = useState(null);
+
+ 
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+
+  const data = {
+    headLine: title,
+    newsBody: body,
+  }
+  async function createNews() {
+    const response = await axios.post("http://localhost:8081/news/create-news", data);
+    console.log(response.data.newsId);
+    setId(response.data.newsId);
+
+
+    openImagePopup();
+  }
 
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const openImagePopup = () => {
@@ -63,11 +76,11 @@ export default function News() {
         </div>
         <button
           className="pd bg-[#497FAB] h-[30px] w-[120px] ml-[140px] mt-[20px] text-[white] text-center font-semibold "
-          onClick={openImagePopup}
+          onClick={createNews}
         >
           Next
         </button>
-        {isImagePopupOpen && <Imagepop handlePopup={closeImagePopup} />}
+        {isImagePopupOpen && <Imagepop ids={ids} handlePopup={closeImagePopup} />}
 
         <div className="newsup h-[380px] w-[24%] shadow-md shadow-blue-500 ml-[880px] mt-[-450px] rounded-t-[20px] relative">
           <div className="nu bg-[#497FAB] h-[60px] w-[100%] ml-[0px] mt-[20px] text-[white] text-center font-semibold rounded-[10px]">
