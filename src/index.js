@@ -28,6 +28,8 @@ import UserNews from "./Page/Users/UserNews";
 import DoctorNews from "./Page/Doctor/DoctorNews";
 import DoctorHistory from "./Page/Doctor/doctorHistory";
 import Imagepop from "./Page/Admin/Components/Imagepop";
+import App from "./App";
+import AppointmentFormControl2 from "./components/ForUsers/AppointmentFormControl2";
 
 const routerConfig = createBrowserRouter([
   {
@@ -45,6 +47,10 @@ const routerConfig = createBrowserRouter([
   {
     path: "appointment/:id",
     element: <AppointmentFormControl />,
+  },
+  {
+    path: "appointment2",
+    element: <AppointmentFormControl2/>,
   },
   {
     path: "login",
@@ -138,6 +144,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <RouterProvider router={routerConfig} />
+    {/* <App/> */}
   </Provider>
 );
 
