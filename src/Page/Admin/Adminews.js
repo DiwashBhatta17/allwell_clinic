@@ -6,6 +6,7 @@ import axios from "axios";
 
 export default function News() {
   const [ids, setId] = useState(null);
+  const [pageinfo, setPageinfo] = useState('');
 
   // function createNews() {
   //   axios.put("http://localhost:8081/news/update-news");
@@ -13,7 +14,7 @@ export default function News() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const [ids, setId] = useState(null);
+  
 
  
 
@@ -34,10 +35,7 @@ export default function News() {
     newsBody: body,
   };
 
-  const data = {
-    headLine: title,
-    newsBody: body,
-  }
+  
   async function createNews() {
     const response = await axios.post("http://localhost:8081/news/create-news", data);
     console.log(response.data.newsId);
@@ -138,7 +136,7 @@ export default function News() {
             <input
               type="text"
               className="text-[#497FAB]"
-              value={pageinfo.contacts}
+              // value={pageinfo.contacts}
               onChange={(event) => setPageinfo(event.target.value)}
             />
             {console.log(pageinfo.contacts)}
