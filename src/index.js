@@ -28,6 +28,7 @@ import UserNews from "./Page/Users/UserNews";
 import DoctorNews from "./Page/Doctor/DoctorNews";
 import DoctorHistory from "./Page/Doctor/doctorHistory";
 import Imagepop from "./Page/Admin/Components/Imagepop";
+import Popup from "./Page/Admin/Components/Popup";
 
 const routerConfig = createBrowserRouter([
   {
@@ -103,7 +104,7 @@ const routerConfig = createBrowserRouter([
   },
   {
     path: "waiting",
-    element: <DoctorWaitingPage/>,
+    element: <DoctorWaitingPage />,
   },
 
   //Admin page
@@ -117,7 +118,7 @@ const routerConfig = createBrowserRouter([
     element: <Adminpatient />,
   },
   {
-    path: "/Adminnews",
+    path: "/adminnews",
     element: <Adminews />,
   },
   {
@@ -131,6 +132,10 @@ const routerConfig = createBrowserRouter([
   {
     path: "/imagepop",
     element: <Imagepop />,
+  },
+  {
+    path: "/popup",
+    element: <Popup />,
   },
 ]);
 

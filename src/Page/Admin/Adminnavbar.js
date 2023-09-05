@@ -8,37 +8,61 @@ export default function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  function handelLogout(){
-    localStorage.removeItem('jwtToken');
+  function handelLogout() {
+    localStorage.removeItem("jwtToken");
     dispatch(logoutsuccess);
-    navigate('/');
-
+    navigate("/");
   }
   return (
     <>
       {" "}
-      <div className=" bg-[#52363617] text-[#497FAB] flex items-center justify-around h-[10vh] ">
-        <div className="">
+      <div className=" bg-[#f61b1b17] text-[#497FAB] flex items-center justify-around h-[14vh] text-[20px] border-2 border-white">
+        <div className="mr-[-500px]">
           <Link to="/Admindashboard">Allwell Clinic</Link>
+          <button
+            className="ml-[450px] border-2 border-red-500 rounded-[40px] w-[80px] hover:bg-[#ff000021] "
+            onClick={handelLogout}
+          >
+            Logout
+          </button>
         </div>
-        <div className="gap-5 flex">
-          <Link to="/Admindashboard">Home</Link>
-
-
-         
-        <Link id="patient" to="/patient">
-          Patient
-        </Link>
-        <Link id="doc" to="/admindoc">
-          Doctors
-        </Link>
-        <Link id="news" to="/Adminnews">
-          News
-        </Link>
-        <button onClick={handelLogout} className="border-3 px-4 rounded-[100px] active:bg-[#bd5f5f29] hover:border-[#984545] border-[#e51616bd]">
-              Logout
-            </button>
-
+      </div>
+      <div className="options border-4 border-gray-300 h-screen w-[200px] fixed">
+        <div className="bg bg-[#497FAB33] h-[300px] p-[10px] pl-[-10px]">
+          <Link to="/admindoc">
+            <div className="verify  bg-[#497FAB33] mt-[10px] h-[50px] flex hover:bg-[#4997ab8f] border-1 border-black">
+              <img
+                src="/Images/verifydoc.png"
+                alt="verify"
+                className="h-[30px] mt-[10px] ml-[10px]"
+              />
+              <p className="mt-[12px] ml-[8px] text-[black] font-semibold">
+                Verify Doctor
+              </p>
+            </div>
+          </Link>
+          <Link to="/patient">
+            <div className="upload  bg-[#497FAB33] mt-[20px] h-[50px] border-1 border-black flex font-semibold  hover:bg-[#4997ab8f]">
+              <img
+                src="/Images/report.png"
+                alt="verify"
+                className="h-[30px] mt-[10px] ml-[10px]"
+              />
+              <p className="mt-[12px] ml-[8px] text-[black]">Upload Report</p>
+            </div>
+          </Link>
+          <Link to="/adminnews">
+            <div className="news bg-[#497FAB33] mt-[20px] h-[50px] border-1 border-black flex  hover:bg-[#4997ab8f]">
+              <img
+                src="/Images/news.png"
+                alt="verify"
+                className="h-[30px] mt-[10px] ml-[10px]"
+              />
+              <p className="mt-[12px] ml-[8px] text-[black] font-semibold">
+                News|Event
+              </p>
+            </div>
+          </Link>
         </div>
       </div>
     </>

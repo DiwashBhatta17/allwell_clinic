@@ -15,11 +15,11 @@ export default function Patient() {
   const [appointmentlise, setAppointment] = useState([]);
   const [reportId, setReportId] = useState(null);
 
-  // const [searchuser, setSearchuser] = useState("");
-  // const [patients, setPatients] = useState([]);
+  const [searchuser, setSearchuser] = useState("");
+  const [patients, setPatients] = useState([]);
 
-  // const [patientdata, setpatientData] = useState([]); //in details part of the page
-  // const [fetchData, setFetchData] = useState(false);
+  const [patientdata, setpatientData] = useState([]); //in details part of the page
+  const [fetchData, setFetchData] = useState(false);
 
   const handlePatientClickID = (patientId) => {
     setSelectedPatientId(patientId); // Set the selected patient's ID
@@ -73,23 +73,20 @@ export default function Patient() {
     setIspopup(false);
   };
 
-
   const patientsLength = patients.length;
   console.log("patient lengthis:", patientsLength);
 
   <Landingpage patientsLength={patientsLength} />;
 
-  
+  // function datafetch() {
+  //   axios.get("http://localhost:8081/patient/get-all-patient").then((resp) => {
+  //     setpatientData(resp.data);
+  //   });
+  // }
 
-  function datafetch() {
-    axios.get("http://localhost:8081/patient/get-all-patient").then((resp) => {
-      setpatientData(resp.data);
-    });
-  }
-
-  function createReport() {
-    axios.post("http://localhost:8081/reports/create-report/"); //when upload is clicked post.
-  }
+  // function createReport() {
+  //   axios.post("http://localhost:8081/reports/create-report/"); //when upload is clicked post.
+  // }
 
   function handlePatientClick(patient) {
     getAppointmentList(patient.patientId);
@@ -112,29 +109,13 @@ export default function Patient() {
   return (
     <>
       <Navbar />
-      <div className="Manage h-[60px] w-full md:w-[800px] bg-white shadow-md shadow-blue-500 mx-4 md:ml-[220px] mt-[40px]">
-        <p className="mp text-center text-[#497FAB] font-semibold text-xl md:text-2xl">
-          Manage and Get Updates about your Patients.
-        </p>
-      </div>
       <div className="body md:h-[800px] mt-8 md:mt-[60px] flex flex-col md:flex-row">
-        <div className="logpatient h-[300px] w-full md:w-[350px] bg-white shadow-md shadow-blue-500 md:ml-[840px] mb-4 md:mb-0">
-          <div className="ldp h-[60px] w-[350px] mt-[170px] bg-[#497FAB]">
-            <p className="lip text-[white] text-center font-semibold ">
-              Logged in patients
+        <div className="patientdet h-[440px] w-[350px] bg-white shadow-md shadow-blue-500 mt-[40px] ml-[770px] rounded-[20px]">
+          <div className="pdetails h-[60px]  bg-[#497FAB]  ml=[370px] rounded-t-[10px] flex text-[white] font-semibold p-[20px]">
+            <p className="text-center ml-[90px] mt-[-10px] w-150px]">
+              {" "}
+              Appointments
             </p>
-          </div>
-          <p className="num text-black text-[30px] ml-[150px]">
-            {patients.length}
-          </p>
-          <img
-            src="Images/logged.png"
-            alt="logged"
-            className="log h-[120px] ml-[120px] mt-[-240px]"
-          />
-        </div>
-        <div className="patientdet h-[480px] w-[400px] bg-white shadow-md shadow-blue-500 mt-[380px] ml-[-370px] rounded-[20px]">
-          <div className="pdetails h-[60px] w-[400px] bg-[#497FAB]  ml=[370px] rounded-t-[10px] flex">
             <p className="pd text-white text-center font-semibold mt-[10px] ml-[140px]">
               {patientdata.map((patient) => (
                 <div key={patient.patientId}>
@@ -142,19 +123,11 @@ export default function Patient() {
                   <p>{patient.patientId}</p>
                 </div>
               ))}
-              {/* {selectedUser ? (
-                <div>
-                  <p>{selectedUser.patientName}</p>
-                  <p>{selectedUser.patientId}</p>
-                </div>
-              ) : (
-                <p>Select a user to see details.</p>
-              )} */}
             </p>
           </div>
           {/* <div className="bio h-[160px] w-[230px] bg-[white] shadow-md shadow-blue-500 mt-[20px] ml-[130px] text-[#497FAB] font-semibold text-center"></div> */}
           <div className=" h-[130px]  bg-[white] shadow-md shadow-blue-50  ml-[0px] text-[#497FAB] font-semibold text-center">
-            <table className="table-primary table table-striped w-[398px]">
+            <table className="table-primary table table-striped w-[350px]">
               <thead>
                 <tr>
                   <th scope="col">Name</th>
@@ -184,9 +157,9 @@ export default function Patient() {
 
           {ispopup && <Popup id={reportId} handlePopup={closePopup} />}
         </div>
-        <div className="userlist h-[550px] w-[340px]  bg-[#ffffff] ml-[-1200px] mt-[00px] rounded-[30px] shadow-md shadow-blue-500">
+        <div className="userlist h-[550px] w-[340px]  bg-[#ffffff] ml-[-880px] mt-[00px] rounded-[30px] shadow-md shadow-blue-500 ">
           {" "}
-          <div className="input bg-[#497FAB] w-[340px] h-[60px] rounded-t-[10px] flex ">
+          <div className="input bg-[#497fabdb] w-[340px] h-[60px] rounded-t-[10px] flex ">
             <img
               src="/Images/search.png"
               alt="search"
@@ -194,11 +167,10 @@ export default function Patient() {
             />
             <input
               type="text"
-              className="ip bg-[#fffffff1] mt-[19px] ml-[0px] h-[20px] w-[190px] text-[#497FAB]"
+              className="ip bg-[#fffffff1] mt-[19px] ml-[0px] h-[20px] w-[190px] text-[#497FAB] rounded-[20px] text-center font-semibold"
               value={searchuser}
               onChange={(event) => setSearchuser(event.target.value)}
             />
-            {searchuser}
           </div>
           <table className="w-full border-collapse border border-gray-300">
             <thead>
