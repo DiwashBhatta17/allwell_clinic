@@ -10,15 +10,14 @@ export default function Popup(props) {
     console.log(e.target.files);
     setImage(e.target.files[0]);
   }
-  console.log("idd",id);
+  console.log("idd", id);
 
   async function handleUpload() {
     if (images) {
-      console.log("seectImage" ,images);
+      console.log("seectImage", images);
       try {
         const formData = new FormData();
-        formData.append('image', images);
-       
+        formData.append("image", images);
 
         const response = await uploadAfile(id.reportId, formData);
         console.log("res", response);
@@ -30,35 +29,33 @@ export default function Popup(props) {
     }
   }
 
-  
-
   return (
-    <div className="popupbg bg-[#497fabbb] h-[350px] w-[350px] ml-[-460px] mt-[-450px] rounded-[50px] border-1 border-black">
-      <div className="top">
+    <div className="image pop fixed inset-0 flex items-center justify-center z-50 backdrop-blur backdrop-filter bg-opacity-40">
+      <div className="popup h-[370px] w-[400px] bg-[#ffffff]">
+        <div className="file text-[black] font-semibold ml-[20px] mt-[10px]">
+          Upload Patient Report
+        </div>
         <button
-          className="x ml-[300px] mt-[20px] bg-[white] w-[25px] rounded-[190px] hover:bg-[#ffffff85]"
+          className="cls bg-[#935353bb] w-[100px] text-white text-center rounded-[10px] ml-[260px] hover:bg-[#ab4949a9]"
           onClick={handlePopup}
         >
-          X
+          Close
+        </button>
+        <div className="report border-2 border-yellow-200 w-[230px] h-[250px] ml-[25px] mt-[5px] bg-[#ffa60012]">
+          <input
+            type="file"
+            accept="image/*"
+            className="choosefile ml-[20px] mt-[140px] "
+            onChange={handleImage}
+          />
+        </div>
+        <button
+          className="uI bg-[#51ab49bd] w-[120px] text-[white] text-center rounded-[10px] ml-[120px] mt-[14px] hover:bg-[#51ab493c]"
+          onClick={handleUpload}
+        >
+          Upload Report
         </button>
       </div>
-      <p className="upld h-[40px] text-center ml-[0px] mt-[20px] rounded-[2px] font-semibold text-[white]">
-        {" "}
-        Upload the report for this patient.
-        <hr />
-      </p>{" "}
-      <input
-        type="file"
-        className="cfile ml-[50px] mt-[20px]"
-        onChange={handleImage}
-      />
-      <button
-        className="bg-[white] text-center font-semibold ml-[110px] w-[120px] mt-[60px] rounded-[30px] hover:bg-[#ffffff6c] cursor-pointer"
-        onClick={handleUpload}
-      >
-        
-        Upload file
-      </button>
     </div>
   );
 }
