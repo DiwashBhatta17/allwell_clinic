@@ -10,11 +10,11 @@ function SecondAppointmentForm(promps) {
 
 
   const serviceCategories = [
-    "Select Service Category",
-    "Whole Body Checkup",
-    "Vaccination",
-    "Dental Care",
-    "Eye Examination",
+    "सेवा छान्नुहोस",
+    "सम्पूर्ण शारीरिक जाँच",
+    "खोप",
+    "दन्त सेवा",
+    "आँखा जांच",
     // Add more categories as needed
   ];
 
@@ -40,10 +40,10 @@ function SecondAppointmentForm(promps) {
       
       <div className="flex flex-col justify-center items-center min-h-screen text-center my-5">
       <div className="mb-[30px]">
-        <h1 className="text-3xl font-bold text-[#170F49]">Your Appointments</h1>
+        <h1 className="text-3xl font-bold text-[#170F49]">उपचार दर्ता फारम</h1>
         <p>
-          Please fill the form below to book an appointment. <br />
-          Please add all the details required.
+          फारम भर्नुहोस्. <br />
+          सबै विवरण अनिवार्य छ
         </p>
         <div className=" text-center  rounded-lg alert-danger" role="alert">
             {formError}
@@ -52,10 +52,10 @@ function SecondAppointmentForm(promps) {
         <div className="bg-[#FAF8F8] p-4 px-5 rounded-[20px]">
           <div className="my-5">
             <h1 className="text-2xl font-bold text-[#170F49] mb-2">
-              Changed Details
+            उपचार विवरणहरू
             </h1>
             <p className="mb-2">
-              Please fil your information so we can get in touch with you.
+             
             </p>
             <hr />
           </div>
@@ -63,7 +63,7 @@ function SecondAppointmentForm(promps) {
             <div className="flex flex-col ">
               {/* Service Categorie */}
               <label htmlFor="name" className="font-bold text-black">
-                Service Categorie
+                उपलब्ध सेवाहरू
               </label>
               <select
                 className=" shadow-sm rounded-xl mt-2 h-[45px] w-[300px]"
@@ -82,13 +82,13 @@ function SecondAppointmentForm(promps) {
 
             <div className="flex flex-col mt-3 ">
               <label htmlFor="name" className="font-bold text-black">
-                Symptoms
+              लक्षणहरू "यदि कुनै"
               </label>
               <input
                 className="shadow-sm rounded-xl mt-2 h-[45px] w-[300px]"
                 type="text"
                 name="symptoms"
-                placeholder="  Whats your Symptoms"
+                placeholder="बिमारको लक्ष्यण या कुनै जानकारी"
                 value={formData.symptoms}
                 onChange={handelchange}
                 
@@ -98,7 +98,7 @@ function SecondAppointmentForm(promps) {
 
             <div className="flex flex-col mt-3 ">
               <label htmlFor="name" className="font-bold text-black">
-                Time Slot
+              समय चयन
               </label>
               <select
                 className="shadow-sm rounded-xl mt-2 h-[45px] w-[300px]"
@@ -118,7 +118,7 @@ function SecondAppointmentForm(promps) {
 
             <div className="flex flex-col mt-3 ">
               <label htmlFor="name" className="font-bold text-black">
-                Visit Date
+              उपचार मिति
               </label>
               <input
                 className="shadow-sm rounded-xl mt-2 h-[45px] w-[300px]"
@@ -134,13 +134,13 @@ function SecondAppointmentForm(promps) {
                 className="border px-5 py-2 rounded-full bg-[#497FAB] text-white"
                 type="submit"
               >
-                Back
+                अघिल्लो पृष्ठ
               </button>
               <button onClick={handelsubmit}
                 className="border px-5 py-2 rounded-full bg-[#497FAB] text-white"
                 type="submit"
               >
-                Submit
+                पेश गर्नुहोस्
               </button>
             </div>
           </div>

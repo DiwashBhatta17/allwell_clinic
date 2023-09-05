@@ -60,7 +60,7 @@ const isFormValid = () => {
   for (const field of requiredFields) {
     if (formData[field].trim() === "") {
       console.log("is not valid")
-      setFormError("All fields are required");
+      setFormError("फारममा त्रुटि");
       return false;
     }
     else{

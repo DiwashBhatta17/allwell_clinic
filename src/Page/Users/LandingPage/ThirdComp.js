@@ -39,7 +39,7 @@ function ThirdComp() {
   return (
     <>
       <div className="flex justify-center mt-5">
-        <h1 className="text-3xl text-[#497FAB]">OUR TEAM MEMBERS</h1>
+        <h1 className="text-3xl text-[#497FAB]">डाक्टरहरु</h1>
       </div>
       <div className="flex flex-wrap justify-center mx-[120px] gap-x-5 mt-5 ">
         {doctorList.map((value, index) => (

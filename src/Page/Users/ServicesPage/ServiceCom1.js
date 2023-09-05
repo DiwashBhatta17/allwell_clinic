@@ -21,18 +21,16 @@ function ServiceCom1() {
       <div className="mt-[125px] flex justify-around  ">
         <div className="border w-[450px]  shadow-2xl text-center">
           <div className="img h-[220px] items-center justify-center flex"><img src={wholebody} alt="" /></div>
-          <h1 className="text-xl font-bold mb-2">Whole Body Checkup</h1>
+          <h1 className="text-xl font-bold mb-2">फुल बडि चेकअप</h1>
           <p className="mb-3  px-3">
-            We provide a realiable, honest epair services ranging from simple
-            preventative maintenance and troubleshooting, to more complicated
-            component level and software related issue
+            कम्प्लिट ब्लड काउन्ट,ग्लूकोजको मात्रा परीक्षण,लिपिड प्रोफाइल,युरिक एसिड तथा अन्य चेकजाचको लाभ लिन सक्छन्
           </p>
         </div>
         <div className="border w-[450px]   shadow-2xl text-center">
           <div className="img items-center justify-center flex h-[220px]"><img src={vaccineimg} alt="" /></div>
-          <h1 className="text-xl font-bold mb-2">Vaccination</h1>
+          <h1 className="text-xl font-bold mb-2">खोप</h1>
           <p className="mb-3  px-3">
-          We provide vaccination for Adults, Children, Students & Travelers to Nepal
+          हामी एक मान्यता प्राप्त खोप क्लिनिक हौं,शिशु खोप, वैदेशिक यात्रा खोप प्रमाणपत्र, कोरोन खोप तथा अन्य भ्याक्सिनहरू 
           </p>
         </div>
       </div>
@@ -40,17 +38,16 @@ function ServiceCom1() {
       <div className="mt-[125px] flex justify-around mb-5">
         <div className="border w-[450px]  shadow-2xl text-center">
           <div className=" items-center justify-center flex h-[220px]"><img src={imagingimg} alt="" /></div>
-          <h1 className="text-xl font-bold mb-2">Imaging</h1>
+          <h1 className="text-xl font-bold mb-2">भिडियो | फोटो इमेजिङ</h1>
           <p className="mb-3  px-3">
-           We provide services like X-ray, Ecg
-          </p>
+          हामी एक्स-रे, ईसीजी जस्ता सेवाहरू प्रदान गर्दछौं
+                    </p>
         </div>
         <div className="border w-[450px]  shadow-2xl text-center">
           <div className="img items-center justify-center flex h-[220px]"><img src={minorimg} alt="" /></div>
-          <h1 className="text-xl font-bold mb-2">Minor Procedures and Surgeries</h1>
+          <h1 className="text-xl font-bold mb-2">माइनर प्रक्रिया र शल्यक्रियाहरू</h1>
           <p className="mb-3  px-3">
-          We at AllWell provide minor procedures and surgeries. Please call or email us today to schedule a consult with a doctor or specialist regarding outpatient surgery.
-          </p>
+          हामी AllWell मा साना प्रक्रियाहरू र शल्यक्रियाहरू प्रदान गर्दछौं। कृपया बाहिरी रोगी शल्यक्रियाको सम्बन्धमा डाक्टर वा विशेषज्ञसँग परामर्श गर्नुहोस् </p>
         </div>
       </div>
       <UserFooter />

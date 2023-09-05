@@ -11,10 +11,10 @@ function UserNavbar() {
           <div>
             <ul className="flex items-center justify-center gap-[35px]">
               <li>
-                <a href="/home">Our Service</a>
+                <a href="/home">हाम्रा सेवाहरु</a>
               </li>
               <li>
-                <a href="/home">News and Events</a>
+                <a href="/home">मिडिया</a>
               </li>
               <li>
                 <a href="/home">Careers</a>
