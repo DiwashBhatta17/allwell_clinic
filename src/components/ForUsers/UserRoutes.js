@@ -13,7 +13,7 @@ function UserRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<FirstComponent/>} />
-        <Route path="service" element={<ServiceCom1/>} />
+        <Route path="services" element={<ServiceCom1/>} />
         <Route path="appointment" element={<AppointmentFormControl/>} />
         <Route path="login" element={<Login/>} />
         <Route path="signup" element={<Signup/>} />

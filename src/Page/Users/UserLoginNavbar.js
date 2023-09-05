@@ -19,7 +19,7 @@ function UserLoginNavbar() {
                 <a to="/service">Services</a>
               </li>
               <li>
-                <a href="/home">News and Events</a>
+                <a href="/home">मिडिया</a>
               </li>
 
               <li className=" text-[#0360D9] text-2xl">

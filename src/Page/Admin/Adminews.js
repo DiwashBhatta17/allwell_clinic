@@ -13,6 +13,11 @@ export default function News() {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [ids, setId] = useState(null);
+
+ 
+
+
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [newsid, setNewsid] = useState();
@@ -28,6 +33,19 @@ export default function News() {
     headLine: title,
     newsBody: body,
   };
+
+  const data = {
+    headLine: title,
+    newsBody: body,
+  }
+  async function createNews() {
+    const response = await axios.post("http://localhost:8081/news/create-news", data);
+    console.log(response.data.newsId);
+    setId(response.data.newsId);
+
+
+    openImagePopup();
+  }
 
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const openImagePopup = () => {
@@ -90,12 +108,63 @@ export default function News() {
           onChange={(event) => setBody(event.target.value)}
         />
         <button
-          className="upbt bg-[#00800079] w-[90px] h-fit rounded-[10px] mt-[290px] ml-[200px] hover:bg-[#0080005d]"
-          onClick={openImagePopup}
+
+          className="pd bg-[#497FAB] h-[30px] w-[120px] ml-[140px] mt-[20px] text-[white] text-center font-semibold "
+          onClick={createNews}
+
         >
           Upload
         </button>
-        {isImagePopupOpen && <Imagepop handlePopup={closeImagePopup} />}
+
+    
+
+        {isImagePopupOpen && <Imagepop ids={ids} handlePopup={closeImagePopup} />}
+
+        <div className="newsup h-[380px] w-[24%] shadow-md shadow-blue-500 ml-[880px] mt-[-450px] rounded-t-[20px] relative">
+          <div className="nu bg-[#497FAB] h-[60px] w-[100%] ml-[0px] mt-[20px] text-[white] text-center font-semibold rounded-[10px]">
+            <p>Update Page Info</p>
+            <img
+              src="/Images/Home page.png"
+              alt="hIU"
+              className="h-[30px] ml-[42px] mt-[-23px]"
+            />
+          </div>
+          <img
+            src="/Images/call.png"
+            alt=""
+            className="h-[120px] ml-[-30px] mb-[0px]"
+          />
+          <div className="call w-[200px] h-[30px] bg=[white] shadow-md shadow-blue-500 ml-[70px] mt-[-80px]">
+            <input
+              type="text"
+              className="text-[#497FAB]"
+              value={pageinfo.contacts}
+              onChange={(event) => setPageinfo(event.target.value)}
+            />
+            {console.log(pageinfo.contacts)}
+          </div>
+          <img
+            src="/Images/location.png"
+            alt="location"
+            className="h-[40px] mt-[50px] ml-[4px] "
+          />
+          <div className="call w-[200px] h-[30px] bg=[white] shadow-md shadow-blue-500 ml-[70px] mt-[-40px]">
+            <input type="text" className="text-[#497FAB]" />
+          </div>
+          <img
+            src="/Images/mail.png"
+            alt="mail"
+            className="h-[30px] mt-[60px] ml-[10px]"
+          />
+          <div className="call w-[200px] h-[30px] bg=[white] shadow-md shadow-blue-500 ml-[70px] mt-[-40px]">
+            <input type="text" className="text-[#497FAB]" />
+          </div>
+
+          <button className="b1 bg-[#497FAB] w-[200px] h-[30px] text-[white] text-center ml-[60px] mt-[40px] rounded-[20px]">
+            Update Info
+          </button>
+        </div>
+
       </div>
     </>
   );

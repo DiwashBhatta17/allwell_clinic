@@ -14,15 +14,18 @@ export default function Patient() {
   const [report, setReport] = useState(""); // State to hold the report details
   const [appointmentlise, setAppointment] = useState([]);
   const [reportId, setReportId] = useState(null);
+  
 
   const [searchuser, setSearchuser] = useState("");
   const [patients, setPatients] = useState([]);
 
-  const [patientdata, setpatientData] = useState([]); //in details part of the page
+
+  
+  const [patientdata, setpatientData] = useState([]); 
   const [fetchData, setFetchData] = useState(false);
 
   const handlePatientClickID = (patientId) => {
-    setSelectedPatientId(patientId); // Set the selected patient's ID
+    setSelectedPatientId(patientId); 
   };
 
   async function createAReport(appId) {
@@ -78,15 +81,7 @@ export default function Patient() {
 
   <Landingpage patientsLength={patientsLength} />;
 
-  // function datafetch() {
-  //   axios.get("http://localhost:8081/patient/get-all-patient").then((resp) => {
-  //     setpatientData(resp.data);
-  //   });
-  // }
 
-  // function createReport() {
-  //   axios.post("http://localhost:8081/reports/create-report/"); //when upload is clicked post.
-  // }
 
   function handlePatientClick(patient) {
     getAppointmentList(patient.patientId);

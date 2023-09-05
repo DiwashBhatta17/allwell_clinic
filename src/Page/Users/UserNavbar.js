@@ -26,10 +26,10 @@ function UserNavbar() {
           <div>
             <ul className="flex items-center justify-center gap-[35px]">
               <li>
-                <Link to="/service">Services</Link>
+                <Link to="/service">हाम्रा सेवाहरु</Link>
               </li>
               <li>
-                <Link to="/userNews">News and Events</Link>
+                <Link to="/userNews">मिडिया</Link>
               </li>
 
               {
@@ -48,7 +48,7 @@ function UserNavbar() {
                 </button>
               </li>
               <li className="border-2 border-transparent bg-[#0360D9] text-white font-bold rounded-full">
-                <button  onClick={() => dispatch(setSignup(true))} className="px-2 py-1">Sign Up</button>
+                <button  onClick={() => dispatch(setSignup(true))} className="px-2 py-1">Sign Up | रजिस्टर</button>
               </li>
                 </>
               }

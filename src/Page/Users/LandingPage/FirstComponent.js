@@ -25,17 +25,16 @@ function FirstComponent() {
         <div className="flex mx-[120px]">
           <div className="div1">
             <div className="text-2xl opacit text-[#497FAB] font-bold mt-4">
-              Stay Healthy,
+            स्वास्थ्य नै धन हो
             </div>
             <div className="text-3xl mt-2 opacity-[100] text-[#497FAB]">
-              Lets build wellness rather than treat disease."
+              हजुरको स्वास्थ्य, हाम्रो प्राथमिकता
             </div>
             <div className=" mt-5">
               <p>
-                Welcome to our clinic where your will-being is our almost
-                priority <br />
-                We are committed to providing exceptional care while respecting
-                your medical needs and valuable time.
+              All Well Clinic सर्वसुलभ एवं गुणस्तरीय विशेषज्ञ स्वास्थ्य सेवाको लागि सुपरिचित छ ।
+               <br />
+               अन्तराष्ट्रिय स्वास्थ्य सेवा अब हजुरकै बुधबारे मा, दक्ष्य चिकित्सक सदैव हजुरहरुको सेवामा ।
               </p>
             </div>
             <div className="mt-4 ">
@@ -43,7 +42,7 @@ function FirstComponent() {
                 to="/doctorlist"
                 className="border-2 bg-[#497FAB] px-4 py-1 text-white rounded-full"
               >
-                Book an Appointment
+                दर्ता गर्नुहोस
               </Link>
             </div>
           </div>

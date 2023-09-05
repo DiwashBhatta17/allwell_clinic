@@ -8,6 +8,7 @@ export default function Imagepop(props) {
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
+
     setSelectedImage(file);
   };
 
@@ -61,6 +62,14 @@ export default function Imagepop(props) {
           Upload News
         </button>
       </div>
+
+      <button
+        onClick={uploadNews}
+        className="uI bg-[#497FAB] w-fit text-[white] text-center rounded-[10px] ml-[120px] mt-[6px] hover:bg-[#497fab6b]"
+      >
+        Upload News
+      </button>
+
     </div>
   );
 }
