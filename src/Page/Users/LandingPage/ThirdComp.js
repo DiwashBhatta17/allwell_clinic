@@ -52,7 +52,7 @@ function ThirdComp() {
               <img className="w-full h-[260px]" src={value.imgUrl} alt="img" />
               <div>
                 <h1 className="mt-2">{value.doctorName}</h1>
-                <h1 className="text-xl mt-1 ">Sr. Doctor</h1>
+                <h1 className="text-xl mt-1 ">{value.specialization}</h1>
               </div>
             </Link>
             <div className="my-1 gap-1 text-xl ">

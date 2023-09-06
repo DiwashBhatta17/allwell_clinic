@@ -104,25 +104,14 @@ export default function Patient() {
   return (
     <>
       <Navbar />
-      <div className="body md:h-[800px] mt-8 md:mt-[60px] flex flex-col md:flex-row">
-        <div className="patientdet h-[440px] w-[350px] bg-white shadow-md shadow-blue-500 mt-[40px] ml-[770px] rounded-[20px]">
-          <div className="pdetails h-[60px]  bg-[#497FAB]  ml=[370px] rounded-t-[10px] flex text-[white] font-semibold p-[20px]">
-            <p className="text-center ml-[90px] mt-[-10px] w-150px]">
-              {" "}
+      <div className=" mt-8 md:mt-[60px] flex flex-col md:flex-row">
+        <div className=" w-[480px] bg-white shadow-md shadow-blue-500 mt-[40px] ml-[770px] rounded-[20px]">
+          <div className=" bg-[#497FAB]  rounded-t-[10px] flex flex-col text-[white] font-semibold ">
+            <p className="flex w-full items-center justify-center p-4">
               Appointments
             </p>
-            <p className="pd text-white text-center font-semibold mt-[10px] ml-[140px]">
-              {patientdata.map((patient) => (
-                <div key={patient.patientId}>
-                  <p>{patient.patientName}</p>
-                  <p>{patient.patientId}</p>
-                </div>
-              ))}
-            </p>
-          </div>
-          {/* <div className="bio h-[160px] w-[230px] bg-[white] shadow-md shadow-blue-500 mt-[20px] ml-[130px] text-[#497FAB] font-semibold text-center"></div> */}
-          <div className=" h-[130px]  bg-[white] shadow-md shadow-blue-50  ml-[0px] text-[#497FAB] font-semibold text-center">
-            <table className="table-primary table table-striped w-[350px]">
+            <div className=" w-full  bg-[white] shadow-md shadow-blue-50 text-[#497FAB] font-semibold text-center">
+            <table className="table-primary table table-striped ">
               <thead>
                 <tr>
                   <th scope="col">Name</th>
@@ -149,6 +138,10 @@ export default function Patient() {
               </tbody>
             </table>
           </div>
+           
+          </div>
+          {/* <div className="bio h-[160px] w-[230px] bg-[white] shadow-md shadow-blue-500 mt-[20px] ml-[130px] text-[#497FAB] font-semibold text-center"></div> */}
+          
 
           {ispopup && <Popup id={reportId} handlePopup={closePopup} />}
         </div>

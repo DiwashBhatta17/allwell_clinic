@@ -15,12 +15,11 @@ export default function Navbar() {
   }
   return (
     <>
-      {" "}
-      <div className=" bg-[#f61b1b17] text-[#497FAB] flex items-center justify-around h-[14vh] text-[20px] border-2 border-white">
-        <div className="mr-[-500px]">
-          <Link to="/Admindashboard">Allwell Clinic</Link>
+      <div className=" bg-[#f61b1b17] text-[#497FAB] flex items-center h-[14vh]  border-2 border-white">
+        <div className="flex items-center justify-around w-full ">
+          <Link className="text-3xl font-bold" to="/Admindashboard">Allwell Clinic</Link>
           <button
-            className="ml-[450px] border-2 border-red-500 rounded-[40px] w-[80px] hover:bg-[#ff000021] "
+            className=" border-2 border-red-500 rounded-full px-4 py-1 hover:bg-[#ff000021] "
             onClick={handelLogout}
           >
             Logout

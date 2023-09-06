@@ -12,4 +12,4 @@ async function doctorprofileservice(doctorId) {
   
 }
 
-export default doctorprofileservice
+export default doctorprofileservice;

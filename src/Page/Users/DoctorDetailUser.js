@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import doctorimg from "./UserImages/Bitmap.png";
+import dummyPP from "../../components/forAll/dummyPP.jpg";
 import icon1 from "./UserImages/service-1-icon.png";
 import icon2 from "./UserImages/service-2-icon.png";
 import icon3 from "./UserImages/service-3-icon.png";
@@ -71,8 +72,9 @@ function DoctorDetailUser() {
     phone: detail.phone,
     email: detail.email,
     whatsapp: detail.phone,
-    image: doctorimg,
+    image: doctorimg ,
     patientno: "100 +",
+    specialization: detail.specialization,
   };
   return (
     <>
@@ -83,7 +85,7 @@ function DoctorDetailUser() {
         <div className="flex mt-5  justify-around ">
           {/* image part div */}
           <div>
-            <img className="rounded-full" src={imgURL} alt="" />
+            <img className="rounded-full" src={imgURL || dummyPP} alt="" />
             <h1 className="justify-center flex mt-3 text-2xl font-bold">
               {doctorDetails.name}
             </h1>
@@ -91,7 +93,7 @@ function DoctorDetailUser() {
 
           {/* About us part Div */}
           <div className="w-[40%] mt-2">
-            <h1 className="text-2xl font-bold">About {doctorDetails.name}</h1>
+            <h1 className="text-2xl font-bold"> {doctorDetails.specialization}</h1>
             <p className="my-2 mb-5">{doctorDetails.about}</p>
             <button
               onClick={handleClick}

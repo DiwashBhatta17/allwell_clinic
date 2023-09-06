@@ -63,12 +63,7 @@ export default function Imagepop(props) {
         </button>
       </div>
 
-      <button
-        onClick={uploadNews}
-        className="uI bg-[#497FAB] w-fit text-[white] text-center rounded-[10px] ml-[120px] mt-[6px] hover:bg-[#497fab6b]"
-      >
-        Upload News
-      </button>
+      
 
     </div>
   );

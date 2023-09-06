@@ -12,7 +12,7 @@ import {
 } from "../../components/State/slice/counterSlice";
 
 function Login(props) {
-  const {redirect} = props;
+  const {redirect, re} = props;
 
   const loginStatus = useSelector((state) => state.counter.loginvalue);
   const dispatch = useDispatch();
@@ -53,6 +53,10 @@ function Login(props) {
           if(redirect != null){
             navigate(redirect);
           }
+          else if(re != null){
+            navigate(re);
+          }
+
           else{
             navigate("/");
 

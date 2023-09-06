@@ -75,7 +75,7 @@ function DoctorProfile() {
         URL.revokeObjectURL(imgURL);
       }
     };
-  }, [imgURL]); 
+  }, []); 
   // handle upload part
   useEffect(() => {
     handleUpload();
@@ -95,9 +95,16 @@ function DoctorProfile() {
 
   }
   async function handleSubmit(){
-    console.log('form data', formData );
-    await doctorupdateform(doctorId, formData);
-    fetchData();
+
+    try {
+      console.log('form data', formData );
+      const response = await doctorupdateform(doctorId, formData);
+      fetchData();
+      
+    } catch (error) {
+      console.error("Error" , error);
+      
+    }
 
   }
 
