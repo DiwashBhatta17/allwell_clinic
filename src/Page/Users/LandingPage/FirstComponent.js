@@ -33,7 +33,7 @@ function FirstComponent() {
   return (
     <>
       <UserNavbar />
-      <Login redirect={`/appointment2`}/>
+      
       <div className="rounded-br-[300px]  bg-[#c0bdbd] bg-opacity-20">
         <div className="flex justify-between mx-[120px]">
           <div className="div1">

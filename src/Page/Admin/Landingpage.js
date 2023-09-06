@@ -35,7 +35,7 @@ export default function Landingpage(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/appointment/today-count")
+      .get("http://localhost:8081/appointment/get-all-appointments")
       .then((resp) => {
         setAppointmentno(resp.data);
       })
