@@ -1,7 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "./AdminLanding.css";
-import { Link } from "react-router-dom";
 import Navbar from "./Adminnavbar";
 import axios from "axios";
 export default function Landingpage(props) {

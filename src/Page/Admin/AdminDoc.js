@@ -1,7 +1,5 @@
 import React from "react";
-import "./AdminDoc.css";
 import Navbar from "./Adminnavbar";
-import axios from "axios";
 
 import { useState, useEffect } from "react";
 import unverifiedDoctor, {
@@ -9,7 +7,7 @@ import unverifiedDoctor, {
 } from "../../Services/Admin/unverifiedDoctor";
 
 export default function AdminDoc() {
-  const [isVerified, setIsVerified] = useState(false);
+
   const [list, setList] = useState(["", "", ""]);
 
   async function fetchData() {
